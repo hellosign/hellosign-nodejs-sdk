@@ -1,0 +1,19 @@
+{
+  "name": "hellosign-nodejs-sdk",
+  "version": "0.0.1",
+  "description": "HelloSign NodeJS SDK",
+  "homepage": "https://github.com/HelloFax/hellosign-nodejs-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloFax/hellosign-nodejs-sdk"
+  },
+  "bugs:": "apisupport@hellosign.com",
+  "engines": {
+    "node": ">= v0.8.0"
+  },
+  "main": "lib/hellosign.js",
+  "dependencies": {
+    "when": "~3.1.0",
+    "form-data": "~0.1.4"
+  }
+}
