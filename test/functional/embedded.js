@@ -8,19 +8,6 @@ var hellosign = require('../../lib/hellosign.js')({
 });
 
 describe('Embedded', function(){
-  
-  // describe('Normal unclaimed drafts', function(){
-  //   it('should create an unclaimed draft', function(){
-  //       var results = hellosign.unclaimedDraft.create({
-	 //        			test_mode : 1,
-	 //        			files : ['test/functional/docs/nda.pdf', 'test/functional/docs/nda-text-tags.pdf']
-	 //    				})
-	 //    				.then(function(res){
-	 //    					expect(res.unclaimed_draft.claim_url).to.be.ok();
-	 //    				});
-	 //    return results;
-  //   });
-  // });
 
   describe('Embedded Signing', function(){
   	xit('should be able to create an embedded signature request', function(){
