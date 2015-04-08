@@ -51,7 +51,7 @@ describe('Team', function(){
       return result;
     });
 
-    xit('should be able to add team members to a template', function(){
+    it('should be able to add team members to a template', function(){
       var result = hellosign.template.list()
                     .then(function(res){
                       return hellosign.template.addUser(
@@ -62,12 +62,12 @@ describe('Team', function(){
                       );
                     })
                     .then(function(res){
-                      console.log(res);
+                      expect(res.template).to.be.ok();
                     });
       return result;
     });
 
-    xit('should be able to remove team members from a template', function(){
+    it('should be able to remove team members from a template', function(){
       var result = hellosign.template.list()
                     .then(function(res){
                       return hellosign.template.removeUser(
@@ -78,8 +78,7 @@ describe('Team', function(){
                       );
                     })
                     .then(function(res){
-                      console.log('remzzz:::::');
-                      console.log(res);
+                      expect(res.template).to.be.ok();
                     });
       return result;
     });

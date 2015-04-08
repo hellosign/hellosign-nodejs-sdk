@@ -6,33 +6,11 @@ var hellosign = require('../../lib/hellosign.js')({
 	client_secret: params.client_secret,
 	dev: params.dev || false
 });
+var fs = require('fs');
 
 describe('Signature Request', function(){
 
-  describe('Listing exisitng requests', function(){
-  	it('should list current signature requests', function(){
-  		var result = hellosign.signatureRequest.list()
-                      .then(function(res){
-                        expect(res.signature_requests).to.be.ok();
-                      });
-  		return result;
-  	});
-  });
-
-  describe('Get an existing request', function(){
-    it('should get a current signature request', function(){
-      var result = hellosign.signatureRequest.list()
-                      .then(function(res){
-                        return hellosign.signatureRequest.get(res.signature_requests[0].signature_request_id);
-                      })
-                      .then(function(res){
-                        expect(res.signature_request).to.be.ok();
-                      });
-      return result;
-    });
-  });
-
-  describe('Send a signature request', function(){
+   describe('Send a signature request', function(){
     
     it('should send a request', function(){
 
@@ -94,9 +72,35 @@ describe('Signature Request', function(){
 
       return result;
     });
+
+  describe('Listing exisitng requests', function(){
+  	it('should list current signature requests', function(){
+  		var result = hellosign.signatureRequest.list()
+                      .then(function(res){
+                        expect(res.signature_requests).to.be.ok();
+                      });
+  		return result;
+  	});
+  });
+
+  describe('Get an existing request', function(){
+    it('should get a current signature request', function(){
+      var result = hellosign.signatureRequest.list()
+                      .then(function(res){
+                        return hellosign.signatureRequest.get(res.signature_requests[0].signature_request_id);
+                      })
+                      .then(function(res){
+                        expect(res.signature_request).to.be.ok();
+                      });
+      return result;
+    });
+  });
+
+ 
   });
 
   describe('Actions on signature requests', function(){
+    
     it('should send a signature request reminder', function(){
       var result = hellosign.signatureRequest.list()
                     .then(function(res){
@@ -110,7 +114,35 @@ describe('Signature Request', function(){
       return result;
 
     });
-    it('should download from a request');
+
+    it('should download from a request', function(done){
+
+      if(fs.existsSync("files.zip")){
+        fs.unlinkSync("files.zip");
+      }
+
+      hellosign.signatureRequest.list(function(err, success){
+        var req_id = success.signature_requests[0].signature_request_id;
+        hellosign.signatureRequest.download(req_id, {file_type: 'zip'}, function(err, response){
+          if(err){
+            return done(err);
+          }
+          var file = fs.createWriteStream("files.zip");
+          response.pipe(file);
+          file.on('error', function(){
+            console.log('hello');
+          })
+          file.on('finish', function() {
+            file.close();
+            // if we can close the filestream, we were successful; call done()
+            done();
+          });
+        });  
+      });
+
+
+    });
+
     it('should cancel an existing request', function(){
       hellosign.signatureRequest.list()
             .then(function(res){

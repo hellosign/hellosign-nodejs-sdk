@@ -14,7 +14,6 @@ describe('Templates', function(){
     it('should list available templates', function(){
     	var templates = hellosign.template.list();
     	templates.then(function(data){
-	    	// console.log(data);
 	      	expect(Array.isArray(templates)).to.be.ok();
 	      	expect(templates.length).to.be.greaterThan(1);
     	});

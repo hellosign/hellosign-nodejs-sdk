@@ -67,10 +67,6 @@ describe('Unclaimed Draft', function(){
   				}
   			],
   			requester_email_address: 'mrshudson@landlady.com',
-  			// ccs: [{
-  			// 	role_name: 'Commissioner',
-  			// 	email_address: 'commissioner@metropolice.gov.uk'
-  			// }]
   			metadata: {
   				clue1: 'pink suitcase',
   				clue2: 'rache...'

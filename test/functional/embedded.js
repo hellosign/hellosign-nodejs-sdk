@@ -10,18 +10,14 @@ var hellosign = require('../../lib/hellosign.js')({
 describe('Embedded', function(){
 
   describe('Embedded Signing', function(){
-  	xit('should be able to create an embedded signature request', function(){
-  		
-  		var options = {
-  			test_mode: 1,
-	  		files: ['test/functional/docs/nda.pdf'],
-	  		signers: [{"name": "Signer Name", "email_address": "signer@example.com"}],
-	  		cc_email_addresses: ["receiver@example.com"],
-	  		subject: "Test embedded signature request",
-	  		message: "This is the message"
-  		}
+  	it('should accept parameters for an embedded signature retrieval', function(){
 
-  		var results = hellosign.embedded.sign_url();
+      var fake_signature_id = '50e3542f738adfa7ddd4cbd4c00d2a8ab6e4194b';
+
+  		var results = hellosign.embedded.getSignUrl(fake_signature_id)
+                      .catch(function(err){
+                        expect(err.message).to.equal('Signature not found');
+                      });
 
   		return results;
   	});
