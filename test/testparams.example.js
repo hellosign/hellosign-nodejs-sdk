@@ -8,7 +8,6 @@
 var api_key = 'API_KEY';
 var client_id = 'CLIENT_ID';
 var client_secret = 'SECRET';
-var dev = false;
 
 
 module.exports = {
