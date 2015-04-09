@@ -129,9 +129,6 @@ describe('Signature Request', function(){
           }
           var file = fs.createWriteStream("files.zip");
           response.pipe(file);
-          file.on('error', function(){
-            console.log('hello');
-          })
           file.on('finish', function() {
             file.close();
             // if we can close the filestream, we were successful; call done()
