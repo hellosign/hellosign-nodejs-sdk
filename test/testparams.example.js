@@ -13,6 +13,5 @@ var client_secret = 'SECRET';
 module.exports = {
 	key: api_key,
 	client_id: client_id,
-	client_secret: client_secret,
-	dev: dev || false
+	client_secret: client_secret
 };
