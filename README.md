@@ -516,7 +516,12 @@ hellosign.unclaimedDraft.createEmbeddedWithTemplate(options);
 
 ## Tests
 
-You can run the test suite by executing the following commands after you cloned the repo:
+Unit tests can be run simply by executing:
+````sh
+npm test
+````
+
+You can run the full test suite (including functional tests) by executing the following commands after you cloned the repo:
 Note that it requires to have a HelloSign account, with two templates (each having a single signer role, titled 'Signer') and one api app.
 
 **WARNING:** We advise against running those tests against your personal account as it performs destructive actions.
@@ -530,9 +535,9 @@ var api_key = 'YOUR API KEY';
 var client_id = 'YOUR CLIENT ID';
 var client_secret = 'SECRET';
 
-# Then simply run the following to start the test suite:
+# Then run the mocha instance from node_modules:
 
-npm test
+node_modules/mocha/bin/mocha
 ````
 
 ## Additional notes
