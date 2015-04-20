@@ -1,11 +1,6 @@
 var expect = require('expect.js');
-var params = require('../testparams.js');
-var hellosign = require('../../lib/hellosign.js')({
-	key: params.key,
-	client_id: params.client_id,
-	client_secret: params.client_secret,
-	dev: params.dev || false
-});
+
+var hellosign = require('../../lib/hellosign.js')({});
 
 describe('Function Endpoints', function(){
   describe('Account', function(){
