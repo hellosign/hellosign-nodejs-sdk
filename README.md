@@ -1,4 +1,4 @@
-Hellosign NodeJS SDK
+Hellosign NodeJS SDK [![Build Status](https://travis-ci.org/HelloFax/hellosign-nodejs-sdk.svg?branch=v3)](https://travis-ci.org/HelloFax/hellosign-nodejs-sdk)
 -------------------
 
 
