@@ -1,5 +1,5 @@
 {
-  "name": "hellosign-nodejs-sdk",
+  "name": "hellosign-sdk",
   "version": "1.0.0",
   "description": "HelloSign NodeJS SDK",
   "homepage": "https://github.com/HelloFax/hellosign-nodejs-sdk",
@@ -18,7 +18,7 @@
     "when": "~3.1.0"
   },
   "scripts": {
-    "test": "mocha test/unit"  
+    "test": "mocha test/unit"
   },
   "devDependencies": {
     "mocha": "^2.2.3",
