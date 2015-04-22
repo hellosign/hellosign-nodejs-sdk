@@ -14,6 +14,14 @@ A NodeJS / JavaScript wrapper for the [HelloSign API](http://www.hellosign.com/a
 
 ## Installation
 
+Install from npm:
+````sh
+npm install hellosign-sdk
+# Optionally, to install testing / development dependencies
+cd node_modules/hellosign-sdk
+npm install
+````
+
 Install from code:
 ````sh
 git clone https://github.com/HelloFax/hellosign-nodejs-sdk.git
