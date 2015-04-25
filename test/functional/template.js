@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
- * 
- * Copyright (C) 2014 hellosign.com
- * 
+ *
+ * Copyright (C) 2015 hellosign.com
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -33,7 +33,7 @@ var hellosign = require('../../lib/hellosign.js')({
 var path = require('path')
 
 describe('Templates', function(){
-  
+
   describe('List', function(){
     it('should list available templates', function(){
     	var templates = hellosign.template.list();
@@ -44,7 +44,7 @@ describe('Templates', function(){
     	return templates;
     });
   });
-  
+
   describe('Get', function(){
   	it('should get a template back from the server', function(){
   		var results = hellosign.template.list()

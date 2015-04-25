@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
- * 
- * Copyright (C) 2014 hellosign.com
- * 
+ *
+ * Copyright (C) 2015 hellosign.com
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -32,7 +32,7 @@ var hellosign = require('../../lib/hellosign.js')({
 });
 
 describe('Unclaimed Draft', function(){
-  
+
   describe('Normal unclaimed drafts', function(){
     it('should create an unclaimed draft', function(){
         var results = hellosign.unclaimedDraft.create({
@@ -67,7 +67,7 @@ describe('Unclaimed Draft', function(){
   	});
 
   	it('should create embedded unclaimed drafts with a template', function(){
-  		
+
   		var options = {
   			test_mode: 1,
   			template_id: 'TO_BE_POPULATED_ON_PROMISE_RESOLUTION',

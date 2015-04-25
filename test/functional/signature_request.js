@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
- * 
- * Copyright (C) 2014 hellosign.com
- * 
+ *
+ * Copyright (C) 2015 hellosign.com
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -35,7 +35,7 @@ var fs = require('fs');
 describe('Signature Request', function(){
 
    describe('Send a signature request', function(){
-    
+
     it('should send a request', function(){
 
       var options = {
@@ -120,11 +120,11 @@ describe('Signature Request', function(){
     });
   });
 
- 
+
   });
 
   describe('Actions on signature requests', function(){
-    
+
     it('should send a signature request reminder', function(){
       var result = hellosign.signatureRequest.list()
                     .then(function(res){
@@ -158,7 +158,7 @@ describe('Signature Request', function(){
             // if we can close the filestream, we were successful; call done()
             done();
           });
-        });  
+        });
       });
 
 
@@ -176,7 +176,7 @@ describe('Signature Request', function(){
 
   describe('Embedded requests', function(){
     it('should send an embedded request', function(){
-      
+
       var options = {
                       test_mode : 1,
                       clientId : params.client_id,

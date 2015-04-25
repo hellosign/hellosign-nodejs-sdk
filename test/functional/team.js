@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
- * 
- * Copyright (C) 2014 hellosign.com
- * 
+ *
+ * Copyright (C) 2015 hellosign.com
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -32,11 +32,11 @@ var hellosign = require('../../lib/hellosign.js')({
 });
 
 describe('Team', function(){
-  
+
   describe('Creation and editing', function(){
-    
+
     var team_name = 'The A-Team (SDK Test)';
-    
+
     it('should create a team', function(){
       var result = hellosign.team.create({name: team_name})
                     .then(function(res){
@@ -64,9 +64,9 @@ describe('Team', function(){
   });
 
   describe('Adding/Removing members', function(){
-    
+
     var memberEmail = 'node_sdk_test_member@example.net';
-    
+
     it('should add a member', function(){
       var result = hellosign.team.addMember({email_address: memberEmail})
                       .then(function(res){
