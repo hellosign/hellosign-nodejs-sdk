@@ -52,6 +52,8 @@ var hellosign = require('./hellosign.js')({key: 'YOUR API KEY HERE', client_id: 
 
 ````
 
+For initialization for Oauth app-specific calls, see the [Oauth section below](#oauth).
+
 ## Usage
 
 Each function in the SDK is called from your initialized hellosign object, followed by the module name, and then the method.
@@ -326,7 +328,65 @@ hellosign.embedded.getEditUrl(template_id)
 
 ### OAuth
 
-TBD
+#### Get the user to authorize your app
+
+You'll need to create an API app, and add OAuth support, and then use the URL provided to authorize users for your application.
+When you do so, you'll get a state and code value that can be used as below to get an OAuth access token.
+
+See our [OAuth 2.0 walkthrough](https://www.hellosign.com/api/oauthWalkthrough) for more details.
+
+#### Get an app-specific access token
+````javascript
+var hellosign = require('./hellosign.js')({key: 'YOUR API KEY HERE', client_id: 'your client id', client_secret: 'your client secret'});
+
+hellosign.oauth.getToken({state : '53b02619', code : '1d0219ea3363aa67'})
+    .then();
+````
+
+#### Make API calls using your OAuth token:
+
+Use the access token to instantiate an app-specific HelloSign object:
+
+````javascript
+var hellosignOauth = require('./hellosign-nodejs-sdk/lib/hellosign.js')({oauthToken: 'YOUR_ACCESS_TOKEN'});
+````
+
+You can then use the HelloSign object you've created with the Oauth key to perform requests with that key:
+
+````javascript
+var options = {
+    test_mode : 1,
+    title : 'NDA with Acme Co.',
+    subject : 'The NDA we talked about',
+    message : 'Please sign this NDA and then we can discuss more. Let me know if you have any questions.',
+    signers : [
+        {
+            email_address : 'jack@example.com',
+            name : 'Jack',
+            order : 0
+        },
+        {
+            email_address : 'jill@example.com',
+            name : 'Jill',
+            order : 1
+        }
+    ],
+    cc_email_addresses : ['lawyer@example.com', 'lawyer@example2.com'],
+    files : ['nda.pdf']
+};
+
+hellosignOauth.signatureRequest.send(options)
+    .then();
+````
+
+#### Refresh your OAuth token
+
+From the HelloSign instance with your app's client_id and secret set, you can also use the refresh token you got in the first token call above to fetch a new access token for your use:
+
+````javascript
+hellosign.oauth.refreshToken({refresh_token : 'YOUR_REFRESH_TOKEN'})
+    .then();
+````
 
 ### Team
 
