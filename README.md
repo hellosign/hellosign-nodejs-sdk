@@ -131,11 +131,9 @@ hellosign.account.update({callback_url: new_callback_url})
 
 ````javascript
 var email: "new_user@example.com";
-var password: "aL0ngL0ngPa55w0rd";
 
 hellosign.account.create({
-    email_address: email,
-    password: password
+    email_address: email
 })
 .then();
 ````

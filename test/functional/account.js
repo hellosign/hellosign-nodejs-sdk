@@ -36,12 +36,10 @@ describe('Account', function(){
   describe('Creating, getting, updating, and verification', function(){
 
     var email = "node-sdk-test" + new Date().toISOString() + "@example.com";
-    var pwd = "somepassword";
 
     it('should create an account', function(){
       var options = {
-        email_address: email,
-        password: pwd
+        email_address: email
       };
 
       var result = hellosign.account.create(options)
