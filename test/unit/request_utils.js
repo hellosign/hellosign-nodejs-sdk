@@ -23,7 +23,7 @@
  */
 
 var expect = require('expect.js');
-var params = require('../testparams.js');
+var params = { key :'FAKE_API_KEY'};
 var hellosign = require('../../lib/hellosign.js')(params);
 var path = require('path');
 
