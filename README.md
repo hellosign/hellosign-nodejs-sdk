@@ -580,6 +580,17 @@ hellosign.unclaimedDraft.createEmbeddedWithTemplate(options);
     });
 ````
 
+## Warnings
+
+Any warnings returned from the api will be accessible on the response object returned:
+
+````javascript
+hellosign.account.get()
+	.then(function(res){
+		console.log(res.warnings);
+	});
+````
+
 ## Tests
 
 Unit tests can be run simply by executing:
