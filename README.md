@@ -34,21 +34,21 @@ NPM install coming soon.
 
 ## Configuration
 
-In your Node application, require `hellosign.js` and pass authentication information to initialize it:
+In your Node application, require `hellosign-sdk` (or the path to the sdk folder if not using npm) and pass authentication information to initialize it:
 
 ````javascript
 // Initialize using api key
-var hellosign = require('./hellosign.js')({key: 'YOUR API KEY HERE'});
+var hellosign = require('hellosign-sdk')({key: 'YOUR API KEY HERE'});
 
 OR
 
 // Initialize using email and password
-var hellosign = require('./hellosign.js')({username: 'your_email_address', password: 'your_password'});
+var hellosign = require('hellosign-sdk')({username: 'your_email_address', password: 'your_password'});
 
 OR
 
 // Initialize for embedded requests using your api key, client id, and (optionally, for OAuth) client secret
-var hellosign = require('./hellosign.js')({key: 'YOUR API KEY HERE', client_id: 'your client id', client_secret: 'your client secret'});
+var hellosign = require('hellosign-sdk')({key: 'YOUR API KEY HERE', client_id: 'your client id', client_secret: 'your client secret'});
 
 ````
 
