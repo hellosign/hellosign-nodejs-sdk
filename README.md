@@ -606,7 +606,7 @@ On any response object, you can inspect the `statusCode` and `statusMessage` pro
 This is especially useful for endpoints that don't return any JSON information, like `cancel`:
 
 ````javascript
-hellosign.signatureRequest.cancel('fa5c8a0b0f492d768749333ad6fcc214c111e967')
+hellosign.signatureRequest.cancel('fa5c8a0b0a492d768749333ad6fcc214c111e967')
 .then(function(response){
   console.log(response.statusCode);
   console.log(response.statusMessage);
