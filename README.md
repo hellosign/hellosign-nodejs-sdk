@@ -252,8 +252,16 @@ hellosign.signatureRequest.download(request_id, {file_type: 'zip'}, function(err
 #### Cancel an outstanding signature request
 ````javascript
 var request_id = 'fa5c8a0b0f492d768749333ad6fcc214c111e967';
-hellosign.signatureRequest.cancel(request_id);
+hellosign.signatureRequest.cancel(request_id)
+.then(function(response){
+  console.log(response.statusCode);
+  console.log(response.statusMessage);
+})
+.catch(function(err){
+  // Handle errors
+});
 ````
+See below for more info on the statusCode / statusMessage properties.
 
 #### Send an embedded signature request
 ````javascript
@@ -589,6 +597,20 @@ hellosign.account.get()
 	.then(function(res){
 		console.log(res.warnings);
 	});
+````
+
+## Status codes
+
+On any response object, you can inspect the `statusCode` and `statusMessage` properties to get HTTP status information.
+
+This is especially useful for endpoints that don't return any JSON information, like `cancel`:
+
+````javascript
+hellosign.signatureRequest.cancel('fa5c8a0b0f492d768749333ad6fcc214c111e967')
+.then(function(response){
+  console.log(response.statusCode);
+  console.log(response.statusMessage);
+});
 ````
 
 ## Tests
