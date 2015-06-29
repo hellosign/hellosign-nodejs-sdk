@@ -101,17 +101,19 @@ var helpers = module.exports = {
 
         if('files' in data && Array.isArray(data.files)){
             // submit as form
-            var form = new FormData();
-            for(var i=0; i<data.files.length;i++) {
-                form.append("file[" + i + "]", fs.createReadStream(data.files[i]));
-            }
-            delete data.files;
-            for(var paramName in data){
-                if(data.hasOwnProperty(paramName)){
-                    form.append(paramName, data[paramName]);
-                }
-            }
-            return {requestData: "", formData: form}
+            // var form = new FormData();
+            // for(var i=0; i<data.files.length;i++) {
+            //     form.append("file[" + i + "]", fs.createReadStream(data.files[i]));
+            // }
+            // delete data.files;
+            // for(var paramName in data){
+            //     if(data.hasOwnProperty(paramName)){
+            //         form.append(paramName, data[paramName]);
+            //     }
+            // }
+            // return {requestData: "", formData: form}
+            //TODO: Process files - skipping for now.
+            return data;
         } else {
             // var requestData = utils.stringifyRequestData(data || {});
             // return {requestData: requestData, formData: null}
@@ -149,15 +151,20 @@ var helpers = module.exports = {
       var match = true;
       var details = [];
 
-      //TODO: 1) Make this work in all cases 2) use try/catch here in case formatOptions fails ??
-      var processedBody = helpers.formatOptions(testBody);
-      var keys = Object.keys(processedBody);
+      //TODO: 1) Make this work in all cases - ie for files
+      try {
+        var processedBody = helpers.formatOptions(testBody);
+        var keys = Object.keys(processedBody);
+      } catch (ex) {
+        details.push('Error parsing test parameters. Check your test spec. Error:' + JSON.stringify(ex));
+        return {results: false, details: details}
+      }
 
       keys.forEach(function(key) {
-        if (!requestBody.hasOwnProperty(key) || requestBody[key] !== processedBody[key]) {
+        if (!requestBody.hasOwnProperty(key) || requestBody[key] != processedBody[key]) {
           match = false;
           // TODO: Make reporting better here
-          details.push('Error: Mismatch at ' + key + '');
+          details.push('Error: Mismatch at ' + key + '. Expected ' + processedBody[key] + ' but got ' + requestBody[key] + '.');
         }
       });
 
