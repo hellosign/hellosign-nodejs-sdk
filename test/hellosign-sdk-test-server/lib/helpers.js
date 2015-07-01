@@ -131,7 +131,7 @@ var helpers = module.exports = {
 
 
       app[method](url, function(req, res){
-
+        console.log('hitting route ' + url );
         if (test.body) {
           console.log('test body: ' + JSON.stringify(test.body));
           console.log('req body: ' + JSON.stringify(req.body));
@@ -140,8 +140,8 @@ var helpers = module.exports = {
           var checkResults = helpers.checkRequestParams(req.body, test.body);
           console.log('checkResults: ' + JSON.stringify(checkResults));
         }
-
-        res.status(test.status).json(test.response);
+        console.log('sending response ' + JSON.stringify(test.response));
+        res.status(test.status).set({'content-type' : 'application/json'}).json(test.response).end();
       });
 
     },
