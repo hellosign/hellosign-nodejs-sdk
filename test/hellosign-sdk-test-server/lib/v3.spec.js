@@ -4,6 +4,8 @@ module.exports = {
       'test_name': 'Get Account: Successful',
       'url': '/account',
       'method': 'GET',
+      'acceptsFiles': false,
+      'sendsFiles': false,
       'status': 200,
       'body': null,
       'response': {
@@ -27,6 +29,8 @@ module.exports = {
       'test_name': 'Update Account: Successful',
       'url': '/account',
       'method': 'POST',
+      'acceptsFiles': false,
+      'sendsFiles': false,
       'status': 200,
       'body': {
         callback_url: "https://www.example.com/callback"
@@ -52,6 +56,8 @@ module.exports = {
         'test_name': 'Create Account: Successful',
         'url': '/account/create',
         'method': 'POST',
+        'acceptsFiles': false,
+        'sendsFiles': false,
         'status': 200,
         'body': {
           email_address: "newuser@hellosign.com"
@@ -77,6 +83,8 @@ module.exports = {
       'test_name': 'Send Signature Request: Successful',
       'url': '/signature_request/send',
       'method': 'POST',
+      'acceptsFiles': false,
+      'sendsFiles': false,
       'status': 200,
       'body': {
         test_mode : 1,
