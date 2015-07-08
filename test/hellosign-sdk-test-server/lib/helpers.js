@@ -187,12 +187,10 @@ var helpers = module.exports = {
     },
 
     handleDownloadTest: function(test, req, res) {
-      // Maybe we should figure out how to get url params first?
+      // TODO: This currently will work with CURL, but not with the NodeJS SDK. Most likely missing a header or similar.
+      // Fix to handle download case for NodeJS SDK, and also add ability to parse zip vs pdf arguments
       var rootDir = __dirname + '/fixtures/';
-      console.log('root dir vvv');
-      console.log(rootDir);
-      var stat = fs.statSync(rootDir + 'files.zip');
-      console.log('stat = ' + JSON.stringify(stat));
+
       var options = {
         headers: {
           'content-type': 'application/octet-stream',
