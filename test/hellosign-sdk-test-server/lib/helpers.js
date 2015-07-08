@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var helpers = module.exports = {
   // Taken from _prepareOpts in the HelloSign NodeJS SDK - last update = 06/26/2015
   formatOptions : function(data){
@@ -135,9 +137,9 @@ var helpers = module.exports = {
         console.log('hitting route ' + url );
 
         if (test.sendsFiles) {
-            helpers.handleDownloadTest();
+            helpers.handleDownloadTest(test, req, res);
         } else if (test.acceptsFiles) {
-            helpers.handleUploadTest();
+            helpers.handleUploadTest(test, req, res);
         } else {
             helpers.handleBodyTest(test, req, res);
         }
@@ -173,20 +175,91 @@ var helpers = module.exports = {
 
     handleBodyTest: function(test, req, res) {
       if (test.body) {
-        console.log('test body: ' + JSON.stringify(test.body));
-        console.log('req body: ' + JSON.stringify(req.body));
-        console.log('parsed body: ' + JSON.stringify(helpers.formatOptions(req.body)));
+        helpers.log('test body: ' + JSON.stringify(test.body));
+        helpers.log('req body: ' + JSON.stringify(req.body));
+        helpers.log('parsed body: ' + JSON.stringify(helpers.formatOptions(req.body)));
 
         var checkResults = helpers.checkRequestParams(req.body, test.body);
-        console.log('checkResults: ' + JSON.stringify(checkResults));
+        helpers.log('checkResults: ' + JSON.stringify(checkResults));
       }
-      console.log('sending response ' + JSON.stringify(test.response));
+      helpers.log('sending response ' + JSON.stringify(test.response));
       res.status(test.status).json(test.response);
     },
 
-    handleDownloadTest: function() {},
+    handleDownloadTest: function(test, req, res) {
+      // Maybe we should figure out how to get url params first?
+      var rootDir = __dirname + '/fixtures/';
+      console.log('root dir vvv');
+      console.log(rootDir);
+      var stat = fs.statSync(rootDir + 'files.zip');
+      console.log('stat = ' + JSON.stringify(stat));
+      var options = {
+        headers: {
+          'content-type': 'application/octet-stream',
+          'content-transfer-encoding': 'binary'
+        },
+        maxAge: 2000
+      }
+      res.status(test.status).sendFile(rootDir + 'files.zip', options);
+    },
 
-    handleUploadTest: function() {},
+    handleUploadTest: function(test, req, res) {
+
+      if (!req.files) {
+          res.status(500).send('No files found on request!');
+      }
+
+      // Check each test file for name mismatches
+      var nameMismatch = test.body.files.some(function(testfile, index){
+        return req.files['file[' + index + ']'].originalname != testfile;
+      });
+      if (nameMismatch) {
+        res.status(500).send('File name does not match test spec!');
+        return;
+      }
+
+      // Check body if specified
+      if (test.body) {
+        helpers.handleBodyTest(test, req, res);
+      } else {
+        res.status(test.status).json(test.response);
+      }
+
+    },
+
+    debug: false,
+
+    log: function(message, force) {
+      var message = message || '';
+      var force = force || false;
+
+      if (helpers.debug || force) {
+        console.log(message);
+      }
+    },
+
+    clearUploads: function () {
+
+      var uploadsDir = __dirname + '/../uploads';
+      var exists = fs.existsSync(__dirname + '/../uploads');
+
+      if (exists) {
+        var files = fs.readdirSync(uploadsDir);
+        if (files) {
+
+          console.log('Clearing previous uploads...');
+
+          files.forEach(function(file){
+            if (file.indexOf('.') !== 0) {
+              var filepath = uploadsDir + '/' + file;
+              fs.unlinkSync(filepath);
+            }
+          });
+
+          console.log('Done.')
+        }
+      }
+    },
 
     sendRouteNotFoundResponse: function(req, res) {
       res.status(404).send('Endpoint not found in test server spec. Check your URL and HTTP method.');
