@@ -30,8 +30,6 @@ cd hellosign-nodejs-sdk
 npm install
 ````
 
-NPM install coming soon.
-
 ## Configuration
 
 In your Node application, require `hellosign-sdk` (or the path to the sdk folder if not using npm) and pass authentication information to initialize it:
@@ -623,7 +621,7 @@ npm test
 You can run the full test suite (including functional tests) by executing the following commands after you cloned the repo:
 Note that it requires to have a HelloSign account, with two templates (each having a single signer role, titled 'Signer') and one api app.
 
-**WARNING:** We advise against running those tests against your personal account as it performs destructive actions.
+**WARNING:** We advise against running these tests against your personal account as they perform destructive actions.
 
 ````sh
 cd hellosign-nodejs-sdk
@@ -639,6 +637,8 @@ var client_secret = 'SECRET';
 node_modules/mocha/bin/mocha
 ````
 
+Mocked functional tests are coming soon. Look inside the repo for a sneak peak.
+
 ## Additional notes
 
 ### Local callbacks
@@ -649,7 +649,7 @@ We do not allow app callbacks (event or OAuth) to be set to localhost. However i
 ```
 The MIT License (MIT)
 
-Copyright (C) 2014 hellosign.com
+Copyright (C) 2015 hellosign.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
