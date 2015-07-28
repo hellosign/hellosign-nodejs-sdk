@@ -1,6 +1,6 @@
 {
   "name": "hellosign-sdk",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "HelloSign NodeJS SDK",
   "homepage": "https://github.com/HelloFax/hellosign-nodejs-sdk",
   "repository": {
