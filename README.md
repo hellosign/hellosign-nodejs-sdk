@@ -168,6 +168,12 @@ hellosign.signatureRequest.list()
   });
 ````
 
+This endpoint can optionally receive the parameters `page`, and `page_size`, passed in as an options object:
+
+````javascript
+hellosign.signatureRequest.list({page: 2, page_size: 15})
+````
+
 #### Send a Signature Request
 
 ````javascript
