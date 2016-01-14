@@ -225,7 +225,7 @@ var options = {
    ]
 };
 
-hellosign.signatureRequest.sendWithTemplate(options);
+hellosign.signatureRequest.sendWithTemplate(options)
   .then(function(res){
     console.log(res.signature_request);
   });
