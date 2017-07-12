@@ -222,6 +222,14 @@ var options = {
        name : 'George',
        role : 'Signer'
      }
+   ],
+   custom_fields: [
+     { 
+     	name: "start_date",
+	value: "01/10/2016",
+	editor: "Signer",
+	required: true
+     }
    ]
 };
 
