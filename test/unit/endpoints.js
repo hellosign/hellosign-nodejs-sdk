@@ -86,6 +86,7 @@ describe('Function Endpoints', function(){
       expect(hellosign.unclaimedDraft.create).to.be.a('function');
       expect(hellosign.unclaimedDraft.createEmbedded).to.be.a('function');
       expect(hellosign.unclaimedDraft.createEmbeddedWithTemplate).to.be.a('function');
+      expect(hellosign.unclaimedDraft.editAndResend).to.be.a('function');
     });
   });
 });
