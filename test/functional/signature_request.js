@@ -25,10 +25,10 @@
 var expect = require('expect.js');
 var params = require('../testparams.js');
 var hellosign = require('../../lib/hellosign.js')({
-	key: params.key,
-	client_id: params.client_id,
-	client_secret: params.client_secret,
-	dev: params.dev || false
+  key: params.key,
+  client_id: params.client_id,
+  client_secret: params.client_secret,
+  dev: params.dev || false
 });
 var fs = require('fs');
 
@@ -161,6 +161,21 @@ describe('Signature Request', function(){
         });
       });
 
+
+    });
+
+  it('should update a signature request', function(){
+      var result = hellosign.signatureRequest.list()
+                    .then(function(res){
+                      var req_id = res.signature_requests[0].signature_request_id;
+                      var signature_id = res.signature_requests[0].signatures[0].signature_id;
+                      var email = res.signature_requests[0].signatures[0].signer_email_address;
+                      return hellosign.signatureRequest.update(req_id,{signature_id : signature_id, email_address : email});
+                    })
+                    .then(function(res){
+                      expect(res.signature_request).to.be.ok();
+                    });
+      return result;
 
     });
 
