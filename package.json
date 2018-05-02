@@ -9,7 +9,7 @@
   },
   "bugs:": "apisupport@hellosign.com",
   "engines": {
-    "node": ">= v0.8.0"
+    "node": ">=8.0.0"
   },
   "main": "lib/hellosign.js",
   "dependencies": {
