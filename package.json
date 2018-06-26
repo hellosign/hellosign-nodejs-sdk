@@ -13,7 +13,7 @@
   },
   "main": "lib/hellosign.js",
   "dependencies": {
-    "form-data": "~0.1.4",
+    "form-data": "^2.3.2",
     "request": "^2.55.0",
     "when": "~3.1.0"
   },
