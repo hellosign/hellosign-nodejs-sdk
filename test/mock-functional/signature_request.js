@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
-var expect = require('expect.js');
-var spec = require('../hellosign-sdk-test-server/lib/v3.spec.js').tests;
-var params = require('../testparams.js');
+var expect = require('expect');
+var spec = require('../hellosign-sdk-test-server/lib/v3.spec').tests;
+var params = require('../testparams');
 
-var hellosign = require('../../lib/hellosign.js')({
+var hellosign = require('../../lib/hellosign')({
 		key: params.key,
 		client_id: params.client_id,
 		client_secret: params.client_secret,

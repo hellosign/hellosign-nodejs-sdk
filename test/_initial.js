@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-var expect = require('expect.js');
-var params = require('./testparams.js');
-var hellosign = require('../lib/hellosign.js');
+var expect = require('expect');
+var params = require('./testparams');
+var hellosign = require('../lib/hellosign');
 var path = require('path');
 
 describe('Confirm Test Environment', function(){

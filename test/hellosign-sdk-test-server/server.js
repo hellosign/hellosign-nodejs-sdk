@@ -5,8 +5,8 @@ var multer = require('multer');
 var morgan = require('morgan');
 
 // HelloSign
-var v3 = require('./lib/v3.spec.js');
-var helpers = require('./lib/helpers.js');
+var v3 = require('./lib/v3.spec');
+var helpers = require('./lib/helpers');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
