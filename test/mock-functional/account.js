@@ -22,13 +22,14 @@
  * SOFTWARE.
  */
 
-var expect = require('expect.js');
-var spec = require('../hellosign-sdk-test-server/lib/v3.spec.js').tests;
+var expect = require('expect');
+var spec = require('../hellosign-sdk-test-server/lib/v3.spec').tests;
+var params = require('../testparams');
 
-var hellosign = require('/Users/derek/Documents/sdks/hellosign-nodejs-sdk/lib/hellosign.js')({
-		key: 'cbc9df3a1fc1ebbec01697194ce3fd8b69695b6412cfa0933147b4ec2995fca9',
-		client_id: '2aef7fb7aee4d13652ec14093f96a082',
-		client_secret: 'SECRET',
+var hellosign = require('../../lib/hellosign')({
+		key: params.key,
+		client_id: params.client_id,
+		client_secret: params.client_secret,
 		dev: false
 		});
 

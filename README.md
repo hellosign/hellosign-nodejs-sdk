@@ -224,7 +224,7 @@ var options = {
      }
    ],
    custom_fields: [
-     { 
+     {
      	name: "start_date",
 	value: "01/10/2016",
 	editor: "Signer",
@@ -630,25 +630,6 @@ hellosign.signatureRequest.cancel('fa5c8a0b0a492d768749333ad6fcc214c111e967')
 Unit tests can be run simply by executing:
 ````sh
 npm test
-````
-
-You can run the full test suite (including functional tests) by executing the following commands after you cloned the repo:
-Note that it requires to have a HelloSign account, with two templates (each having a single signer role, titled 'Signer') and one api app.
-
-**WARNING:** We advise against running these tests against your personal account as they perform destructive actions.
-
-````sh
-cd hellosign-nodejs-sdk
-cp test/testparams.example.js test/testparams.js
-
-# In testparams.js, edit
-var api_key = 'YOUR API KEY';
-var client_id = 'YOUR CLIENT ID';
-var client_secret = 'SECRET';
-
-# Then run the mocha instance from node_modules:
-
-node_modules/mocha/bin/mocha
 ````
 
 Mocked functional tests are coming soon. Look inside the repo for a sneak peak.
