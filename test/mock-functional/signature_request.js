@@ -24,7 +24,7 @@
 
 var expect = require('expect');
 var spec = require('../hellosign-sdk-test-server/lib/v3.spec').tests;
-var params = require('../testparams');
+var params = require('../testparams.example.js');
 
 var hellosign = require('../../lib/hellosign')({
 		key: params.key,
@@ -49,6 +49,7 @@ describe('Signature Request', function(){
       var result = hellosign.signatureRequest.send(test.body)
                         .then(function(res){
                           expect(res.signature_request).to.be.ok();
+													done();
                         });
       return result;
     });
@@ -60,6 +61,7 @@ describe('Signature Request', function(){
       var result = hellosign.signatureRequest.sendWithTemplate(test.body)
                       .then(function(res){
                         expect(res.signature_request).to.be.ok();
+												done();
                       });
 
       return result;
@@ -73,6 +75,7 @@ describe('Signature Request', function(){
   		var result = hellosign.signatureRequest.list()
                       .then(function(res){
                         expect(res.signature_requests).to.be.ok();
+												done();
                       });
   		return result;
   	});
@@ -86,6 +89,7 @@ describe('Signature Request', function(){
                       })
                       .then(function(res){
                         expect(res.signature_request).to.be.ok();
+												done();
                       });
       return result;
     });
@@ -105,6 +109,7 @@ describe('Signature Request', function(){
                     })
                     .then(function(res){
                       expect(res.signature_request).to.be.ok();
+											done();
                     });
       return result;
 
@@ -172,6 +177,7 @@ describe('Signature Request', function(){
       var result = hellosign.signatureRequest.createEmbedded(options)
                       .then(function(res){
                         expect(res.signature_request).to.be.ok();
+												done();
                       });
       return result;
 
@@ -199,6 +205,7 @@ describe('Signature Request', function(){
                     })
                     .then(function(res){
                       expect(res.signature_request).to.be.ok();
+											done();
                     });
       return result;
     });
