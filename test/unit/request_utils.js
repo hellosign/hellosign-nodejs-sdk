@@ -68,7 +68,6 @@ describe('Request Utils', function(){
 			var header = hellosign.account._createAuthHeader();
 			var authtype = header.split(' ')[0];
 			var headerAPIKey = header.split(' ')[1];
-      console.log("WHAT IS HEADERAPIKEY? ----->", headerAPIKey);
 			expect(authtype).to.equal('Basic');
 			expect(headerAPIKey).to.equal(Buffer.from(params.key + ':').toString('base64'));
 		});
@@ -90,7 +89,6 @@ describe('Request Utils', function(){
 			var header = hellosignBasic.account._createAuthHeader();
 			var authtype = header.split(' ')[0];
 			var headerAuthString = header.split(' ')[1];
-      console.log("WHAT IS HEADERAUTHSTRING? ---->", headerAuthString);
 			expect(authtype).to.equal('Basic');
 			expect(headerAuthString).to.equal(Buffer.from(testUser.username + ':' + testUser.password).toString('base64'));
 		});
