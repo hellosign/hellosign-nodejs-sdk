@@ -26,7 +26,6 @@ var expect = require('expect.js');
 var params = { key :'FAKE_API_KEY'};
 var hellosign = require('../../lib/hellosign.js')(params);
 var path = require('path');
-const bufferFrom = require('buffer-from');
 
 describe('Request Utils', function(){
 
@@ -69,8 +68,9 @@ describe('Request Utils', function(){
 			var header = hellosign.account._createAuthHeader();
 			var authtype = header.split(' ')[0];
 			var headerAPIKey = header.split(' ')[1];
+      console.log("WHAT IS HEADERAPIKEY? ----->", headerAPIKey);
 			expect(authtype).to.equal('Basic');
-			expect(headerAPIKey).to.equal(bufferFrom(params.key + ':').toString('base64'));
+			expect(headerAPIKey).to.equal(Buffer.from(params.key + ':').toString('base64'));
 		});
 
 		it('should set oath key auth header for oauth token instantiation', function(){
@@ -90,8 +90,9 @@ describe('Request Utils', function(){
 			var header = hellosignBasic.account._createAuthHeader();
 			var authtype = header.split(' ')[0];
 			var headerAuthString = header.split(' ')[1];
+      console.log("WHAT IS HEADERAUTHSTRING? ---->", headerAuthString);
 			expect(authtype).to.equal('Basic');
-			expect(headerAuthString).to.equal(bufferFrom(testUser.username + ':' + testUser.password).toString('base64'));
+			expect(headerAuthString).to.equal(Buffer.from(testUser.username + ':' + testUser.password).toString('base64'));
 		});
 	});
 });
