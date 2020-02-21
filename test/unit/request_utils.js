@@ -69,7 +69,7 @@ describe('Request Utils', function(){
 			var authtype = header.split(' ')[0];
 			var headerAPIKey = header.split(' ')[1];
 			expect(authtype).to.equal('Basic');
-			expect(headerAPIKey).to.equal(new Buffer(params.key + ':').toString('base64'));
+			expect(headerAPIKey).to.equal(Buffer.from(params.key + ':').toString('base64'));
 		});
 
 		it('should set oath key auth header for oauth token instantiation', function(){
@@ -90,7 +90,7 @@ describe('Request Utils', function(){
 			var authtype = header.split(' ')[0];
 			var headerAuthString = header.split(' ')[1];
 			expect(authtype).to.equal('Basic');
-			expect(headerAuthString).to.equal(new Buffer(testUser.username + ':' + testUser.password).toString('base64'));
+			expect(headerAuthString).to.equal(Buffer.from(testUser.username + ':' + testUser.password).toString('base64'));
 		});
 	});
 });

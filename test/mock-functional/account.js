@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-var expect = require('expect');
+var expect = require('expect.js');
 var spec = require('../hellosign-sdk-test-server/lib/v3.spec').tests;
-var params = require('../testparams');
+var params = require('../testparams.example.js');
 
 var hellosign = require('../../lib/hellosign')({
 		key: params.key,
@@ -41,46 +41,50 @@ describe('Account', function(){
 
     var email = "node-sdk-test" + new Date().toISOString() + "@example.com";
 
-    it('should create an account', function(){
+    it('should create an account', function(done){
 
 			var test = spec[2];
 
       var result = hellosign.account.create(test['body'])
                       .then(function(res){
                         expect(res.account).to.be.ok();
+												done();
                       })
       return result;
     });
 
-    it('should verify an account', function(){
+    it('should verify an account', function(done){
 
 			var test = spec[4];
 
       var result = hellosign.account.verify(test.body)
                       .then(function(res){
                         expect(res.account).to.be.ok();
+												done();
                       });
       return result;
     });
 
-    it('should get the current account', function(){
+    it('should get the current account', function(done){
 
 			var test = spec[0];
 
       var result = hellosign.account.get()
                     .then(function(res){
                       expect(res.account).to.be.ok();
+											done();
                     });
       return result;
     });
 
-    it('should update an account', function(){
+    it('should update an account', function(done){
 
 			var test = spec[1];
 
       var result = hellosign.account.update(test.body)
                     .then(function(res){
                       expect(res.account).to.be.ok();
+											done();
                     });
       return result;
     });
