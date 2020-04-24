@@ -16,6 +16,9 @@ A NodeJS / JavaScript wrapper for the [HelloSign API](http://www.hellosign.com/a
 
 Install from npm:
 ````sh
+# Optionally, to scaffolding your package.json first
+npm init
+
 npm install hellosign-sdk
 # Optionally, to install testing / development dependencies
 cd node_modules/hellosign-sdk
