@@ -275,6 +275,20 @@ hellosign.signatureRequest.cancel(request_id)
 ````
 See below for more info on the statusCode / statusMessage properties.
 
+#### Remove Signature Request Access
+````javascript
+var request_id = 'fa5c8a0b0f492d768749333ad6fcc214c111e967';
+hellosign.signatureRequest.removeAccess(request_id)
+.then(function(response){
+  console.log(response.statusCode);
+  console.log(response.statusMessage);
+})
+.catch(function(err){
+  // Handle errors
+});
+````
+See below for more info on the statusCode / statusMessage properties.
+
 #### Send an embedded signature request
 ````javascript
 var options = {
