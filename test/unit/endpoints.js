@@ -59,6 +59,7 @@ describe('Function Endpoints', function(){
       expect(hellosign.signatureRequest.download).to.be.a('function');
       expect(hellosign.signatureRequest.createEmbedded).to.be.a('function');
       expect(hellosign.signatureRequest.createEmbeddedWithTemplate).to.be.a('function');
+      expect(hellosign.signatureRequest.releaseHold).to.be.a('function');
 
     });
   });

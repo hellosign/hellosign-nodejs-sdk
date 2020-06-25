@@ -342,6 +342,18 @@ hellosign.signatureRequest.createEmbeddedWithTemplate(options);
   });
 ````
 
+#### Release On-Hold Signature Request
+````javascript
+var request_id = 'fa5c8a0b0f492d768749333ad6fcc214c111e967';
+hellosign.signatureRequest.releaseHold(request_id)
+.then(function(response){
+  console.log(response);
+})
+.catch(function(err){
+  // Handle errors
+});
+````
+
 ### Embedded
 
 #### Get an embedded sign URL
