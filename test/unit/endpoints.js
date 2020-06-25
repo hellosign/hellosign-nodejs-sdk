@@ -37,8 +37,8 @@ describe('Function Endpoints', function(){
   });
   describe('Bulk Send', function(){
     it('should have bulk send endpoint functions', function(){
-      expect(hellosign.bulkSend.get).to.be.a('function');
-      expect(hellosign.bulkSend.list).to.be.a('function');
+      expect(hellosign.bulkSendJob.get).to.be.a('function');
+      expect(hellosign.bulkSendJob.list).to.be.a('function');
     });
   });
   describe('Embedded', function(){
