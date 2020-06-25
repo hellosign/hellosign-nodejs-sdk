@@ -81,6 +81,7 @@ describe('Function Endpoints', function(){
       expect(hellosign.template.addUser).to.be.a('function');
       expect(hellosign.template.removeUser).to.be.a('function');
       expect(hellosign.template.createEmbeddedDraft).to.be.a('function');
+      expect(hellosign.template.updatefiles).to.be.a('function');
     });
   });
   describe('Unclaimed Draft', function(){
