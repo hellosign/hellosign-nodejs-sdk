@@ -35,6 +35,12 @@ describe('Function Endpoints', function(){
       expect(hellosign.account.verify).to.be.a('function');
     });
   });
+  describe('Bulk Send', function(){
+    it('should have bulk send endpoint functions', function(){
+      expect(hellosign.bulkSendJob.get).to.be.a('function');
+      expect(hellosign.bulkSendJob.list).to.be.a('function');
+    });
+  });
   describe('Embedded', function(){
     it('should have embedded endpoint functions', function(){
       expect(hellosign.embedded.getSignUrl).to.be.a('function');
