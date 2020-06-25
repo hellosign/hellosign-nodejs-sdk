@@ -55,6 +55,7 @@ describe('Function Endpoints', function(){
       expect(hellosign.signatureRequest.sendWithTemplate).to.be.a('function');
       expect(hellosign.signatureRequest.remind).to.be.a('function');
       expect(hellosign.signatureRequest.cancel).to.be.a('function');
+      expect(hellosign.signatureRequest.removeAccess).to.be.a('function');
       expect(hellosign.signatureRequest.download).to.be.a('function');
       expect(hellosign.signatureRequest.createEmbedded).to.be.a('function');
       expect(hellosign.signatureRequest.createEmbeddedWithTemplate).to.be.a('function');
