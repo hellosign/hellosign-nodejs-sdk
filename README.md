@@ -365,8 +365,19 @@ hellosign.embedded.getSignUrl(signature_id)
 
 #### Get an embedded template's edit URL
 ````javascript
+GET
 var template_id = '7b63c2131099ef7effeb0e980e2c42005fe3405d';
 hellosign.embedded.getEditUrl(template_id)
+    .then();
+
+POST
+var template_id = '7b63c2131099ef7effeb0e980e2c42005fe3405d';
+
+const opts = {
+  test_mode: 1,
+  merge_fields: [{"name":"Last Name","type":"text"}]
+};
+hellosign.embedded.postEditUrl(template_id, opts)
     .then();
 ````
 
