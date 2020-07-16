@@ -194,6 +194,14 @@ var options = {
             order : 1,
           }
         ],
+    attachments: [
+        {
+          name: 'Example Name',
+          instructions: 'Example instructions',
+          signer_index: 1,
+          required: 1,
+        },
+      ],        
     cc_email_addresses : ['lawyer@example.com', 'lawyer2@example.com'],
     files : ['my/docs/nda.pdf'],
     metadata : {
@@ -308,6 +316,14 @@ var options = {
       order : 1,
     }
   ],
+  attachments: [
+      {
+        name: 'Example Name',
+        instructions: 'Example instructions',
+        signer_index: 1,
+        required: 1,
+      },
+    ],
   cc_email_addresses : ['lawyer@example.com', 'lawyer@example2.com'],
   files : ['my/files/nda.pdf']
 };
@@ -613,6 +629,14 @@ var options = {
             pin: 4657
         }
     ],
+    attachments: [
+        {
+          name: 'Example Name',
+          instructions: 'Example instructions',
+          signer_index: 1,
+          required: 1,
+        },
+      ],
     requester_email_address: 'mrshudson@landlady.com',
     metadata: {
         clue1: 'pink suitcase',
