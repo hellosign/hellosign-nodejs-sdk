@@ -626,6 +626,22 @@ hellosign.unclaimedDraft.createEmbeddedWithTemplate(options);
     });
 ````
 
+#### Create embedded unclaimed draft edit and resend
+````javascript
+var options = {
+    test_mode: 1,
+    clientId: 'b6b8e7deaf8f0b95c029dca049356d4a2cf9710a'
+};
+
+hellosign.unclaimedDraft.editAndResend('2f9781e1a83jdja934d808c153c2e1d3df6f8f2f', opts)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+````
+
 ## Warnings
 
 Any warnings returned from the api will be accessible on the response object returned:
