@@ -370,7 +370,7 @@ var template_id = '7b63c2131099ef7effeb0e980e2c42005fe3405d';
 hellosign.embedded.getEditUrl(template_id)
     .then();
 
-POST
+// POST
 var template_id = '7b63c2131099ef7effeb0e980e2c42005fe3405d';
 
 const opts = {
