@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (C) 2015 hellosign.com
+ * Copyright (C) 2020 hellosign.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,6 +45,7 @@ describe('Function Endpoints', function(){
     it('should have embedded endpoint functions', function(){
       expect(hellosign.embedded.getSignUrl).to.be.a('function');
       expect(hellosign.embedded.getEditUrl).to.be.a('function');
+      expect(hellosign.embedded.postEditUrl).to.be.a('function');
     });
   });
   describe('OAuth', function(){
