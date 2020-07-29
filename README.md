@@ -177,23 +177,42 @@ hellosign.signatureRequest.list({page: 2, page_size: 15})
 #### Send a Signature Request
 
 ````javascript
+var signers = [
+      {
+        email_address : 'jack@example.com',
+        name : 'Jack',
+        order : 0,
+      },
+      {
+        email_address : 'jill@example.com',
+        name : 'Jill',
+        order : 1,
+      }
+    ]
+
+OR
+
+// Any of the signers is eligible to sign for the entire group.
+var signerGroup = [
+  {
+    group: 'Authorized signatory',
+    [0]: {
+      name: 'Jack',
+      email_address: 'jack@example.com'
+    },
+    [1]: {
+      name: 'Jill',
+      email_address: 'jill@example.com'
+    }
+  },
+]
+
 var options = {
     test_mode : 1,
     title : 'NDA with Acme Co.',
     subject : 'The NDA we talked about',
     message : 'Please sign this NDA and then we can discuss more. Let me know if you have any questions.',
-    signers : [
-          {
-            email_address : 'jack@example.com',
-            name : 'Jack',
-            order : 0,
-          },
-          {
-            email_address : 'jill@example.com',
-            name : 'Jill',
-            order : 1,
-          }
-        ],
+    signers : signers,
     attachments: [
         {
           name: 'Example Name',
@@ -219,18 +238,38 @@ hellosign.signatureRequest.send(options)
 #### Send a Signature Request with Template
 
 ````javascript
+var signers = [
+  {
+    email_address : 'george@example.com',
+    name : 'George',
+    role : 'Signer'
+  }
+]
+
+OR
+
+// Any of the signers is eligible to sign for the entire group.
+var signerGroup = [
+  {
+    role: 'Signer',
+    group: 'Authorized signatory',
+    [0]: {
+      name: 'George',
+      email_address: 'george@example.com',
+    },
+    [1]: {
+      name: 'Gina',
+      email_address: 'gina@example.com',
+    }
+  },
+]
+
 var options = {
    test_mode : 1,
    template_id : '7b63c2131099ef7effeb0e980e2c42005fe3405d',
    subject : 'Purchase Order',
    message : 'Glad we could come to an agreement.',
-   signers : [
-     {
-       email_address : 'george@example.com',
-       name : 'George',
-       role : 'Signer'
-     }
-   ],
+   signers : signers,
    custom_fields: [
      {
      	name: "start_date",
