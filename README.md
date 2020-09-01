@@ -174,6 +174,21 @@ This endpoint can optionally receive the parameters `page`, and `page_size`, pas
 hellosign.signatureRequest.list({page: 2, page_size: 15})
 ````
 
+This endpoint can optionally be used to query and search for items such as `page`, `title`, and `from` passed in as an options object:
+
+````javascript
+const opts = {
+  page: 1,
+  query: 'title:Test +title AND from:me'
+}
+
+hellosign.signatureRequest.list(opts).then((res) => {
+  console.log(res);
+}).catch((err) => {
+  console.error(err);
+});
+````
+
 #### Send a Signature Request
 
 ````javascript
