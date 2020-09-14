@@ -107,6 +107,7 @@ Modules in the SDK are as follows:
 - [Team](#team)
 - [Template](#template)
 - [Unclaimed Draft](#unclaimed-draft)
+- [API App](#api-app)
 
 ### Account
 
@@ -739,6 +740,64 @@ hellosign.unclaimedDraft.editAndResend('2f9781e1a83jdja934d808c153c2e1d3df6f8f2f
     .catch((err) => {
       console.error(err);
     });
+````
+
+### API App
+
+#### Get API App
+````javaScript
+hellosign.apiApp.get(clientId).then((res) => {
+  // handle response
+}).catch((err) => {
+  // handle error
+});
+````
+
+#### List API App
+````javascript
+hellosign.apiApp.list().then((res) => {
+  // handle response
+}).catch((err) => {
+  // handle error
+});
+````
+
+#### Create API App
+````javascript
+const opts = {
+  name: 'My Cool App',
+  domain: 'http://www.example.com',
+  callback_url: 'http://www.example.com/callback',
+  white_labeling_options: '{"primary_button_color":"#ff0000","primary_button_text_color":"#000000"}'
+};
+
+hellosign.apiApp.create(opts).then((res) => {
+  // handle response
+}).catch((err) => {
+  // handle error
+});
+````
+
+#### Update API App
+````javascript
+const opts = {
+  name: 'My Cool App',
+  domain: 'http://www.example.com',
+  white_labeling_options: '{"primary_button_color":"#ff0000","primary_button_text_color":"#000000"}'
+};
+
+hellosign.apiApp.update(clientId, opts).then((res) => {
+  // handle response
+}).catch((err) => {
+  // handle error
+});
+````
+
+#### Delete API App
+````javascript
+hellosign.apiApp.delete(clientId).then((res) => {
+  // handle response
+});
 ````
 
 ## Warnings
