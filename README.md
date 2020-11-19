@@ -14,7 +14,7 @@ A NodeJS / JavaScript wrapper for the [HelloSign API](http://www.hellosign.com/a
 
 ## Installation
 
-First time using npm? Read more about installing npm packages here.
+First time using npm? Read more about installing npm packages [here] (https://docs.npmjs.com/downloading-and-installing-packages-locally).
 
 Install from npm:
 ````sh
