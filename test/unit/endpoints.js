@@ -99,4 +99,9 @@ describe('Function Endpoints', function(){
       expect(hellosign.unclaimedDraft.editAndResend).to.be.a('function');
     });
   });
+  describe('Reports', function(){
+    it('should have reports endpoint functions', function(){
+      expect(hellosign.reports.get).to.be.a('function');
+    });
+  });
 });
