@@ -647,13 +647,11 @@ var results = hellosign.template.createEmbeddedDraft(options)
 
 #### Delete Template
 ````javascript
-
 hellosign.template.delete(templateId)
-.catch((err) => {
-  console.error(err);
-})
-// No response to handle. No local callback will fire.
-// Catch and handle errors instead.
+    .then(function(res){
+        console.log(response.statusCode);
+        console.log(response.statusMessage);
+    })
 ````
 ### Unclaimed Draft
 
