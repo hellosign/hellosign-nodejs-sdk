@@ -460,8 +460,8 @@ hellosign.embedded.postEditUrl(template_id, opts)
 ````javaScript
 const opts = {
   test_mode: 1,
-  start_date: '09/01/2020',
-  end_date: '09/01/2020',
+  start_date: '09/13/2020',
+  end_date: '09/20/2020',
   report_type: ['user_activity', 'document_status']
 };
 
