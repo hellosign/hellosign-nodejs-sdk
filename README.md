@@ -198,7 +198,7 @@ var signers = [
         email_address : 'jack@example.com',
         name : 'Jack',
         order : 0,
-        sms_phone_number: '+14155552671',
+        sms_phone_number: '+14155550101',
       },
       {
         email_address : 'jill@example.com',
@@ -366,7 +366,7 @@ var options = {
       email_address : 'jack@example.com',
       name : 'Jack',
       order : 0,
-      sms_phone_number: '+14155552671',
+      sms_phone_number: '+14155550101',
     },{
       email_address : 'jill@example.com',
       name : 'Jill',
