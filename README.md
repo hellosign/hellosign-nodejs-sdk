@@ -111,6 +111,7 @@ Modules in the SDK are as follows:
 - [OAuth](#oauth)
 - [Team](#team)
 - [Template](#template)
+- [Reports](#reports)
 - [Unclaimed Draft](#unclaimed-draft)
 - [API App](#api-app)
 
@@ -455,6 +456,25 @@ const opts = {
 };
 hellosign.embedded.postEditUrl(template_id, opts)
     .then();
+````
+### Reports
+
+#### Gives you insights into user activity and document status
+
+#### Get a Report
+````javaScript
+const opts = {
+  test_mode: 1,
+  start_date: '09/13/2020',
+  end_date: '09/20/2020',
+  report_type: ['user_activity', 'document_status']
+};
+
+client.reports.get(opts).then((res) => {
+  console.log('what is the response?', res);
+}).catch((err) => {
+  console.error('what is the error?', err);
+});
 ````
 
 ### OAuth
