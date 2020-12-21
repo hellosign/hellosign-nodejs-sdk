@@ -571,7 +571,12 @@ hellosign.team.update({name: newName})
 
 #### Remove team
 ````javascript
-hellosign.team.destroy();
+hellosign.team.destroy().then((res) => {
+  console.log('what is the statusCode?', res.statusCode);
+  console.log('what is the statusMessage?', res.statusMessage);
+}).catch((err) => {
+  console.error('what is the error?', err);
+});
 ````
 
 #### Add a team member
@@ -821,7 +826,10 @@ hellosign.apiApp.update(clientId, opts).then((res) => {
 #### Delete API App
 ````javascript
 hellosign.apiApp.delete(clientId).then((res) => {
-  // handle response
+  console.log('what is the statusCode?', res.statusCode);
+  console.log('what is the statusMessage?', res.statusMessage);
+}).catch((err) => {
+  console.error('what is the error?', err);
 });
 ````
 
