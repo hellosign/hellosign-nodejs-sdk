@@ -319,6 +319,21 @@ hellosign.signatureRequest.remind(request_id,{email_address : email})
     });
 ````
 
+#### Update an email address on a signature request
+````javascript
+const opts = {
+  signature_id: '35e3787bd2e61e496099',
+  email_address: 'mary@example.com',
+}
+
+hellosign.signatureRequest.update('2f9781e1a8e2045224d808c153c2e1d3df6f8f2f', opts).then((res) => {
+  console.log('what is the response?', res);
+}).catch((err) => {
+  console.error('what is the error?', err);
+});
+
+````
+
 #### Download files from a signature request
 ````javascript
 var request_id = 'fa5c8a0b0f492d768749333ad6fcc214c111e967'
