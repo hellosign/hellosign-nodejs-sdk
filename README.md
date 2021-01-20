@@ -83,7 +83,7 @@ hellosign.signatureRequest.send({/*options*/}, function(err, response){
 });
 ```
 
-Promise style access is through the [when](https://github.com/cujojs/when) library:
+Each method also returns a promise:
 
 ```javascript
 hellosign.signatureRequest.send({/*options*/})
@@ -93,9 +93,6 @@ hellosign.signatureRequest.send({/*options*/})
     .catch(function(err){
         //do something with error
     })
-    .finally(function(){
-        //optionally do yet another thing
-    });
 ```
 
 Returned promises are then-able, or can be returned for later resolution.
