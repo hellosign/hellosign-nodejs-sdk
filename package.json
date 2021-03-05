@@ -1,5 +1,5 @@
 {
-  "name": "hellosign-sdk",
+  "name": "@flexbase-eng/hellosign-sdk",
   "version": "1.7.0",
   "description": "HelloSign NodeJS SDK",
   "homepage": "https://github.com/HelloFax/hellosign-nodejs-sdk",
