@@ -83,7 +83,7 @@ hellosign.signatureRequest.send({/*options*/}, function(err, response){
 });
 ```
 
-Promise style access is through the [when](https://github.com/cujojs/when) library:
+Promise style access is through Javascript!
 
 ```javascript
 hellosign.signatureRequest.send({/*options*/})
@@ -243,7 +243,7 @@ var options = {
           signer_index: 1,
           required: 1,
         },
-      ],        
+      ],
     cc_email_addresses : ['lawyer@example.com', 'lawyer2@example.com'],
     files : ['my/docs/nda.pdf'],
     metadata : {
