@@ -1,0 +1,28 @@
+generatorName: typescript-node
+typeMappings: {}
+additionalProperties:
+  npmName: "@hellosign/openapi-javascript-sdk"
+  npmVersion: "3.0.0"
+  supportsES6: true
+  apiDocPath: ./docs/api
+  modelDocPath: ./docs/model
+  sortModelPropertiesByRequiredFlag: true
+files:
+  npmignore:
+    templateType: SupportingFiles
+    destinationFilename: .npmignore
+  api-doc.mustache:
+    templateType: APIDocs
+    destinationFilename: .md
+  model-doc.mustache:
+    templateType: ModelDocs
+    destinationFilename: .md
+  README.mustache:
+    templateType: SupportingFiles
+    destinationFilename: README.md
+  eventCallbackHelper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: model/eventCallbackHelper.ts
+globalProperties:
+  apiTests: false
+  modelTests: false

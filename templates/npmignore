@@ -1,0 +1,15 @@
+wwwroot/*.js
+typings
+
+*.tgz
+.openapi-generator-ignore
+.openapi-generator
+bin
+dist
+examples
+node_modules
+nonversioned
+oas
+templates
+tests
+test.*

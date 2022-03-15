@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# see https://github.com/OpenAPITools/openapi-generator/tree/1314e229f58cf056850dc912bbf55e49bcda2db8/modules/openapi-generator/src/main/resources/typescript-node
+
+set -e
+
+WORKINGDIR="/app/javascript"
+
+# Generate code
+docker run --rm \
+  -v "${PWD}/:/local" \
+  openapitools/openapi-generator-cli:v5.3.0 generate \
+    -i "/local/oas/openapi-sdk.yaml" \
+    -c "/local/openapi-config.yaml" \
+    -t "/local/templates" \
+    -o "/local/" \
+    --global-property=api=true \
+    --global-property=model=true \
+    --global-property=apiDocs=false \
+    --global-property=modelDocs=false
+
+# Generate API docs
+rm -rf "${PWD}/docs/api" "${PWD}/tmp_docs"
+mkdir -p "${PWD}/docs/api"
+mkdir -p "${PWD}/tmp_docs"
+docker run --rm \
+  -v "${PWD}/:/local" \
+  openapitools/openapi-generator-cli:v5.3.0 generate \
+    -i "/local/oas/openapi-sdk.yaml" \
+    -c "/local/openapi-config.yaml" \
+    -t "/local/templates" \
+    -o "/local/tmp_docs" \
+    --global-property=api=false \
+    --global-property=model=false \
+    --global-property=apiDocs=true \
+    --global-property=modelDocs=false
+
+# Only need README.md from initial run
+rm -f "${PWD}/tmp_docs/README.md"
+mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/api/"
+
+# Generate Model docs
+rm -rf "${PWD}/docs/model" "${PWD}/tmp_docs"
+mkdir -p "${PWD}/docs/model"
+mkdir -p "${PWD}/tmp_docs"
+docker run --rm \
+  -v "${PWD}/:/local" \
+  openapitools/openapi-generator-cli:v5.3.0 generate \
+    -i "/local/oas/openapi-sdk.yaml" \
+    -c "/local/openapi-config.yaml" \
+    -t "/local/templates" \
+    -o "/local/tmp_docs" \
+    --global-property=api=false \
+    --global-property=model=false \
+    --global-property=apiDocs=false \
+    --global-property=modelDocs=true
+
+# Only need README.md from initial run
+rm -f "${PWD}/tmp_docs/README.md"
+mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/model/"
+
+rm -rf "${PWD}/tmp_docs"
+
+printf "\nInstalling composer dependencies ...\n"
+mkdir -p "${PWD}/vendor"
+bash "${PWD}/bin/php" composer install
+printf "\n"
+
+printf "Adding examples to /examples ...\n"
+rm -f "${PWD}/examples/"*.js
+rm -f "${PWD}/examples/"*.ts
+cp -r "${PWD}/oas/examples/"*.js "${PWD}/examples/"
+cp -r "${PWD}/oas/examples/"*.ts "${PWD}/examples/"
+
+printf "Adding examples to Docs ...\n"
+bash "${PWD}/bin/php" ./bin/generate-examples.php
+
+printf "Install NPM dependencies ...\n"
+mkdir -p "${PWD}/node_modules"
+bash "${PWD}/bin/node" npm install
+
+printf "Running prettier ...\n"
+bash "${PWD}/bin/node" npm run prettier
+
+printf "Replacing strings ...\n"
+docker run -it --rm \
+  -v "${PWD}:${WORKINGDIR}" \
+  -w "${WORKINGDIR}" \
+  perl bash ./bin/replace
+
+printf "Scanning for prohibited keywords ...\n"
+docker run -it --rm \
+  -v "${PWD}:${WORKINGDIR}" \
+  -w "${WORKINGDIR}" \
+  perl bash ./bin/scan_for
+
+printf "Running build ...\n"
+bash "${PWD}/bin/node" npm run build
+
+printf "Running tests ...\n"
+bash "${PWD}/bin/node" npm run test
+
+printf "Success!\n"

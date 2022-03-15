@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -e
+DIR=$(cd `dirname $0` && pwd)
+ROOT_DIR="${DIR}/.."
+
+rep () {
+  SEARCH_STRING=$1
+  REPLACE_STRING=$2
+  SCAN_DIRS=( "api" "model" )
+
+  printf "\nScanning for '${SEARCH_STRING}': "
+
+  set +e
+  for i in "${SCAN_DIRS[@]}"
+  do
+    perl -pi -e "s/${SEARCH_STRING}/${REPLACE_STRING}/g" \
+      "${ROOT_DIR}/${i}/"*.*
+  done
+}
+
+printf "\nRemoving AllOf references ...\n"
+perl -pi -e 's/(.*)AllOf.md\)\n//g' "${ROOT_DIR}/README.md"
+perl -pi -e 's/(.*)AllOf(.*)\n//g' "${ROOT_DIR}/model/models.ts"
+perl -pi -e 's/import (.*)from (.*)AllOf(.*);\n//g' "${ROOT_DIR}/model/"*.ts
+rm -rf "${ROOT_DIR}/docs/model/"*AllOf*
+printf "\n"
+
+printf "Fixing broken enum references ...\n"
+rep 'LegalVersionEnum_Terms1' \
+  'SubWhiteLabelingOptions.LegalVersionEnum.Terms1'
+rep 'TypeEnum_RequestSignature' \
+  'UnclaimedDraftCreateEmbeddedRequest.TypeEnum.RequestSignature'
+printf "\n\n"
