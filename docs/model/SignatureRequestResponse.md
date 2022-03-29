@@ -27,6 +27,5 @@ Name | Type | Description | Notes
 | `customFields` | [```Array<SignatureRequestResponseCustomField>```](SignatureRequestResponseCustomField.md) |    |  |
 | `responseData` | [```Array<SignatureRequestResponseData>```](SignatureRequestResponseData.md) |    |  |
 | `signatures` | [```Array<SignatureRequestResponseSignatures>```](SignatureRequestResponseSignatures.md) |    |  |
-| `warnings` | [```Array<WarningResponse>```](WarningResponse.md) |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

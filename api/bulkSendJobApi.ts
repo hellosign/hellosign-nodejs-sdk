@@ -133,7 +133,7 @@ export class BulkSendJobApi {
 
   /**
    * Returns the status of the BulkSendJob and its SignatureRequests specified by the `bulk_send_job_id` parameter.
-   * @summary Gets a BulkSendJob that includes all SignatureRequests it has sent.
+   * @summary Get Bulk Send Job
    * @param bulkSendJobId The id of the BulkSendJob to retrieve.
    * @param options
    */
@@ -263,7 +263,7 @@ export class BulkSendJobApi {
   }
   /**
    * Returns a list of BulkSendJob that you can access.
-   * @summary Lists the BulkSendJob that you have access to.
+   * @summary List Bulk Send Jobs
    * @param page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;.
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20.
    * @param options

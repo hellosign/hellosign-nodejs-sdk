@@ -4,12 +4,12 @@ All URIs are relative to https://api.hellosign.com/v3.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**teamAddMember()**](TeamApi.md#teamAddMember) | **PUT** /team/add_member | Adds or invites a user to your Team. |
-| [**teamCreate()**](TeamApi.md#teamCreate) | **POST** /team/create | Creates a new Team. |
-| [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Deletes your Team. |
-| [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Gets your Team and a list of its members. |
-| [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Removes a user from your Team. |
-| [**teamUpdate()**](TeamApi.md#teamUpdate) | **PUT** /team | Updates a Team\&#39;s name. |
+| [**teamAddMember()**](TeamApi.md#teamAddMember) | **PUT** /team/add_member | Add User to Team |
+| [**teamCreate()**](TeamApi.md#teamCreate) | **POST** /team/create | Create Team |
+| [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team |
+| [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Get Team |
+| [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team |
+| [**teamUpdate()**](TeamApi.md#teamUpdate) | **PUT** /team | Update Team |
 
 
 ## `teamAddMember()`
@@ -18,7 +18,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 teamAddMember(teamAddMemberRequest: TeamAddMemberRequest): TeamGetResponse
 ```
 
-Adds or invites a user to your Team.
+Add User to Team
 
 Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
 
@@ -107,7 +107,7 @@ result.then(response => {
 teamCreate(teamCreateRequest: TeamCreateRequest): TeamGetResponse
 ```
 
-Creates a new Team.
+Create Team
 
 Creates a new Team and makes you a member. You must not currently belong to a Team to invoke.
 
@@ -196,7 +196,7 @@ result.then(response => {
 teamDelete()
 ```
 
-Deletes your Team.
+Delete Team
 
 Deletes your Team. Can only be invoked when you have a Team with only one member (yourself).
 
@@ -275,7 +275,7 @@ void (empty response body)
 teamGet(): TeamGetResponse
 ```
 
-Gets your Team and a list of its members.
+Get Team
 
 Returns information about your Team as well as a list of its members. If you do not belong to a Team, a 404 error with an error_name of \"not_found\" will be returned.
 
@@ -354,7 +354,7 @@ result.then(response => {
 teamRemoveMember(teamRemoveMemberRequest: TeamRemoveMemberRequest): TeamGetResponse
 ```
 
-Removes a user from your Team.
+Remove User from Team
 
 Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
 
@@ -445,7 +445,7 @@ result.then(response => {
 teamUpdate(teamUpdateRequest: TeamUpdateRequest): TeamGetResponse
 ```
 
-Updates a Team\'s name.
+Update Team
 
 Updates the name of your Team.
 

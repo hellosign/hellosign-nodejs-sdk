@@ -29,6 +29,7 @@ export * from "./embeddedEditUrlResponseEmbedded";
 export * from "./embeddedSignUrlResponse";
 export * from "./embeddedSignUrlResponseEmbedded";
 export * from "./errorResponse";
+export * from "./errorResponseError";
 export * from "./eventCallbackAccountRequest";
 export * from "./eventCallbackAccountRequestPayload";
 export * from "./eventCallbackApiAppRequest";
@@ -60,7 +61,6 @@ export * from "./signatureRequestUpdateRequest";
 export * from "./subAttachment";
 export * from "./subBulkSignerList";
 export * from "./subBulkSignerListCustomField";
-export * from "./subBulkSignerListSigner";
 export * from "./subCC";
 export * from "./subCustomField";
 export * from "./subEditorOptions";
@@ -84,15 +84,12 @@ export * from "./subFormFieldsPerDocumentTypeEnum";
 export * from "./subMergeField";
 export * from "./subOAuth";
 export * from "./subOptions";
-export * from "./subSignatureRequestEmbeddedSigner";
-export * from "./subSignatureRequestEmbeddedTemplateSigner";
 export * from "./subSignatureRequestSigner";
 export * from "./subSignatureRequestTemplateSigner";
 export * from "./subSigningOptions";
 export * from "./subTemplateRole";
-export * from "./subUnclaimedDraftEmbeddedSigner";
-export * from "./subUnclaimedDraftEmbeddedTemplateSigner";
 export * from "./subUnclaimedDraftSigner";
+export * from "./subUnclaimedDraftTemplateSigner";
 export * from "./subWhiteLabelingOptions";
 export * from "./teamAddMemberRequest";
 export * from "./teamCreateRequest";
@@ -180,6 +177,7 @@ import { EmbeddedEditUrlResponseEmbedded } from "./embeddedEditUrlResponseEmbedd
 import { EmbeddedSignUrlResponse } from "./embeddedSignUrlResponse";
 import { EmbeddedSignUrlResponseEmbedded } from "./embeddedSignUrlResponseEmbedded";
 import { ErrorResponse } from "./errorResponse";
+import { ErrorResponseError } from "./errorResponseError";
 import { EventCallbackAccountRequest } from "./eventCallbackAccountRequest";
 import { EventCallbackAccountRequestPayload } from "./eventCallbackAccountRequestPayload";
 import { EventCallbackApiAppRequest } from "./eventCallbackApiAppRequest";
@@ -211,7 +209,6 @@ import { SignatureRequestUpdateRequest } from "./signatureRequestUpdateRequest";
 import { SubAttachment } from "./subAttachment";
 import { SubBulkSignerList } from "./subBulkSignerList";
 import { SubBulkSignerListCustomField } from "./subBulkSignerListCustomField";
-import { SubBulkSignerListSigner } from "./subBulkSignerListSigner";
 import { SubCC } from "./subCC";
 import { SubCustomField } from "./subCustomField";
 import { SubEditorOptions } from "./subEditorOptions";
@@ -235,15 +232,12 @@ import { SubFormFieldsPerDocumentTypeEnum } from "./subFormFieldsPerDocumentType
 import { SubMergeField } from "./subMergeField";
 import { SubOAuth } from "./subOAuth";
 import { SubOptions } from "./subOptions";
-import { SubSignatureRequestEmbeddedSigner } from "./subSignatureRequestEmbeddedSigner";
-import { SubSignatureRequestEmbeddedTemplateSigner } from "./subSignatureRequestEmbeddedTemplateSigner";
 import { SubSignatureRequestSigner } from "./subSignatureRequestSigner";
 import { SubSignatureRequestTemplateSigner } from "./subSignatureRequestTemplateSigner";
 import { SubSigningOptions } from "./subSigningOptions";
 import { SubTemplateRole } from "./subTemplateRole";
-import { SubUnclaimedDraftEmbeddedSigner } from "./subUnclaimedDraftEmbeddedSigner";
-import { SubUnclaimedDraftEmbeddedTemplateSigner } from "./subUnclaimedDraftEmbeddedTemplateSigner";
 import { SubUnclaimedDraftSigner } from "./subUnclaimedDraftSigner";
+import { SubUnclaimedDraftTemplateSigner } from "./subUnclaimedDraftTemplateSigner";
 import { SubWhiteLabelingOptions } from "./subWhiteLabelingOptions";
 import { TeamAddMemberRequest } from "./teamAddMemberRequest";
 import { TeamCreateRequest } from "./teamCreateRequest";
@@ -353,6 +347,7 @@ let typeMap: { [index: string]: any } = {
   EmbeddedSignUrlResponse: EmbeddedSignUrlResponse,
   EmbeddedSignUrlResponseEmbedded: EmbeddedSignUrlResponseEmbedded,
   ErrorResponse: ErrorResponse,
+  ErrorResponseError: ErrorResponseError,
   EventCallbackAccountRequest: EventCallbackAccountRequest,
   EventCallbackAccountRequestPayload: EventCallbackAccountRequestPayload,
   EventCallbackApiAppRequest: EventCallbackApiAppRequest,
@@ -388,7 +383,6 @@ let typeMap: { [index: string]: any } = {
   SubAttachment: SubAttachment,
   SubBulkSignerList: SubBulkSignerList,
   SubBulkSignerListCustomField: SubBulkSignerListCustomField,
-  SubBulkSignerListSigner: SubBulkSignerListSigner,
   SubCC: SubCC,
   SubCustomField: SubCustomField,
   SubEditorOptions: SubEditorOptions,
@@ -411,17 +405,12 @@ let typeMap: { [index: string]: any } = {
   SubMergeField: SubMergeField,
   SubOAuth: SubOAuth,
   SubOptions: SubOptions,
-  SubSignatureRequestEmbeddedSigner: SubSignatureRequestEmbeddedSigner,
-  SubSignatureRequestEmbeddedTemplateSigner:
-    SubSignatureRequestEmbeddedTemplateSigner,
   SubSignatureRequestSigner: SubSignatureRequestSigner,
   SubSignatureRequestTemplateSigner: SubSignatureRequestTemplateSigner,
   SubSigningOptions: SubSigningOptions,
   SubTemplateRole: SubTemplateRole,
-  SubUnclaimedDraftEmbeddedSigner: SubUnclaimedDraftEmbeddedSigner,
-  SubUnclaimedDraftEmbeddedTemplateSigner:
-    SubUnclaimedDraftEmbeddedTemplateSigner,
   SubUnclaimedDraftSigner: SubUnclaimedDraftSigner,
+  SubUnclaimedDraftTemplateSigner: SubUnclaimedDraftTemplateSigner,
   SubWhiteLabelingOptions: SubWhiteLabelingOptions,
   TeamAddMemberRequest: TeamAddMemberRequest,
   TeamCreateRequest: TeamCreateRequest,

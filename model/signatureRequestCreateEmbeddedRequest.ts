@@ -17,7 +17,7 @@ import { SubFieldOptions } from "./subFieldOptions";
 import { SubFormFieldGroup } from "./subFormFieldGroup";
 import { SubFormFieldRule } from "./subFormFieldRule";
 import { SubFormFieldsPerDocumentBase } from "./subFormFieldsPerDocumentBase";
-import { SubSignatureRequestEmbeddedSigner } from "./subSignatureRequestEmbeddedSigner";
+import { SubSignatureRequestSigner } from "./subSignatureRequestSigner";
 import { SubSigningOptions } from "./subSigningOptions";
 
 /**
@@ -77,7 +77,7 @@ export class SignatureRequestCreateEmbeddedRequest {
   /**
    * Add Signers to your Signature Request.
    */
-  "signers"?: Array<SubSignatureRequestEmbeddedSigner>;
+  "signers"?: Array<SubSignatureRequestSigner>;
   "signingOptions"?: SubSigningOptions;
   /**
    * The subject in the email that will be sent to the signers.
@@ -172,7 +172,7 @@ export class SignatureRequestCreateEmbeddedRequest {
     {
       name: "signers",
       baseName: "signers",
-      type: "Array<SubSignatureRequestEmbeddedSigner>",
+      type: "Array<SubSignatureRequestSigner>",
     },
     {
       name: "signingOptions",

@@ -133,7 +133,7 @@ export class ReportApi {
 
   /**
    * Request the creation of one or more report(s).  When the report(s) have been generated, you will receive an email (one per requested report type) containing a link to download the report as a CSV file. The requested date range may be up to 12 months in duration, and `start_date` must not be more than 10 years in the past.
-   * @summary Creates one or more report(s).
+   * @summary Create Report
    * @param reportCreateRequest
    * @param options
    */

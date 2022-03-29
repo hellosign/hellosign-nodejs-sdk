@@ -12,7 +12,7 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 import { SubBulkSignerListCustomField } from "./subBulkSignerListCustomField";
-import { SubBulkSignerListSigner } from "./subBulkSignerListSigner";
+import { SubSignatureRequestTemplateSigner } from "./subSignatureRequestTemplateSigner";
 
 export class SubBulkSignerList {
   /**
@@ -20,9 +20,9 @@ export class SubBulkSignerList {
    */
   "customFields"?: Array<SubBulkSignerListCustomField>;
   /**
-   * Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document
+   * Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document.  Currently only templates with a single role are supported. All signers must have the same `role` value.
    */
-  "signers"?: Array<SubBulkSignerListSigner>;
+  "signers"?: Array<SubSignatureRequestTemplateSigner>;
 
   static discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class SubBulkSignerList {
     {
       name: "signers",
       baseName: "signers",
-      type: "Array<SubBulkSignerListSigner>",
+      type: "Array<SubSignatureRequestTemplateSigner>",
     },
   ];
 

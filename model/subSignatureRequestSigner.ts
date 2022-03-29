@@ -22,10 +22,6 @@ export class SubSignatureRequestSigner {
    */
   "emailAddress": string;
   /**
-   * Name of group. Use this value across multiple signers to group them together. Any of the signers is eligible to sign for the entire group.  Grouped signers will not use the `order`, `pin`, or `sms_phone_number` fields.
-   */
-  "group"?: string;
-  /**
    * The order the signer is required to sign in.
    */
   "order"?: number;
@@ -34,7 +30,7 @@ export class SubSignatureRequestSigner {
    */
   "pin"?: string;
   /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer\'s signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
+   * An E.164 formatted phone number that will receive a code via SMS to access this signer\'s signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
    */
   "smsPhoneNumber"?: string;
 
@@ -49,11 +45,6 @@ export class SubSignatureRequestSigner {
     {
       name: "emailAddress",
       baseName: "email_address",
-      type: "string",
-    },
-    {
-      name: "group",
-      baseName: "group",
       type: "string",
     },
     {

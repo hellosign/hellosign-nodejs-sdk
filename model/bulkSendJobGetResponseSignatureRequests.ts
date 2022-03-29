@@ -15,7 +15,6 @@ import { SignatureRequestResponse } from "./signatureRequestResponse";
 import { SignatureRequestResponseCustomField } from "./signatureRequestResponseCustomField";
 import { SignatureRequestResponseData } from "./signatureRequestResponseData";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
-import { WarningResponse } from "./warningResponse";
 
 export class BulkSendJobGetResponseSignatureRequests {
   /**
@@ -93,7 +92,6 @@ export class BulkSendJobGetResponseSignatureRequests {
   "customFields"?: Array<SignatureRequestResponseCustomField> | null;
   "responseData"?: Array<SignatureRequestResponseData> | null;
   "signatures"?: Array<SignatureRequestResponseSignatures>;
-  "warnings"?: Array<WarningResponse>;
   /**
    * The id of the BulkSendJob.
    */
@@ -206,11 +204,6 @@ export class BulkSendJobGetResponseSignatureRequests {
       name: "signatures",
       baseName: "signatures",
       type: "Array<SignatureRequestResponseSignatures>",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
     {
       name: "bulkSendJobId",

@@ -9,7 +9,7 @@ api.username = "YOUR_API_KEY";
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-const signerList1Signer: HelloSignSDK.SubBulkSignerListSigner = {
+const signerList1Signer: HelloSignSDK.SubSignatureRequestTemplateSigner = {
   role: "Client",
   name: "George",
   emailAddress: "george@example.com",
@@ -26,7 +26,7 @@ const signerList1: HelloSignSDK.SubBulkSignerList = {
   customFields: [ signerList1CustomFields ],
 };
 
-const signerList2Signer: HelloSignSDK.SubBulkSignerListSigner = {
+const signerList2Signer: HelloSignSDK.SubSignatureRequestTemplateSigner = {
   role: "Client",
   name: "Mary",
   emailAddress: "mary@example.com",

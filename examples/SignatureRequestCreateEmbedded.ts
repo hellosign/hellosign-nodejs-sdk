@@ -9,13 +9,13 @@ api.username = "YOUR_API_KEY";
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-const signer1: HelloSignSDK.SubSignatureRequestEmbeddedSigner = {
+const signer1: HelloSignSDK.SubSignatureRequestSigner = {
   emailAddress: "jack@example.com",
   name: "Jack",
   order: 0,
 };
 
-const signer2: HelloSignSDK.SubSignatureRequestEmbeddedSigner = {
+const signer2: HelloSignSDK.SubSignatureRequestSigner = {
   emailAddress: "jill@example.com",
   name: "Jill",
   order: 1,

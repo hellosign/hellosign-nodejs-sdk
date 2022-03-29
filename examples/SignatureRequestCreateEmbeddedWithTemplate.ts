@@ -9,7 +9,7 @@ api.username = "YOUR_API_KEY";
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-const signer1: HelloSignSDK.SubSignatureRequestEmbeddedTemplateSigner = {
+const signer1: HelloSignSDK.SubSignatureRequestTemplateSigner = {
   role: "Client",
   emailAddress: "george@example.com",
   name: "George",

@@ -140,7 +140,7 @@ export class TemplateApi {
 
   /**
    * Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.
-   * @summary Gives the specified Account access to the specified Template.
+   * @summary Add User to Template
    * @param templateId The id of the Template to give the Account access to.
    * @param templateAddUserRequest
    * @param options
@@ -306,7 +306,7 @@ export class TemplateApi {
   }
   /**
    * The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template \'edit\' stage.
-   * @summary Creates an embedded template draft for further editing.
+   * @summary Create Embedded Template Draft
    * @param templateCreateEmbeddedDraftRequest
    * @param options
    */
@@ -458,7 +458,7 @@ export class TemplateApi {
   }
   /**
    * Completely deletes the template specified from the account.
-   * @summary Deletes the specified template.
+   * @summary Delete Template
    * @param templateId The id of the Template to delete.
    * @param options
    */
@@ -563,7 +563,7 @@ export class TemplateApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `template_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead.
-   * @summary Obtain a copy of a template\'s original files.
+   * @summary Get Template Files
    * @param templateId The id of the Template to delete.
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents.
    * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days.
@@ -715,7 +715,7 @@ export class TemplateApi {
   }
   /**
    * Returns the Template specified by the id parameter.
-   * @summary Gets a Template which includes a list of Accounts that can access it.
+   * @summary Get Template
    * @param templateId The id of the Template to retrieve.
    * @param options
    */
@@ -845,7 +845,7 @@ export class TemplateApi {
   }
   /**
    * Returns a list of the Templates that are accessible by you.  Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying templates.
-   * @summary Lists your Templates.
+   * @summary List Templates
    * @param accountId Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account.
    * @param page Which page number of the Template List to return. Defaults to &#x60;1&#x60;.
    * @param pageSize &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;.
@@ -997,7 +997,7 @@ export class TemplateApi {
   }
   /**
    * Removes the specified Account\'s access to the specified Template.
-   * @summary Removes the specified Account\'s access to the specified Template.
+   * @summary Remove User from Template
    * @param templateId The id of the Template to remove the Account\&#39;s access to.
    * @param templateRemoveUserRequest
    * @param options
@@ -1163,7 +1163,7 @@ export class TemplateApi {
   }
   /**
    * Overlays a new file with the overlay of an existing template. The new file(s) must:  1. have the same or higher page count 2. the same orientation as the file(s) being replaced.  This will not overwrite or in any way affect the existing template. Both the existing template and new template will be available for use after executing this endpoint. Also note that this will decrement your template quota.  Overlaying new files is asynchronous and a successful call to this endpoint will return an empty 200 OK response if the request passes initial validation checks.  It is recommended that a callback be implemented to listen for the callback event. A `template_created` event will be sent when the files are updated or a `template_error` event will be sent if there was a problem while updating the files. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.  If the page orientation or page count is different from the original template document, we will notify you with a `template_error` [callback event](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough).
-   * @summary Overlays a new file with the overlay of an existing template.
+   * @summary Update Template Files
    * @param templateId The ID of the template whose files to update.
    * @param templateUpdateFilesRequest
    * @param options

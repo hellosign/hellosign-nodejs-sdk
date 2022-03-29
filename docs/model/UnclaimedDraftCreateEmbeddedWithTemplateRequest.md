@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 | `previewOnly` | ```boolean``` |  This allows the requester to enable the preview experience experience.<br><br>- `preview_only&#x3D;true`: Allows requesters to enable the preview only experience. - `preview_only&#x3D;false`: Allows requesters to disable the preview only experience.<br><br>**Note**: This parameter overwrites `show_preview&#x3D;1` (if set).  |  [default to false] |
 | `requestingRedirectUrl` | ```string``` |  The URL you want signers redirected to after they successfully request a signature.  |  |
 | `showPreview` | ```boolean``` |  This allows the requester to enable the editor/preview experience.<br><br>- `show_preview&#x3D;true`: Allows requesters to enable the editor/preview experience. - `show_preview&#x3D;false`: Allows requesters to disable the editor/preview experience.  |  [default to false] |
-| `signers` | [```Array<SubUnclaimedDraftEmbeddedTemplateSigner>```](SubUnclaimedDraftEmbeddedTemplateSigner.md) |  Add Signers to your Templated-based Signature Request.  |  |
+| `signers` | [```Array<SubUnclaimedDraftTemplateSigner>```](SubUnclaimedDraftTemplateSigner.md) |  Add Signers to your Templated-based Signature Request.  |  |
 | `signingOptions` | [```SubSigningOptions```](SubSigningOptions.md) |    |  |
 | `signingRedirectUrl` | ```string``` |  The URL you want signers redirected to after they successfully sign.  |  |
 | `skipMeNow` | ```boolean``` |  Disables the &quot;Me (Now)&quot; option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.  |  [default to false] |

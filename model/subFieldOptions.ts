@@ -17,7 +17,7 @@ import { RequestFile, AttributeTypeMap } from "./models";
  */
 export class SubFieldOptions {
   /**
-   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Platinum and higher.
+   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Premium and higher.
    */
   "dateFormat": SubFieldOptions.DateFormatEnum;
 

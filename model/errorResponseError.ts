@@ -12,41 +12,32 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
-export class SubUnclaimedDraftEmbeddedSigner {
-  /**
-   * The email address of the signer.
-   */
-  "emailAddress": string;
-  /**
-   * The name of the signer.
-   */
-  "name": string;
-  /**
-   * The order the signer is required to sign in.
-   */
-  "order"?: number;
+export class ErrorResponseError {
+  "errorMsg": string;
+  "errorName": string;
+  "errorPath"?: string;
 
   static discriminator: string | undefined = undefined;
 
   static attributeTypeMap: AttributeTypeMap = [
     {
-      name: "emailAddress",
-      baseName: "email_address",
+      name: "errorMsg",
+      baseName: "error_msg",
       type: "string",
     },
     {
-      name: "name",
-      baseName: "name",
+      name: "errorName",
+      baseName: "error_name",
       type: "string",
     },
     {
-      name: "order",
-      baseName: "order",
-      type: "number",
+      name: "errorPath",
+      baseName: "error_path",
+      type: "string",
     },
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
-    return SubUnclaimedDraftEmbeddedSigner.attributeTypeMap;
+    return ErrorResponseError.attributeTypeMap;
   }
 }

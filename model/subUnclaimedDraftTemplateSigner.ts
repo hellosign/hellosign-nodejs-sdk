@@ -12,27 +12,19 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
-export class SubBulkSignerListSigner {
+export class SubUnclaimedDraftTemplateSigner {
   /**
-   * Must match the single existing role in chosen Template(s). Currently only templates with a single role are supported. All signers must have the same `role` value.
+   * Must match an existing role in chosen Template(s).
    */
   "role": string;
   /**
-   * The name of the signer.
+   * The name of the signer filling the role of `role`.
    */
   "name": string;
   /**
-   * The email address of the signer.
+   * The email address of the signer filling the role of `role`.
    */
   "emailAddress": string;
-  /**
-   * The 4- to 12-character access code that will secure this signer\'s signature page.
-   */
-  "pin"?: string;
-  /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer\'s signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
-   */
-  "smsPhoneNumber"?: string;
 
   static discriminator: string | undefined = undefined;
 
@@ -52,19 +44,9 @@ export class SubBulkSignerListSigner {
       baseName: "email_address",
       type: "string",
     },
-    {
-      name: "pin",
-      baseName: "pin",
-      type: "string",
-    },
-    {
-      name: "smsPhoneNumber",
-      baseName: "sms_phone_number",
-      type: "string",
-    },
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
-    return SubBulkSignerListSigner.attributeTypeMap;
+    return SubUnclaimedDraftTemplateSigner.attributeTypeMap;
   }
 }

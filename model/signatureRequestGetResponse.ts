@@ -12,9 +12,11 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 import { SignatureRequestResponse } from "./signatureRequestResponse";
+import { WarningResponse } from "./warningResponse";
 
 export class SignatureRequestGetResponse {
   "signatureRequest"?: SignatureRequestResponse;
+  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -23,6 +25,11 @@ export class SignatureRequestGetResponse {
       name: "signatureRequest",
       baseName: "signature_request",
       type: "SignatureRequestResponse",
+    },
+    {
+      name: "warnings",
+      baseName: "warnings",
+      type: "Array<WarningResponse>",
     },
   ];
 

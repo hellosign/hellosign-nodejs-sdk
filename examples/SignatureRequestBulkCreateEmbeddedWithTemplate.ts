@@ -6,7 +6,7 @@ const api = new HelloSignSDK.SignatureRequestApi();
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
-const signerList1Signer: HelloSignSDK.SubBulkSignerListSigner = {
+const signerList1Signer: HelloSignSDK.SubSignatureRequestTemplateSigner = {
   role: "Client",
   name: "George",
   emailAddress: "george@example.com",
@@ -23,7 +23,7 @@ const signerList1: HelloSignSDK.SubBulkSignerList = {
   customFields: [ signerList1CustomFields ],
 };
 
-const signerList2Signer: HelloSignSDK.SubBulkSignerListSigner = {
+const signerList2Signer: HelloSignSDK.SubSignatureRequestTemplateSigner = {
   role: "Client",
   name: "Mary",
   emailAddress: "mary@example.com",

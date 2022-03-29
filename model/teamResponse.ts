@@ -12,7 +12,6 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 import { AccountResponse } from "./accountResponse";
-import { WarningResponse } from "./warningResponse";
 
 export class TeamResponse {
   /**
@@ -24,7 +23,6 @@ export class TeamResponse {
    * A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
    */
   "invitedAccounts"?: Array<AccountResponse>;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -43,11 +41,6 @@ export class TeamResponse {
       name: "invitedAccounts",
       baseName: "invited_accounts",
       type: "Array<AccountResponse>",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

@@ -16,7 +16,7 @@ import { SubCustomField } from "./subCustomField";
 import { SubEditorOptions } from "./subEditorOptions";
 import { SubFieldOptions } from "./subFieldOptions";
 import { SubSigningOptions } from "./subSigningOptions";
-import { SubUnclaimedDraftEmbeddedTemplateSigner } from "./subUnclaimedDraftEmbeddedTemplateSigner";
+import { SubUnclaimedDraftTemplateSigner } from "./subUnclaimedDraftTemplateSigner";
 
 export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   /**
@@ -88,7 +88,7 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   /**
    * Add Signers to your Templated-based Signature Request.
    */
-  "signers"?: Array<SubUnclaimedDraftEmbeddedTemplateSigner>;
+  "signers"?: Array<SubUnclaimedDraftTemplateSigner>;
   "signingOptions"?: SubSigningOptions;
   /**
    * The URL you want signers redirected to after they successfully sign.
@@ -207,7 +207,7 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
     {
       name: "signers",
       baseName: "signers",
-      type: "Array<SubUnclaimedDraftEmbeddedTemplateSigner>",
+      type: "Array<SubUnclaimedDraftTemplateSigner>",
     },
     {
       name: "signingOptions",

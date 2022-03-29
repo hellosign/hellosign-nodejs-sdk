@@ -19,7 +19,7 @@ import { SubFormFieldGroup } from "./subFormFieldGroup";
 import { SubFormFieldRule } from "./subFormFieldRule";
 import { SubFormFieldsPerDocumentBase } from "./subFormFieldsPerDocumentBase";
 import { SubSigningOptions } from "./subSigningOptions";
-import { SubUnclaimedDraftEmbeddedSigner } from "./subUnclaimedDraftEmbeddedSigner";
+import { SubUnclaimedDraftSigner } from "./subUnclaimedDraftSigner";
 
 export class UnclaimedDraftCreateEmbeddedRequest {
   /**
@@ -100,7 +100,7 @@ export class UnclaimedDraftCreateEmbeddedRequest {
   /**
    * Add Signers to your Unclaimed Draft Signature Request.
    */
-  "signers"?: Array<SubUnclaimedDraftEmbeddedSigner>;
+  "signers"?: Array<SubUnclaimedDraftSigner>;
   "signingOptions"?: SubSigningOptions;
   /**
    * The URL you want signers redirected to after they successfully sign.
@@ -243,7 +243,7 @@ export class UnclaimedDraftCreateEmbeddedRequest {
     {
       name: "signers",
       baseName: "signers",
-      type: "Array<SubUnclaimedDraftEmbeddedSigner>",
+      type: "Array<SubUnclaimedDraftSigner>",
     },
     {
       name: "signingOptions",

@@ -136,7 +136,7 @@ export class TeamApi {
 
   /**
    * Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
-   * @summary Adds or invites a user to your Team.
+   * @summary Add User to Team
    * @param teamAddMemberRequest
    * @param options
    */
@@ -280,7 +280,7 @@ export class TeamApi {
   }
   /**
    * Creates a new Team and makes you a member. You must not currently belong to a Team to invoke.
-   * @summary Creates a new Team.
+   * @summary Create Team
    * @param teamCreateRequest
    * @param options
    */
@@ -421,7 +421,7 @@ export class TeamApi {
   }
   /**
    * Deletes your Team. Can only be invoked when you have a Team with only one member (yourself).
-   * @summary Deletes your Team.
+   * @summary Delete Team
    * @param options
    */
   public async teamDelete(
@@ -512,7 +512,7 @@ export class TeamApi {
   }
   /**
    * Returns information about your Team as well as a list of its members. If you do not belong to a Team, a 404 error with an error_name of \"not_found\" will be returned.
-   * @summary Gets your Team and a list of its members.
+   * @summary Get Team
    * @param options
    */
   public async teamGet(
@@ -623,7 +623,7 @@ export class TeamApi {
   }
   /**
    * Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
-   * @summary Removes a user from your Team.
+   * @summary Remove User from Team
    * @param teamRemoveMemberRequest
    * @param options
    */
@@ -770,7 +770,7 @@ export class TeamApi {
   }
   /**
    * Updates the name of your Team.
-   * @summary Updates a Team\'s name.
+   * @summary Update Team
    * @param teamUpdateRequest
    * @param options
    */

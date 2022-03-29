@@ -20,10 +20,6 @@ export class ListInfoResponse {
   /**
    * Total number of objects available
    */
-  "numResponse"?: number | null;
-  /**
-   * Total number of objects available
-   */
   "numResults"?: number | null;
   /**
    * Number of the page being returned
@@ -40,11 +36,6 @@ export class ListInfoResponse {
     {
       name: "numPages",
       baseName: "num_pages",
-      type: "number",
-    },
-    {
-      name: "numResponse",
-      baseName: "num_response",
       type: "number",
     },
     {

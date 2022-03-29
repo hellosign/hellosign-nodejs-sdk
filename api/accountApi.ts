@@ -137,7 +137,7 @@ export class AccountApi {
 
   /**
    * Creates a new HelloSign Account that is associated with the specified `email_address`.
-   * @summary Signs up for a new HelloSign Account.
+   * @summary Create Account
    * @param accountCreateRequest
    * @param options
    */
@@ -286,7 +286,7 @@ export class AccountApi {
   }
   /**
    * Returns the properties and settings of your Account.
-   * @summary Returns your Account settings.
+   * @summary Get Account
    * @param options
    */
   public async accountGet(
@@ -397,7 +397,7 @@ export class AccountApi {
   }
   /**
    * Updates the properties and settings of your Account.
-   * @summary Updates your Account\'s settings.
+   * @summary Update Account
    * @param accountUpdateRequest
    * @param options
    */
@@ -541,7 +541,7 @@ export class AccountApi {
   }
   /**
    * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
-   * @summary Verify whether a HelloSign Account exists.
+   * @summary Verify Account
    * @param accountVerifyRequest
    * @param options
    */

@@ -11,29 +11,18 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
+import { ErrorResponseError } from "./errorResponseError";
 
 export class ErrorResponse {
-  "errorMsg": string;
-  "errorName": string;
-  "errorPath"?: string;
+  "error": ErrorResponseError;
 
   static discriminator: string | undefined = undefined;
 
   static attributeTypeMap: AttributeTypeMap = [
     {
-      name: "errorMsg",
-      baseName: "error_msg",
-      type: "string",
-    },
-    {
-      name: "errorName",
-      baseName: "error_name",
-      type: "string",
-    },
-    {
-      name: "errorPath",
-      baseName: "error_path",
-      type: "string",
+      name: "error",
+      baseName: "error",
+      type: "ErrorResponseError",
     },
   ];
 

@@ -13,7 +13,7 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { SubCC } from "./subCC";
 import { SubCustomField } from "./subCustomField";
-import { SubSignatureRequestEmbeddedTemplateSigner } from "./subSignatureRequestEmbeddedTemplateSigner";
+import { SubSignatureRequestTemplateSigner } from "./subSignatureRequestTemplateSigner";
 import { SubSigningOptions } from "./subSigningOptions";
 
 /**
@@ -59,7 +59,7 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
   /**
    * Add Signers to your Templated-based Signature Request.
    */
-  "signers"?: Array<SubSignatureRequestEmbeddedTemplateSigner>;
+  "signers"?: Array<SubSignatureRequestTemplateSigner>;
   "signingOptions"?: SubSigningOptions;
   /**
    * The subject in the email that will be sent to the signers.
@@ -125,7 +125,7 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
     {
       name: "signers",
       baseName: "signers",
-      type: "Array<SubSignatureRequestEmbeddedTemplateSigner>",
+      type: "Array<SubSignatureRequestTemplateSigner>",
     },
     {
       name: "signingOptions",

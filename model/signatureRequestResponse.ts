@@ -14,7 +14,6 @@ import { RequestFile, AttributeTypeMap } from "./models";
 import { SignatureRequestResponseCustomField } from "./signatureRequestResponseCustomField";
 import { SignatureRequestResponseData } from "./signatureRequestResponseData";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
-import { WarningResponse } from "./warningResponse";
 
 export class SignatureRequestResponse {
   /**
@@ -92,7 +91,6 @@ export class SignatureRequestResponse {
   "customFields"?: Array<SignatureRequestResponseCustomField> | null;
   "responseData"?: Array<SignatureRequestResponseData> | null;
   "signatures"?: Array<SignatureRequestResponseSignatures>;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -201,11 +199,6 @@ export class SignatureRequestResponse {
       name: "signatures",
       baseName: "signatures",
       type: "Array<SignatureRequestResponseSignatures>",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

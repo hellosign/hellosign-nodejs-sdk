@@ -4,11 +4,11 @@ All URIs are relative to https://api.hellosign.com/v3.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiAppCreate()**](ApiAppApi.md#apiAppCreate) | **POST** /api_app | Creates a new API App. |
-| [**apiAppDelete()**](ApiAppApi.md#apiAppDelete) | **DELETE** /api_app/{client_id} | Deletes an API App. |
-| [**apiAppGet()**](ApiAppApi.md#apiAppGet) | **GET** /api_app/{client_id} | Gets an API App. |
-| [**apiAppList()**](ApiAppApi.md#apiAppList) | **GET** /api_app/list | Lists your API Apps. |
-| [**apiAppUpdate()**](ApiAppApi.md#apiAppUpdate) | **PUT** /api_app/{client_id} | Updates an existing API App. |
+| [**apiAppCreate()**](ApiAppApi.md#apiAppCreate) | **POST** /api_app | Create API App |
+| [**apiAppDelete()**](ApiAppApi.md#apiAppDelete) | **DELETE** /api_app/{client_id} | Delete API App |
+| [**apiAppGet()**](ApiAppApi.md#apiAppGet) | **GET** /api_app/{client_id} | Get API App |
+| [**apiAppList()**](ApiAppApi.md#apiAppList) | **GET** /api_app/list | List API Apps |
+| [**apiAppUpdate()**](ApiAppApi.md#apiAppUpdate) | **PUT** /api_app/{client_id} | Update API App |
 
 
 ## `apiAppCreate()`
@@ -17,7 +17,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 apiAppCreate(apiAppCreateRequest: ApiAppCreateRequest): ApiAppGetResponse
 ```
 
-Creates a new API App.
+Create API App
 
 Creates a new API App.
 
@@ -140,7 +140,7 @@ result.then(response => {
 apiAppDelete(clientId: string)
 ```
 
-Deletes an API App.
+Delete API App
 
 Deletes an API App. Can only be invoked for apps you own.
 
@@ -225,7 +225,7 @@ void (empty response body)
 apiAppGet(clientId: string): ApiAppGetResponse
 ```
 
-Gets an API App.
+Get API App
 
 Returns an object with information about an API App.
 
@@ -310,7 +310,7 @@ result.then(response => {
 apiAppList(page: number, pageSize: number): ApiAppListResponse
 ```
 
-Lists your API Apps.
+List API Apps
 
 Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
 
@@ -398,7 +398,7 @@ result.then(response => {
 apiAppUpdate(clientId: string, apiAppUpdateRequest: ApiAppUpdateRequest): ApiAppGetResponse
 ```
 
-Updates an existing API App.
+Update API App
 
 Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
 
