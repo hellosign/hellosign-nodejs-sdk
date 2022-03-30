@@ -42,6 +42,8 @@ describe('OAuthApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -64,6 +66,8 @@ describe('OAuthApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 });

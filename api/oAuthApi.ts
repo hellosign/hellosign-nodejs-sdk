@@ -245,15 +245,14 @@ export class OAuthApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "OAuthTokenResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "OAuthTokenResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );
@@ -374,15 +373,14 @@ export class OAuthApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "OAuthTokenResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "OAuthTokenResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );

@@ -23,6 +23,25 @@ describe('AccountApiTest', () => {
   api.rootFilePath = __dirname + '/../../oas/test_fixtures';
   api.instantiateFiles = true;
 
+  it('testHttpCodeRange', () => {
+    const requestClass = 'AccountVerifyRequest';
+    const requestData = getFixtureData(requestClass)['default'];
+
+    const responseClass = 'ErrorResponse';
+    const responseData = getFixtureData(responseClass)['default'];
+
+    const code = Math.round(Math.random() * (499 - 400)) + 400;
+    setExpectedResponse(mock, responseData, code);
+
+    const obj = toObj<m.AccountVerifyRequest>(requestData, requestClass);
+
+    api.accountVerify(obj).then(response => {
+      throw new Error('Should have thrown error: ' + response);
+    }).catch(error => {
+      expect(error.body.constructor.name).toBe(responseClass);
+    });
+  });
+
   it('testAccountCreate', () => {
     const requestClass = 'AccountCreateRequest';
     const requestData = getFixtureData(requestClass)['default'];
@@ -42,6 +61,8 @@ describe('AccountApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -59,6 +80,8 @@ describe('AccountApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -81,6 +104,8 @@ describe('AccountApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -103,6 +128,8 @@ describe('AccountApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 });

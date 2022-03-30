@@ -237,23 +237,29 @@ export class BulkSendJobApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "BulkSendJobGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "BulkSendJobGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -371,23 +377,29 @@ export class BulkSendJobApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "BulkSendJobListResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "BulkSendJobListResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );

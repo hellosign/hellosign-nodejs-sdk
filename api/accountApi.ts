@@ -260,23 +260,29 @@ export class AccountApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "AccountCreateResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "AccountCreateResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -372,23 +378,29 @@ export class AccountApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "AccountGetResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "AccountGetResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
-              case 400:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "ErrorResponse"
-                );
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
 
-                reject(new HttpError(response, body, response.status));
-                return;
+            let rangeCodeLeft = Number("4XX"[0] + "00");
+            let rangeCodeRight = Number("4XX"[0] + "99");
+            if (
+              response.status >= rangeCodeLeft &&
+              response.status <= rangeCodeRight
+            ) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "ErrorResponse"
+              );
+
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );
@@ -516,23 +528,29 @@ export class AccountApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "AccountGetResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "AccountGetResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
-              case 400:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "ErrorResponse"
-                );
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
 
-                reject(new HttpError(response, body, response.status));
-                return;
+            let rangeCodeLeft = Number("4XX"[0] + "00");
+            let rangeCodeRight = Number("4XX"[0] + "99");
+            if (
+              response.status >= rangeCodeLeft &&
+              response.status <= rangeCodeRight
+            ) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "ErrorResponse"
+              );
+
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );
@@ -664,23 +682,29 @@ export class AccountApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "AccountVerifyResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "AccountVerifyResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );

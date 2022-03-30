@@ -1,5 +1,4 @@
 import 'jest';
-import jsonDiff from 'json-diff';
 import { ObjectSerializer } from '../../model/models';
 import { getFixtureData, diffJson } from '../test_utils';
 

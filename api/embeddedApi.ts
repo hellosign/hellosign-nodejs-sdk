@@ -274,23 +274,29 @@ export class EmbeddedApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "EmbeddedEditUrlResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "EmbeddedEditUrlResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -404,23 +410,29 @@ export class EmbeddedApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "EmbeddedSignUrlResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "EmbeddedSignUrlResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
