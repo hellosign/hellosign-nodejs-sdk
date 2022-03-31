@@ -43,6 +43,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -65,6 +67,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -89,6 +93,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -108,6 +114,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -127,6 +135,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -151,6 +161,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -175,6 +187,8 @@ describe('TemplateApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 });

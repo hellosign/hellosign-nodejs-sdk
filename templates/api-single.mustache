@@ -302,29 +302,57 @@ export class {{classname}} {
                         let body;
 
                         {{#returnType}}
+
                         {{#responses}}
-                        {{#-first}}
-
-                        switch (response.status) {
-                        {{/-first}}
                         {{#dataType}}
-                            {{^isWildcard}}case {{code}}:
-                                body = ObjectSerializer.deserialize(
-                                    response.data.error,
-                                    "{{{dataType}}}"
-                                );
+                        {{^isWildcard}}
+                        {{^isRange}}
+                        if (response.status === {{code}}) {
+                            body = ObjectSerializer.deserialize(
+                                response.data,
+                                "{{{dataType}}}"
+                            );
 
-                                reject(new HttpError(response, body, response.status));
-                                return;{{/isWildcard}}
-                            {{#isWildcard}}default:
-                                reject(new HttpError(response, response.data, response.status));
-                                return;
-                            {{/isWildcard}}
-                        {{/dataType}}
-                        {{#-last}}
+                            reject(new HttpError(response, body, response.status));
+                            return;
                         }
-                        {{/-last}}
+                        {{/isRange}}
+                        {{/isWildcard}}
+                        {{/dataType}}
                         {{/responses}}
+
+                        {{#responses}}
+                        {{#dataType}}
+                        {{#isRange}}
+                        let rangeCodeLeft = Number("{{code}}"[0] + "00");
+                        let rangeCodeRight = Number("{{code}}"[0] + "99");
+                        if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                            body = ObjectSerializer.deserialize(
+                                response.data,
+                                "{{{dataType}}}"
+                            );
+
+                            reject(new HttpError(response, body, response.status));
+                            return;
+                        }
+                        {{/isRange}}
+                        {{/dataType}}
+                        {{/responses}}
+
+                        {{#responses}}
+                        {{#dataType}}
+                        {{#isWildcard}}
+                        body = ObjectSerializer.deserialize(
+                            response.data.error,
+                            "{{{dataType}}}"
+                        );
+
+                        reject(new HttpError(response, response.data, response.status));
+                        return;
+                        {{/isWildcard}}
+                        {{/dataType}}
+                        {{/responses}}
+
                         {{/returnType}}
                     });
             });

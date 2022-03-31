@@ -12,7 +12,7 @@ export const setExpectedResponse = (
   responseBody: Object,
   statusCode: number,
   contentType?: string,
-): MockAdapter => mock.onPost(/hellosign.com/)
+): MockAdapter => mock.onAny(/hellosign.com/)
   .reply((config) => {
     if (contentType) {
       if (contentType === 'multipart/form-data') {

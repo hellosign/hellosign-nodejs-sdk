@@ -42,6 +42,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -64,6 +66,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -88,6 +92,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -110,6 +116,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -128,7 +136,7 @@ describe('SignatureRequestApiTest', () => {
       signatureRequestId,
       fileType,
       getUrl,
-      getDataUri,
+      getDataUri
     ).then(response => {
       const diff = diffJson(
         response.body,
@@ -137,6 +145,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -156,6 +166,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -175,6 +187,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -194,6 +208,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -218,6 +234,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -242,6 +260,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -264,6 +284,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -286,6 +308,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -308,6 +332,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 
@@ -332,6 +358,8 @@ describe('SignatureRequestApiTest', () => {
 
       expect(response.body.constructor.name).toBe(responseClass);
       expect(diff).toBeFalsy();
+    }).catch(error => {
+      throw new Error('Should not have thrown error: ' + error);
     });
   });
 });

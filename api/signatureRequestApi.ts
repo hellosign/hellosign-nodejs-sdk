@@ -265,23 +265,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "BulkSendJobSendResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "BulkSendJobSendResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -418,23 +424,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "BulkSendJobSendResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "BulkSendJobSendResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -675,23 +687,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -828,23 +846,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -981,23 +1005,29 @@ export class SignatureRequestApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "FileResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "FileResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
-              case 400:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "ErrorResponse"
-                );
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
 
-                reject(new HttpError(response, body, response.status));
-                return;
+            let rangeCodeLeft = Number("4XX"[0] + "00");
+            let rangeCodeRight = Number("4XX"[0] + "99");
+            if (
+              response.status >= rangeCodeLeft &&
+              response.status <= rangeCodeRight
+            ) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "ErrorResponse"
+              );
+
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );
@@ -1110,23 +1140,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1262,23 +1298,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestListResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestListResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1392,23 +1434,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1558,23 +1606,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1810,23 +1864,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1963,23 +2023,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -2129,23 +2195,29 @@ export class SignatureRequestApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "SignatureRequestGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "SignatureRequestGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );

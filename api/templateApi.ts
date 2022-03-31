@@ -280,23 +280,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -432,23 +438,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateCreateEmbeddedDraftResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateCreateEmbeddedDraftResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -690,23 +702,29 @@ export class TemplateApi {
 
             let body;
 
-            switch (response.status) {
-              case 200:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "FileResponse"
-                );
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "FileResponse"
+              );
 
-                reject(new HttpError(response, body, response.status));
-                return;
-              case 400:
-                body = ObjectSerializer.deserialize(
-                  response.data.error,
-                  "ErrorResponse"
-                );
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
 
-                reject(new HttpError(response, body, response.status));
-                return;
+            let rangeCodeLeft = Number("4XX"[0] + "00");
+            let rangeCodeRight = Number("4XX"[0] + "99");
+            if (
+              response.status >= rangeCodeLeft &&
+              response.status <= rangeCodeRight
+            ) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "ErrorResponse"
+              );
+
+              reject(new HttpError(response, body, response.status));
+              return;
             }
           }
         );
@@ -819,23 +837,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -971,23 +995,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateListResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateListResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1137,23 +1167,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateGetResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateGetResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
@@ -1303,23 +1339,29 @@ export class TemplateApi {
 
               let body;
 
-              switch (response.status) {
-                case 200:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "TemplateUpdateFilesResponse"
-                  );
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TemplateUpdateFilesResponse"
+                );
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
-                case 400:
-                  body = ObjectSerializer.deserialize(
-                    response.data.error,
-                    "ErrorResponse"
-                  );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
 
-                  reject(new HttpError(response, body, response.status));
-                  return;
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
               }
             }
           );
