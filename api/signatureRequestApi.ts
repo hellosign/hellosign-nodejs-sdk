@@ -1171,7 +1171,7 @@ export class SignatureRequestApi {
     });
   }
   /**
-   * Returns a list of SignatureRequests that you can access. This includes SignatureRequests you have sent as well as received, but not ones that you have been CCed on.  Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying signature requests.
+   * Returns a list of SignatureRequests that you can access. This includes SignatureRequests you have sent as well as received, but not ones that you have been CCed on.  Take a look at our [search guide](/api/reference/search/) to learn more about querying signature requests.
    * @summary List Signature Requests
    * @param accountId Which account to return SignatureRequests for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account.
    * @param page Which page number of the SignatureRequest List to return. Defaults to &#x60;1&#x60;.
@@ -1329,7 +1329,7 @@ export class SignatureRequestApi {
     });
   }
   /**
-   * Releases a held SignatureRequest that was claimed and prepared from an [UnclaimedDraft](https://app.hellosign.com/api/reference#UnclaimedDraft). The owner of the Draft must indicate at Draft creation that the SignatureRequest created from the Draft should be held. Releasing the SignatureRequest will send requests to all signers.
+   * Releases a held SignatureRequest that was claimed and prepared from an [UnclaimedDraft](/api/reference/tag/Unclaimed-Draft). The owner of the Draft must indicate at Draft creation that the SignatureRequest created from the Draft should be held. Releasing the SignatureRequest will send requests to all signers.
    * @summary Release On-Hold Signature Request
    * @param signatureRequestId The id of the SignatureRequest to release.
    * @param options

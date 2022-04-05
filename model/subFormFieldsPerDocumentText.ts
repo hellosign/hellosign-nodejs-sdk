@@ -26,11 +26,11 @@ export class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
    */
   "placeholder"?: string;
   /**
-   * Auto fill type for populating fields automatically. Check out the list of [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.
+   * Auto fill type for populating fields automatically. Check out the list of [auto fill types](/api/reference/constants/#auto-fill-types) to learn more about the possible values.
    */
   "autoFillType"?: string;
   /**
-   * Masks entered data. For more information see [Masking sensitive information](https://app.hellosign.com/api/reference#:~:text=Masking%20sensitive%20information). `true` for masking the data in a text field, otherwise `false`.
+   * Masks entered data. For more information see [Masking sensitive information](https://faq.hellosign.com/hc/en-us/articles/360040742811-Masking-sensitive-information). `true` for masking the data in a text field, otherwise `false`.
    */
   "masked"?: boolean;
   /**

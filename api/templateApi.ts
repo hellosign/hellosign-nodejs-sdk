@@ -868,7 +868,7 @@ export class TemplateApi {
     });
   }
   /**
-   * Returns a list of the Templates that are accessible by you.  Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying templates.
+   * Returns a list of the Templates that are accessible by you.  Take a look at our [search guide](/api/reference/search/) to learn more about querying templates.
    * @summary List Templates
    * @param accountId Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account.
    * @param page Which page number of the Template List to return. Defaults to &#x60;1&#x60;.

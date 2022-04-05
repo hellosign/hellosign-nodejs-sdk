@@ -21,7 +21,7 @@ export class TemplateResponseDocumentFieldGroup {
    */
   "name"?: string;
   /**
-   * The rule used to validate checkboxes in the form field group. See [checkbox field grouping](https://app.hellosign.com/api/reference#CheckboxFieldGrouping).
+   * The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).
    */
   "rule"?: string;
 

@@ -25,7 +25,7 @@ export class TemplateResponseDocumentFormField {
    */
   "name"?: string;
   /**
-   * The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).
+   * The type of this form field. See [field types](/api/reference/constants/#field-types).
    */
   "type"?: TemplateResponseDocumentFormField.TypeEnum;
   /**
