@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 | `isLocked` | ```boolean``` |  Returns true if the user has been locked out of their account by a team admin.  |  |
 | `isPaidHs` | ```boolean``` |  Returns true if the user has a paid HelloSign account.  |  |
 | `isPaidHf` | ```boolean``` |  Returns true if the user has a paid HelloFax account.  |  |
-| `quotas` | [```Array<TemplateResponseAccountQuota>```](TemplateResponseAccountQuota.md) |    |  |
+| `quotas` | [```TemplateResponseAccountQuota```](TemplateResponseAccountQuota.md) |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

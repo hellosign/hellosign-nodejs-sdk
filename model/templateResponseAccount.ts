@@ -37,7 +37,7 @@ export class TemplateResponseAccount {
    * Returns true if the user has a paid HelloFax account.
    */
   "isPaidHf"?: boolean;
-  "quotas"?: Array<TemplateResponseAccountQuota>;
+  "quotas"?: TemplateResponseAccountQuota;
 
   static discriminator: string | undefined = undefined;
 
@@ -70,7 +70,7 @@ export class TemplateResponseAccount {
     {
       name: "quotas",
       baseName: "quotas",
-      type: "Array<TemplateResponseAccountQuota>",
+      type: "TemplateResponseAccountQuota",
     },
   ];
 
