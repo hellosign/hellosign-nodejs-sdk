@@ -90,7 +90,7 @@ var helpers = module.exports = {
 
         for(var prop in data){
             if (data.hasOwnProperty(prop)){
-                if (typeof data[prop] === "object" && prop != "files"){
+                if (typeof data[prop] === "object" && prop !== "files" && prop !== "filesData"){
                     for(var paramName in data[prop]){
                         if(data[prop].hasOwnProperty(paramName)){
                             data[prop + "[" + paramName + "]"] = data[prop][paramName];
