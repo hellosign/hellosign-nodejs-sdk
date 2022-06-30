@@ -13,9 +13,6 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { TemplateResponseAccountQuota } from "./templateResponseAccountQuota";
 
-/**
- * An array of the Accounts that can use this Template.
- */
 export class TemplateResponseAccount {
   /**
    * The id of the Account.
@@ -26,15 +23,15 @@ export class TemplateResponseAccount {
    */
   "emailAddress"?: string;
   /**
-   * Returns true if the user has been locked out of their account by a team admin.
+   * Returns `true` if the user has been locked out of their account by a team admin.
    */
   "isLocked"?: boolean;
   /**
-   * Returns true if the user has a paid HelloSign account.
+   * Returns `true` if the user has a paid HelloSign account.
    */
   "isPaidHs"?: boolean;
   /**
-   * Returns true if the user has a paid HelloFax account.
+   * Returns `true` if the user has a paid HelloFax account.
    */
   "isPaidHf"?: boolean;
   "quotas"?: TemplateResponseAccountQuota;

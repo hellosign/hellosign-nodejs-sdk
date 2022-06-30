@@ -16,6 +16,9 @@ import { WarningResponse } from "./warningResponse";
 
 export class TemplateGetResponse {
   "template"?: TemplateResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

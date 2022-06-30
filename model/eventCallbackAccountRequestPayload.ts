@@ -17,8 +17,6 @@ import { TemplateResponse } from "./templateResponse";
 
 export class EventCallbackAccountRequestPayload {
   "event": EventCallbackRequestEvent;
-  "accountGuid"?: string;
-  "clientId"?: string | null;
   "signatureRequest"?: SignatureRequestResponse;
   "template"?: TemplateResponse;
 
@@ -29,16 +27,6 @@ export class EventCallbackAccountRequestPayload {
       name: "event",
       baseName: "event",
       type: "EventCallbackRequestEvent",
-    },
-    {
-      name: "accountGuid",
-      baseName: "account_guid",
-      type: "string",
-    },
-    {
-      name: "clientId",
-      baseName: "client_id",
-      type: "string",
     },
     {
       name: "signatureRequest",

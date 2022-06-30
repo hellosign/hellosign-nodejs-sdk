@@ -25,9 +25,13 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
    */
   "templateIds": Array<string>;
   /**
-   * Client id of the app you\'re using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app you\'re using to create this embedded signature request. Used for security purposes.
    */
   "clientId": string;
+  /**
+   * Add Signers to your Templated-based Signature Request.
+   */
+  "signers": Array<SubSignatureRequestTemplateSigner>;
   /**
    * Allows signers to decline to sign a document if `true`. Defaults to `false`.
    */
@@ -37,15 +41,15 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
    */
   "ccs"?: Array<SubCC>;
   /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    */
   "customFields"?: Array<SubCustomField>;
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
@@ -56,10 +60,6 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
    * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer\'s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.
    */
   "metadata"?: { [key: string]: any };
-  /**
-   * Add Signers to your Templated-based Signature Request.
-   */
-  "signers"?: Array<SubSignatureRequestTemplateSigner>;
   "signingOptions"?: SubSigningOptions;
   /**
    * The subject in the email that will be sent to the signers.
@@ -86,6 +86,11 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
       name: "clientId",
       baseName: "client_id",
       type: "string",
+    },
+    {
+      name: "signers",
+      baseName: "signers",
+      type: "Array<SubSignatureRequestTemplateSigner>",
     },
     {
       name: "allowDecline",
@@ -121,11 +126,6 @@ export class SignatureRequestCreateEmbeddedWithTemplateRequest {
       name: "metadata",
       baseName: "metadata",
       type: "{ [key: string]: any; }",
-    },
-    {
-      name: "signers",
-      baseName: "signers",
-      type: "Array<SubSignatureRequestTemplateSigner>",
     },
     {
       name: "signingOptions",

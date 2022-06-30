@@ -32,9 +32,12 @@ export class EmbeddedEditUrlRequest {
    * Provide users the ability to review/edit the template subject and message.
    */
   "forceSubjectMessage"?: boolean = false;
+  /**
+   * Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array `[]`.
+   */
   "mergeFields"?: Array<SubMergeField>;
   /**
-   * This allows the requester to enable the preview experience experience.  **Note**: This parameter overwrites `show_preview=true` (if set).
+   * This allows the requester to enable the preview experience (i.e. does not allow the requester\'s end user to add any additional fields via the editor).  **Note**: This parameter overwrites `show_preview=true` (if set).
    */
   "previewOnly"?: boolean = false;
   /**
@@ -42,13 +45,9 @@ export class EmbeddedEditUrlRequest {
    */
   "showPreview"?: boolean = false;
   /**
-   * If signer roles are already provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the signer roles screen will become the default behavior. To enforce showing the signer roles screen, use the `force_signer_roles` parameter.
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
    */
-  "skipSignerRoles"?: boolean = false;
-  /**
-   * If the subject and message has already been provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the subject message screen will become the default behavior. To enforce showing the subject message screen, use the `force_subject_message` parameter.
-   */
-  "skipSubjectMessage"?: boolean = false;
+  "showProgressStepper"?: boolean = true;
   /**
    * Whether this is a test, locked templates will only be available for editing if this is set to `true`. Defaults to `false`.
    */
@@ -98,13 +97,8 @@ export class EmbeddedEditUrlRequest {
       type: "boolean",
     },
     {
-      name: "skipSignerRoles",
-      baseName: "skip_signer_roles",
-      type: "boolean",
-    },
-    {
-      name: "skipSubjectMessage",
-      baseName: "skip_subject_message",
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
       type: "boolean",
     },
     {

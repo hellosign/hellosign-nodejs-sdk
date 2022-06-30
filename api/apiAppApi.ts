@@ -286,7 +286,7 @@ export class ApiAppApi {
   /**
    * Deletes an API App. Can only be invoked for apps you own.
    * @summary Delete API App
-   * @param clientId The client id of the ApiApp to delete.
+   * @param clientId The client id of the API App to delete.
    * @param options
    */
   public async apiAppDelete(
@@ -391,7 +391,7 @@ export class ApiAppApi {
   /**
    * Returns an object with information about an API App.
    * @summary Get API App
-   * @param clientId The client ID of the ApiApp to retrieve.
+   * @param clientId The client id of the API App to retrieve.
    * @param options
    */
   public async apiAppGet(
@@ -522,7 +522,7 @@ export class ApiAppApi {
   /**
    * Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
    * @summary List API Apps
-   * @param page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;.
+   * @param page Which page number of the API App List to return. Defaults to &#x60;1&#x60;.
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;.
    * @param options
    */
@@ -657,7 +657,7 @@ export class ApiAppApi {
   /**
    * Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
    * @summary Update API App
-   * @param clientId The client ID of the ApiApp to update.
+   * @param clientId The client id of the API App to update.
    * @param apiAppUpdateRequest
    * @param options
    */

@@ -11,8 +11,10 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * Contains information about the report request.
+ */
 export class ReportResponse {
   /**
    * A message indicating the requested operation\'s success
@@ -30,7 +32,6 @@ export class ReportResponse {
    * The type(s) of the report you are requesting. Allowed values are \"user_activity\" and \"document_status\". User activity reports contain list of all users and their activity during the specified date range. Document status report contain a list of signature requests created in the specified time range (and their status).
    */
   "reportType"?: Array<ReportResponse.ReportTypeEnum>;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -54,11 +55,6 @@ export class ReportResponse {
       name: "reportType",
       baseName: "report_type",
       type: "Array<ReportResponse.ReportTypeEnum>",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

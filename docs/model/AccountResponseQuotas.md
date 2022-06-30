@@ -1,13 +1,14 @@
 # # AccountResponseQuotas
 
-
+Details concerning remaining monthly quotas.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `apiSignatureRequestsLeft` | ```number``` |    |  |
-| `documentsLeft` | ```number``` |    |  |
-| `templatesLeft` | ```number``` |    |  |
+| `apiSignatureRequestsLeft` | ```number``` |  API signature requests remaining.  |  |
+| `documentsLeft` | ```number``` |  Signature requests remaining.  |  |
+| `templatesLeft` | ```number``` |  API templates remaining.  |  |
+| `smsVerificationsLeft` | ```number``` |  SMS verifications  remaining.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

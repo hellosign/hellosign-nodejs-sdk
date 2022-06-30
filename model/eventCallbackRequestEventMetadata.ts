@@ -12,10 +12,25 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * Specific metadata about the event.
+ */
 export class EventCallbackRequestEventMetadata {
+  /**
+   * Signature ID for a specific signer. Applicable to `signature_request_signed` and `signature_request_viewed` events.
+   */
   "relatedSignatureId"?: string | null;
+  /**
+   * Account ID the event was reported for.
+   */
   "reportedForAccountId"?: string | null;
+  /**
+   * App ID the event was reported for.
+   */
   "reportedForAppId"?: string | null;
+  /**
+   * Message about a declined or failed (due to error) signature flow.
+   */
   "eventMessage"?: string | null;
 
   static discriminator: string | undefined = undefined;

@@ -13,6 +13,9 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { AccountResponse } from "./accountResponse";
 
+/**
+ * Contains information about your team and its members
+ */
 export class TeamResponse {
   /**
    * The name of your Team

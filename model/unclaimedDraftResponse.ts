@@ -11,8 +11,10 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * A group of documents that a user can take ownership of via the claim URL.
+ */
 export class UnclaimedDraftResponse {
   /**
    * The ID of the signature request that is represented by this UnclaimedDraft.
@@ -38,7 +40,6 @@ export class UnclaimedDraftResponse {
    * Whether this is a test draft. Signature requests made from test drafts have no legal value.
    */
   "testMode"?: boolean;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -72,11 +73,6 @@ export class UnclaimedDraftResponse {
       name: "testMode",
       baseName: "test_mode",
       type: "boolean",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

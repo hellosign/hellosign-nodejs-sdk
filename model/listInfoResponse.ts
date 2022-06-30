@@ -12,21 +12,24 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * Contains pagination information about the data returned.
+ */
 export class ListInfoResponse {
   /**
-   * Total number of pages available
+   * Total number of pages available.
    */
   "numPages"?: number;
   /**
-   * Total number of objects available
+   * Total number of objects available.
    */
   "numResults"?: number | null;
   /**
-   * Number of the page being returned
+   * Number of the page being returned.
    */
   "page"?: number;
   /**
-   * Objects returned per page
+   * Objects returned per page.
    */
   "pageSize"?: number;
 

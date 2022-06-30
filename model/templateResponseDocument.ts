@@ -14,22 +14,33 @@ import { RequestFile, AttributeTypeMap } from "./models";
 import { TemplateResponseDocumentCustomField } from "./templateResponseDocumentCustomField";
 import { TemplateResponseDocumentFieldGroup } from "./templateResponseDocumentFieldGroup";
 import { TemplateResponseDocumentFormField } from "./templateResponseDocumentFormField";
+import { TemplateResponseDocumentStaticField } from "./templateResponseDocumentStaticField";
 
-/**
- * An array describing each document associated with this Template. Includes form field data for each document.
- */
 export class TemplateResponseDocument {
   /**
    * Name of the associated file.
    */
   "name"?: string;
   /**
-   * Document ordering, the lowest index is displayed first and the highest last.
+   * Document ordering, the lowest index is displayed first and the highest last (0-based indexing).
    */
   "index"?: number;
+  /**
+   * An array of Form Field Group objects.
+   */
   "fieldGroups"?: Array<TemplateResponseDocumentFieldGroup>;
+  /**
+   * An array of Form Field objects containing the name and type of each named textbox and checkmark field.
+   */
   "formFields"?: Array<TemplateResponseDocumentFormField>;
+  /**
+   * An array of Document Custom Field objects.
+   */
   "customFields"?: Array<TemplateResponseDocumentCustomField>;
+  /**
+   * An array describing static overlay fields. <b>Note</b> only available for certain subscriptions.
+   */
+  "staticFields"?: Array<TemplateResponseDocumentStaticField> | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -58,6 +69,11 @@ export class TemplateResponseDocument {
       name: "customFields",
       baseName: "custom_fields",
       type: "Array<TemplateResponseDocumentCustomField>",
+    },
+    {
+      name: "staticFields",
+      baseName: "static_fields",
+      type: "Array<TemplateResponseDocumentStaticField>",
     },
   ];
 

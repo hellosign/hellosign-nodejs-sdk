@@ -18,7 +18,7 @@ import { SubFormFieldsPerDocumentBase } from "./subFormFieldsPerDocumentBase";
  */
 export class SubFormFieldsPerDocumentTextMerge extends SubFormFieldsPerDocumentBase {
   /**
-   * A text field that has default text set by the api. Use the `SubFormFieldsPerDocumentTextMerge` class.
+   * A text field that has default text set using pre-filled data. Use the `SubFormFieldsPerDocumentTextMerge` class.
    */
   "type": string = "text-merge";
 

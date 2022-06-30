@@ -1,6 +1,6 @@
 # # SignatureRequestResponseSignatures
 
-An array of signature obects, 1 for each signer.
+An array of signature objects, 1 for each signer.
 
 ## Properties
 
@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 | `lastRemindedAt` | ```number``` |  The time the last reminder email was sent to the signer or null.  |  |
 | `hasPin` | ```boolean``` |  Boolean to indicate whether this signature requires a PIN to access.  |  |
 | `hasSmsAuth` | ```boolean``` |  Boolean to indicate whether this signature has SMS authentication enabled.  |  |
+| `hasSmsDelivery` | ```boolean``` |  Boolean to indicate whether this signature has SMS delivery enabled.  |  |
+| `smsPhoneNumber` | ```string``` |  The SMS phone number used for authentication or signature request delivery.  |  |
 | `reassignedBy` | ```string``` |  Email address of original signer who reassigned to this signer.  |  |
 | `reassignmentReason` | ```string``` |  Reason provided by original signer who reassigned to this signer.  |  |
 | `error` | ```string``` |  Error message pertaining to this signer, or null.  |  |

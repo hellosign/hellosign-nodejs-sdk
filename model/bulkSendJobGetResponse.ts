@@ -19,7 +19,13 @@ import { WarningResponse } from "./warningResponse";
 export class BulkSendJobGetResponse {
   "bulkSendJob"?: BulkSendJobResponse;
   "listInfo"?: ListInfoResponse;
+  /**
+   * Contains information about the Signature Requests sent in bulk.
+   */
   "signatureRequests"?: Array<BulkSendJobGetResponseSignatureRequests>;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

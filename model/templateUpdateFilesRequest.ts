@@ -14,15 +14,15 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class TemplateUpdateFilesRequest {
   /**
-   * Client ID of the app you\'re using to create this template.
+   * Client id of the app you\'re using to update this template.
    */
   "clientId"?: string;
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to use for the template  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to indicate the uploaded file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to use for the template.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**

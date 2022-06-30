@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 | `secondaryButtonTextColorHover` | ```string``` |    |  [default to '#00B3E6'] |
 | `textColor1` | ```string``` |    |  [default to '#808080'] |
 | `textColor2` | ```string``` |    |  [default to '#FFFFFF'] |
+| `resetToDefault` | ```boolean``` |  Resets white labeling options to defaults. Only useful when updating an API App.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

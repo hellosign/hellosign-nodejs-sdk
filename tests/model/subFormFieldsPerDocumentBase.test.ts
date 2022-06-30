@@ -14,7 +14,7 @@ describe('SubFormFieldsPerDocument', () => {
 
   for (const [type, data] of Object.entries(fixtureData)) {
     it(`SubFormFieldsPerDocument of type ${type} is instantiated`, () => {
-      const payload = { form_fields_per_document: [[data]] };
+      const payload = { form_fields_per_document: [data] };
 
       const obj: SignatureRequestSendRequest = toObj<SignatureRequestSendRequest>(
         payload,
@@ -24,9 +24,9 @@ describe('SubFormFieldsPerDocument', () => {
 
       const resultFormFieldsPerDocument = obj?.formFieldsPerDocument;
       // @ts-ignore
-      const result = resultFormFieldsPerDocument[0][0];
+      const result = resultFormFieldsPerDocument[0];
 
-      const diff = diffJson(data, serialized.form_fields_per_document[0][0]);
+      const diff = diffJson(data, serialized.form_fields_per_document[0]);
 
       expect(result.constructor.name).toBe(type)
       expect(diff).toBeFalsy();

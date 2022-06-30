@@ -16,6 +16,9 @@ import { WarningResponse } from "./warningResponse";
 
 export class TeamGetResponse {
   "team"?: TeamResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

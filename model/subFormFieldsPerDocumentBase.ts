@@ -13,15 +13,27 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 /**
- * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
+ * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
  */
 export abstract class SubFormFieldsPerDocumentBase {
+  /**
+   * Represents the integer index of the `file` or `file_url` document the field should be attached to.
+   */
+  "documentIndex": number;
+  /**
+   * An identifier for the field that is unique across all documents in the request.
+   */
+  "apiId": string;
   /**
    * Size of the field in pixels.
    */
   "height": number;
   /**
-   * Signer index identified by the offset `%i%` in the `signers[%i%]` parameter, indicating which signer should fill out the field. If your type is `text-merge` you can set this to `sender`, so the field is non-editable by any signer.
+   * Whether this field is required.
+   */
+  "required": boolean;
+  /**
+   * Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.  **NOTE**: If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.
    */
   "signer": string;
   "type": string;
@@ -38,29 +50,36 @@ export abstract class SubFormFieldsPerDocumentBase {
    */
   "y": number;
   /**
-   * An identifier for the field that is unique across all documents in the request.
-   */
-  "apiId"?: string;
-  /**
    * Display name for the field.
    */
   "name"?: string;
   /**
    * Page in the document where the field should be placed (requires documents be PDF files).  - When the page number parameter is supplied, the API will use the new coordinate system. - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.
    */
-  "page"?: number;
-  /**
-   * Whether this field is required.
-   */
-  "required"?: boolean;
+  "page"?: number | null;
 
   static discriminator: string | undefined = "type";
 
   static attributeTypeMap: AttributeTypeMap = [
     {
+      name: "documentIndex",
+      baseName: "document_index",
+      type: "number",
+    },
+    {
+      name: "apiId",
+      baseName: "api_id",
+      type: "string",
+    },
+    {
       name: "height",
       baseName: "height",
       type: "number",
+    },
+    {
+      name: "required",
+      baseName: "required",
+      type: "boolean",
     },
     {
       name: "signer",
@@ -88,11 +107,6 @@ export abstract class SubFormFieldsPerDocumentBase {
       type: "number",
     },
     {
-      name: "apiId",
-      baseName: "api_id",
-      type: "string",
-    },
-    {
       name: "name",
       baseName: "name",
       type: "string",
@@ -101,11 +115,6 @@ export abstract class SubFormFieldsPerDocumentBase {
       name: "page",
       baseName: "page",
       type: "number",
-    },
-    {
-      name: "required",
-      baseName: "required",
-      type: "boolean",
     },
   ];
 

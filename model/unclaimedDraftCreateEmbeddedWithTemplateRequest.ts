@@ -20,11 +20,11 @@ import { SubUnclaimedDraftTemplateSigner } from "./subUnclaimedDraftTemplateSign
 
 export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   /**
-   * Client id of the app you\'re using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
    */
   "clientId": string;
   /**
-   * The email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`.
+   * The email address of the user that should be designated as the requester of this draft.
    */
   "requesterEmailAddress": string;
   /**
@@ -36,7 +36,7 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
    */
   "allowDecline"?: boolean = false;
   /**
-   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.
    */
   "allowReassign"?: boolean = false;
   /**
@@ -44,19 +44,27 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
    */
   "ccs"?: Array<SubCC>;
   /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    */
   "customFields"?: Array<SubCustomField>;
   "editorOptions"?: SubEditorOptions;
   "fieldOptions"?: SubFieldOptions;
   /**
-   * **file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use `file[]` to pass the uploaded file(s).  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use `file_url[]` to have HelloSign download the file(s).  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
    */
   "fileUrl"?: Array<string>;
+  /**
+   * Provide users the ability to review/edit the template signer roles.
+   */
+  "forceSignerRoles"?: boolean = false;
+  /**
+   * Provide users the ability to review/edit the template subject and message.
+   */
+  "forceSubjectMessage"?: boolean = false;
   /**
    * The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
    */
@@ -74,7 +82,7 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
    */
   "metadata"?: { [key: string]: any };
   /**
-   * This allows the requester to enable the preview experience experience.  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).
+   * This allows the requester to enable the preview experience (i.e. does not allow the requester\'s end user to add any additional fields via the editor).  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).
    */
   "previewOnly"?: boolean = false;
   /**
@@ -85,6 +93,10 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
    * This allows the requester to enable the editor/preview experience.  - `show_preview=true`: Allows requesters to enable the editor/preview experience. - `show_preview=false`: Allows requesters to disable the editor/preview experience.
    */
   "showPreview"?: boolean = false;
+  /**
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+   */
+  "showProgressStepper"?: boolean = true;
   /**
    * Add Signers to your Templated-based Signature Request.
    */
@@ -170,6 +182,16 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
       type: "Array<string>",
     },
     {
+      name: "forceSignerRoles",
+      baseName: "force_signer_roles",
+      type: "boolean",
+    },
+    {
+      name: "forceSubjectMessage",
+      baseName: "force_subject_message",
+      type: "boolean",
+    },
+    {
       name: "holdRequest",
       baseName: "hold_request",
       type: "boolean",
@@ -202,6 +224,11 @@ export class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
     {
       name: "showPreview",
       baseName: "show_preview",
+      type: "boolean",
+    },
+    {
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
       type: "boolean",
     },
     {

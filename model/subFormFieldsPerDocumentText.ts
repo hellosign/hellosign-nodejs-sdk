@@ -30,6 +30,10 @@ export class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
    */
   "autoFillType"?: string;
   /**
+   * Link two or more text fields. Enter data into one linked text field, which automatically fill all other linked text fields.
+   */
+  "linkId"?: string;
+  /**
    * Masks entered data. For more information see [Masking sensitive information](https://faq.hellosign.com/hc/en-us/articles/360040742811-Masking-sensitive-information). `true` for masking the data in a text field, otherwise `false`.
    */
   "masked"?: boolean;
@@ -56,6 +60,11 @@ export class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
     {
       name: "autoFillType",
       baseName: "auto_fill_type",
+      type: "string",
+    },
+    {
+      name: "linkId",
+      baseName: "link_id",
       type: "string",
     },
     {

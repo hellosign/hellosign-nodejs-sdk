@@ -12,9 +12,6 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
-/**
- * An array of Form Field Group objects.
- */
 export class TemplateResponseDocumentFieldGroup {
   /**
    * The name of the form field group.

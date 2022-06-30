@@ -24,7 +24,7 @@ export class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBa
   /**
    * `true` for checking the checkbox field by default, otherwise `false`.
    */
-  "checked": boolean;
+  "isChecked": boolean;
   /**
    * String referencing group defined in `form_field_groups` parameter.
    */
@@ -39,8 +39,8 @@ export class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBa
       type: "string",
     },
     {
-      name: "checked",
-      baseName: "checked",
+      name: "isChecked",
+      baseName: "is_checked",
       type: "boolean",
     },
     {

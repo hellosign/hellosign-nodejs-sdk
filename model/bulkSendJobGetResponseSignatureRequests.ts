@@ -12,7 +12,8 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 import { SignatureRequestResponse } from "./signatureRequestResponse";
-import { SignatureRequestResponseCustomField } from "./signatureRequestResponseCustomField";
+import { SignatureRequestResponseAttachment } from "./signatureRequestResponseAttachment";
+import { SignatureRequestResponseCustomFieldBase } from "./signatureRequestResponseCustomFieldBase";
 import { SignatureRequestResponseData } from "./signatureRequestResponseData";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
 
@@ -66,10 +67,6 @@ export class BulkSendJobGetResponseSignatureRequests {
    */
   "hasError"?: boolean;
   /**
-   * (Deprecated) The relative URI where the PDF copy of the finalized documents can be downloaded. Only present when `is_complete = true`. This will be removed at some point; use the files_url instead.
-   */
-  "finalCopyUri"?: string;
-  /**
    * The URL where a copy of the request\'s documents can be downloaded.
    */
   "filesUrl"?: string;
@@ -89,8 +86,25 @@ export class BulkSendJobGetResponseSignatureRequests {
    * The URL you want the signer redirected to after they successfully sign.
    */
   "signingRedirectUrl"?: string | null;
-  "customFields"?: Array<SignatureRequestResponseCustomField> | null;
+  /**
+   * Templates IDs used in this SignatureRequest (if any).
+   */
+  "templateIds"?: Array<string> | null;
+  /**
+   * An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses `SignatureRequestResponseCustomFieldText` * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`
+   */
+  "customFields"?: Array<SignatureRequestResponseCustomFieldBase> | null;
+  /**
+   * Signer attachments.
+   */
+  "attachments"?: Array<SignatureRequestResponseAttachment> | null;
+  /**
+   * An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+   */
   "responseData"?: Array<SignatureRequestResponseData> | null;
+  /**
+   * An array of signature objects, 1 for each signer.
+   */
   "signatures"?: Array<SignatureRequestResponseSignatures>;
   /**
    * The id of the BulkSendJob.
@@ -161,11 +175,6 @@ export class BulkSendJobGetResponseSignatureRequests {
       type: "boolean",
     },
     {
-      name: "finalCopyUri",
-      baseName: "final_copy_uri",
-      type: "string",
-    },
-    {
       name: "filesUrl",
       baseName: "files_url",
       type: "string",
@@ -191,9 +200,19 @@ export class BulkSendJobGetResponseSignatureRequests {
       type: "string",
     },
     {
+      name: "templateIds",
+      baseName: "template_ids",
+      type: "Array<string>",
+    },
+    {
       name: "customFields",
       baseName: "custom_fields",
-      type: "Array<SignatureRequestResponseCustomField>",
+      type: "Array<SignatureRequestResponseCustomFieldBase>",
+    },
+    {
+      name: "attachments",
+      baseName: "attachments",
+      type: "Array<SignatureRequestResponseAttachment>",
     },
     {
       name: "responseData",

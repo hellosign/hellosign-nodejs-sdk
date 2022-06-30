@@ -16,6 +16,9 @@ import { WarningResponse } from "./warningResponse";
 
 export class ApiAppGetResponse {
   "apiApp"?: ApiAppResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

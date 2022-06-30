@@ -13,6 +13,9 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 export class AccountVerifyResponseAccount {
+  /**
+   * The email address associated with the Account.
+   */
   "emailAddress"?: string;
 
   static discriminator: string | undefined = undefined;

@@ -14,16 +14,34 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class AccountUpdateRequest {
   /**
+   * The ID of the Account
+   */
+  "accountId"?: string | null;
+  /**
    * The URL that HelloSign should POST events to.
    */
   "callbackUrl"?: string;
+  /**
+   * The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+   */
+  "locale"?: string;
 
   static discriminator: string | undefined = undefined;
 
   static attributeTypeMap: AttributeTypeMap = [
     {
+      name: "accountId",
+      baseName: "account_id",
+      type: "string",
+    },
+    {
       name: "callbackUrl",
       baseName: "callback_url",
+      type: "string",
+    },
+    {
+      name: "locale",
+      baseName: "locale",
       type: "string",
     },
   ];

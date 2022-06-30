@@ -14,11 +14,11 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class TeamAddMemberRequest {
   /**
-   * The id or email address of the Account of the user to invite to your Team. The account id prevails if both are provided.
+   * `account_id` or `email_address` is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team.
    */
   "accountId"?: string;
   /**
-   * The id or email address of the Account of the user to invite to your Team. The account id prevails if both are provided.
+   * `account_id` or `email_address` is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team.
    */
   "emailAddress"?: string;
 

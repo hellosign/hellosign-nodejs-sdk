@@ -13,7 +13,13 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 export class FileResponse {
+  /**
+   * URL to the file.
+   */
   "fileUrl"?: string;
+  /**
+   * When the link expires.
+   */
   "expiresAt"?: number;
 
   static discriminator: string | undefined = undefined;

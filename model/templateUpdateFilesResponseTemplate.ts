@@ -13,11 +13,17 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { WarningResponse } from "./warningResponse";
 
+/**
+ * Contains template id
+ */
 export class TemplateUpdateFilesResponseTemplate {
   /**
    * The id of the Template.
    */
   "templateId"?: string;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

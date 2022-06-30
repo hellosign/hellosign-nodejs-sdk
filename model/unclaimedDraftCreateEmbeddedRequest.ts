@@ -23,7 +23,7 @@ import { SubUnclaimedDraftSigner } from "./subUnclaimedDraftSigner";
 
 export class UnclaimedDraftCreateEmbeddedRequest {
   /**
-   * Client id of the app you\'re using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
    */
   "clientId": string;
   /**
@@ -31,36 +31,47 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "requesterEmailAddress": string;
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
    * This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.
    */
-  "allowCcs"?: boolean = false;
+  "allowCcs"?: boolean = true;
   /**
    * Allows signers to decline to sign a document if `true`. Defaults to `false`.
    */
   "allowDecline"?: boolean = false;
   /**
-   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.
    */
   "allowReassign"?: boolean = false;
+  /**
+   * A list describing the attachments
+   */
   "attachments"?: Array<SubAttachment>;
   /**
    * The email addresses that should be CCed.
    */
   "ccEmailAddresses"?: Array<string>;
   /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
    */
   "customFields"?: Array<SubCustomField>;
   "editorOptions"?: SubEditorOptions;
   "fieldOptions"?: SubFieldOptions;
+  /**
+   * Provide users the ability to review/edit the signers.
+   */
+  "forceSignerPage"?: boolean = false;
+  /**
+   * Provide users the ability to review/edit the subject and message.
+   */
+  "forceSubjectMessage"?: boolean = false;
   /**
    * Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.
    */
@@ -70,15 +81,15 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "formFieldRules"?: Array<SubFormFieldRule>;
   /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
    */
-  "formFieldsPerDocument"?: Array<Array<SubFormFieldsPerDocumentBase>>;
+  "formFieldsPerDocument"?: Array<SubFormFieldsPerDocumentBase>;
   /**
    * Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.
    */
   "hideTextTags"?: boolean = false;
   /**
-   * The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
+   * The request from this draft will not automatically send to signers post-claim if set to `true`. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
    */
   "holdRequest"?: boolean = false;
   /**
@@ -94,9 +105,17 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "metadata"?: { [key: string]: any };
   /**
+   * The URL you want signers redirected to after they successfully request a signature.
+   */
+  "requestingRedirectUrl"?: string;
+  /**
    * This allows the requester to enable the editor/preview experience.  - `show_preview=true`: Allows requesters to enable the editor/preview experience. - `show_preview=false`: Allows requesters to disable the editor/preview experience.
    */
   "showPreview"?: boolean;
+  /**
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+   */
+  "showProgressStepper"?: boolean = true;
   /**
    * Add Signers to your Unclaimed Draft Signature Request.
    */
@@ -196,6 +215,16 @@ export class UnclaimedDraftCreateEmbeddedRequest {
       type: "SubFieldOptions",
     },
     {
+      name: "forceSignerPage",
+      baseName: "force_signer_page",
+      type: "boolean",
+    },
+    {
+      name: "forceSubjectMessage",
+      baseName: "force_subject_message",
+      type: "boolean",
+    },
+    {
       name: "formFieldGroups",
       baseName: "form_field_groups",
       type: "Array<SubFormFieldGroup>",
@@ -208,7 +237,7 @@ export class UnclaimedDraftCreateEmbeddedRequest {
     {
       name: "formFieldsPerDocument",
       baseName: "form_fields_per_document",
-      type: "Array<Array<SubFormFieldsPerDocumentBase>>",
+      type: "Array<SubFormFieldsPerDocumentBase>",
     },
     {
       name: "hideTextTags",
@@ -236,8 +265,18 @@ export class UnclaimedDraftCreateEmbeddedRequest {
       type: "{ [key: string]: any; }",
     },
     {
+      name: "requestingRedirectUrl",
+      baseName: "requesting_redirect_url",
+      type: "string",
+    },
+    {
       name: "showPreview",
       baseName: "show_preview",
+      type: "boolean",
+    },
+    {
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
       type: "boolean",
     },
     {

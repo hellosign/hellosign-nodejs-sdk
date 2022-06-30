@@ -16,8 +16,14 @@ import { ListInfoResponse } from "./listInfoResponse";
 import { WarningResponse } from "./warningResponse";
 
 export class BulkSendJobListResponse {
+  /**
+   * Contains a list of BulkSendJobs that the API caller has access to.
+   */
   "bulkSendJobs"?: Array<BulkSendJobResponse>;
   "listInfo"?: ListInfoResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

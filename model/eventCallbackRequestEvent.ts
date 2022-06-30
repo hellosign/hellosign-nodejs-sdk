@@ -13,9 +13,21 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { EventCallbackRequestEventMetadata } from "./eventCallbackRequestEventMetadata";
 
+/**
+ * Basic information about the event that occurred.
+ */
 export class EventCallbackRequestEvent {
+  /**
+   * Time the event was created (using Unix time).
+   */
   "eventTime": string;
+  /**
+   * Type of callback event that was triggered.
+   */
   "eventType": EventCallbackRequestEvent.EventTypeEnum;
+  /**
+   * Generated hash used to verify source of event data.
+   */
   "eventHash": string;
   "eventMetadata": EventCallbackRequestEventMetadata;
 

@@ -12,10 +12,26 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * Details concerning remaining monthly quotas.
+ */
 export class AccountResponseQuotas {
+  /**
+   * API signature requests remaining.
+   */
   "apiSignatureRequestsLeft"?: number | null;
+  /**
+   * Signature requests remaining.
+   */
   "documentsLeft"?: number | null;
+  /**
+   * API templates remaining.
+   */
   "templatesLeft"?: number | null;
+  /**
+   * SMS verifications  remaining.
+   */
+  "smsVerificationsLeft"?: number | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -33,6 +49,11 @@ export class AccountResponseQuotas {
     {
       name: "templatesLeft",
       baseName: "templates_left",
+      type: "number",
+    },
+    {
+      name: "smsVerificationsLeft",
+      baseName: "sms_verifications_left",
       type: "number",
     },
   ];

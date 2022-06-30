@@ -31,6 +31,10 @@ export class SubWhiteLabelingOptions {
   "secondaryButtonTextColorHover"?: string = "#00B3E6";
   "textColor1"?: string = "#808080";
   "textColor2"?: string = "#FFFFFF";
+  /**
+   * Resets white labeling options to defaults. Only useful when updating an API App.
+   */
+  "resetToDefault"?: boolean;
 
   static discriminator: string | undefined = undefined;
 
@@ -104,6 +108,11 @@ export class SubWhiteLabelingOptions {
       name: "textColor2",
       baseName: "text_color2",
       type: "string",
+    },
+    {
+      name: "resetToDefault",
+      baseName: "reset_to_default",
+      type: "boolean",
     },
   ];
 

@@ -18,6 +18,9 @@ import { WarningResponse } from "./warningResponse";
 export class AccountCreateResponse {
   "account"?: AccountResponse;
   "oauthData"?: OAuthTokenResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

@@ -11,15 +11,17 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
+ */
 export class BulkSendJobResponse {
   /**
    * The id of the BulkSendJob.
    */
   "bulkSendJobId"?: string | null;
   /**
-   * The total amount of SignatureRequests queued for sending.
+   * The total amount of Signature Requests queued for sending.
    */
   "total"?: number;
   /**
@@ -30,7 +32,6 @@ export class BulkSendJobResponse {
    * Time that the BulkSendJob was created.
    */
   "createdAt"?: number;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -54,11 +55,6 @@ export class BulkSendJobResponse {
       name: "createdAt",
       baseName: "created_at",
       type: "number",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

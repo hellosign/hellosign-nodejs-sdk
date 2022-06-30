@@ -12,9 +12,14 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 import { TemplateCreateEmbeddedDraftResponseTemplate } from "./templateCreateEmbeddedDraftResponseTemplate";
+import { WarningResponse } from "./warningResponse";
 
 export class TemplateCreateEmbeddedDraftResponse {
   "template"?: TemplateCreateEmbeddedDraftResponseTemplate;
+  /**
+   * A list of warnings.
+   */
+  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -23,6 +28,11 @@ export class TemplateCreateEmbeddedDraftResponse {
       name: "template",
       baseName: "template",
       type: "TemplateCreateEmbeddedDraftResponseTemplate",
+    },
+    {
+      name: "warnings",
+      baseName: "warnings",
+      type: "Array<WarningResponse>",
     },
   ];
 

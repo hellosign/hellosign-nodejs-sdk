@@ -293,9 +293,11 @@ export class AccountApi {
   /**
    * Returns the properties and settings of your Account.
    * @summary Get Account
+   * @param accountId The ID of the Account
    * @param options
    */
   public async accountGet(
+    accountId?: string,
     options: optionsI = { headers: {} }
   ): Promise<returnTypeT<AccountGetResponse>> {
     const localVarPath = this.basePath + "/account";
@@ -313,6 +315,13 @@ export class AccountApi {
     }
     let localVarFormParams: any = {};
     let localVarBodyParams: any = undefined;
+
+    if (accountId !== undefined) {
+      localVarQueryParameters["account_id"] = ObjectSerializer.serialize(
+        accountId,
+        "string"
+      );
+    }
 
     (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -408,7 +417,7 @@ export class AccountApi {
     });
   }
   /**
-   * Updates the properties and settings of your Account.
+   * Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
    * @summary Update Account
    * @param accountUpdateRequest
    * @param options
@@ -558,7 +567,7 @@ export class AccountApi {
     });
   }
   /**
-   * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
+   * Verifies whether an HelloSign Account exists for the given email address.
    * @summary Verify Account
    * @param accountVerifyRequest
    * @param options

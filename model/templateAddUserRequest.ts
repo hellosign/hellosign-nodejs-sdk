@@ -14,13 +14,17 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class TemplateAddUserRequest {
   /**
-   * The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+   * The id of the Account to give access to the Template. <b>Note</b> The account id prevails if email address is also provided.
    */
   "accountId"?: string;
   /**
-   * The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+   * The email address of the Account to give access to the Template. <b>Note</b> The account id prevails if it is also provided.
    */
   "emailAddress"?: string;
+  /**
+   * If set to `true`, the user does not receive an email notification when a template has been shared with them. Defaults to `false`.
+   */
+  "skipNotification"?: boolean = false;
 
   static discriminator: string | undefined = undefined;
 
@@ -34,6 +38,11 @@ export class TemplateAddUserRequest {
       name: "emailAddress",
       baseName: "email_address",
       type: "string",
+    },
+    {
+      name: "skipNotification",
+      baseName: "skip_notification",
+      type: "boolean",
     },
   ];
 

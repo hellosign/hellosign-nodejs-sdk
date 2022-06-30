@@ -103,7 +103,7 @@ describe('GenerateformDataTest', () => {
 
     const oauth = new m.SubOAuth()
     oauth.callbackUrl = 'https://oauth-callback.test';
-    oauth.scopes = [m.SubOAuth.ScopesEnum.AccessReusableForms]
+    oauth.scopes = [m.SubOAuth.ScopesEnum.AccountAccess]
 
     const obj = new m.ApiAppCreateRequest();
     obj.name = 'My name is';

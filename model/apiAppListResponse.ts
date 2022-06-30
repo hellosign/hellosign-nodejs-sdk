@@ -16,8 +16,14 @@ import { ListInfoResponse } from "./listInfoResponse";
 import { WarningResponse } from "./warningResponse";
 
 export class ApiAppListResponse {
+  /**
+   * Contains information about API Apps.
+   */
   "apiApps"?: Array<ApiAppResponse>;
   "listInfo"?: ListInfoResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

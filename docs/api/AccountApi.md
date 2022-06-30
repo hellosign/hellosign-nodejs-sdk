@@ -102,7 +102,7 @@ result.then(response => {
 ## `accountGet()`
 
 ```typescript
-accountGet(): AccountGetResponse
+accountGet(accountId: string): AccountGetResponse
 ```
 
 Get Account
@@ -159,7 +159,9 @@ result.then(response => {
 
 ### Parameters
 
-|This endpoint does not need any parameter. |
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountId** | **string**| The ID of the Account | [optional] |
 
 ### Return type
 
@@ -186,7 +188,7 @@ accountUpdate(accountUpdateRequest: AccountUpdateRequest): AccountGetResponse
 
 Update Account
 
-Updates the properties and settings of your Account.
+Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
 
 ### TypeScript Example
 
@@ -275,7 +277,7 @@ accountVerify(accountVerifyRequest: AccountVerifyRequest): AccountVerifyResponse
 
 Verify Account
 
-Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
+Verifies whether an HelloSign Account exists for the given email address.
 
 ### TypeScript Example
 

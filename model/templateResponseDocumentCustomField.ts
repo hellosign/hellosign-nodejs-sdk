@@ -11,11 +11,8 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { TemplateResponseDocumentCustomFieldAvgTextLength } from "./templateResponseDocumentCustomFieldAvgTextLength";
+import { TemplateResponseFieldAvgTextLength } from "./templateResponseFieldAvgTextLength";
 
-/**
- * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
- */
 export class TemplateResponseDocumentCustomField {
   /**
    * The name of the Custom Field.
@@ -25,6 +22,10 @@ export class TemplateResponseDocumentCustomField {
    * The type of this Custom Field. Only `text` and `checkbox` are currently supported.
    */
   "type"?: TemplateResponseDocumentCustomField.TypeEnum;
+  /**
+   * The signer of the Custom Field.
+   */
+  "signer"?: string;
   /**
    * The horizontal offset in pixels for this form field.
    */
@@ -46,12 +47,28 @@ export class TemplateResponseDocumentCustomField {
    */
   "required"?: boolean;
   /**
+   * The unique ID for this field.
+   */
+  "apiId"?: string;
+  /**
    * The name of the group this field is in. If this field is not a group, this defaults to `null`.
    */
   "group"?: string | null;
-  "avgTextLength"?: TemplateResponseDocumentCustomFieldAvgTextLength;
+  "avgTextLength"?: TemplateResponseFieldAvgTextLength;
   /**
-   * Use `form_fields` under the `documents` array instead.
+   * Whether this form field is multiline text.
+   */
+  "isMultiline"?: string | null;
+  /**
+   * Original font size used in this form field\'s text.
+   */
+  "originalFontSize"?: number | null;
+  /**
+   * Font family used in this form field\'s text.
+   */
+  "fontFamily"?: number | null;
+  /**
+   * _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
    */
   "namedFormFields"?: object | null;
   "reusableFormId"?: string | null;
@@ -68,6 +85,11 @@ export class TemplateResponseDocumentCustomField {
       name: "type",
       baseName: "type",
       type: "TemplateResponseDocumentCustomField.TypeEnum",
+    },
+    {
+      name: "signer",
+      baseName: "signer",
+      type: "string",
     },
     {
       name: "x",
@@ -95,6 +117,11 @@ export class TemplateResponseDocumentCustomField {
       type: "boolean",
     },
     {
+      name: "apiId",
+      baseName: "api_id",
+      type: "string",
+    },
+    {
       name: "group",
       baseName: "group",
       type: "string",
@@ -102,7 +129,22 @@ export class TemplateResponseDocumentCustomField {
     {
       name: "avgTextLength",
       baseName: "avg_text_length",
-      type: "TemplateResponseDocumentCustomFieldAvgTextLength",
+      type: "TemplateResponseFieldAvgTextLength",
+    },
+    {
+      name: "isMultiline",
+      baseName: "isMultiline",
+      type: "string",
+    },
+    {
+      name: "originalFontSize",
+      baseName: "originalFontSize",
+      type: "number",
+    },
+    {
+      name: "fontFamily",
+      baseName: "fontFamily",
+      type: "number",
     },
     {
       name: "namedFormFields",

@@ -12,9 +12,21 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * Contains information about an error that occurred.
+ */
 export class ErrorResponseError {
+  /**
+   * Message describing an error.
+   */
   "errorMsg": string;
+  /**
+   * Name of the error.
+   */
   "errorName": string;
+  /**
+   * Path at which an error occurred.
+   */
   "errorPath"?: string;
 
   static discriminator: string | undefined = undefined;

@@ -14,7 +14,7 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class OAuthTokenGenerateRequest {
   /**
-   * The client id of your app.
+   * The client id of the app requesting authorization.
    */
   "clientId": string;
   /**

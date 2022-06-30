@@ -24,7 +24,7 @@ export class SubUnclaimedDraftSigner {
   /**
    * The order the signer is required to sign in.
    */
-  "order"?: number;
+  "order"?: number | null;
 
   static discriminator: string | undefined = undefined;
 

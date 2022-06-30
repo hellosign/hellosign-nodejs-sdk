@@ -7,8 +7,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 | `event`<sup>*_required_</sup> | [```EventCallbackRequestEvent```](EventCallbackRequestEvent.md) |    |  |
-| `accountGuid` | ```string``` |    |  |
-| `clientId` | ```string``` |    |  |
 | `account` | [```AccountResponse```](AccountResponse.md) |    |  |
 | `signatureRequest` | [```SignatureRequestResponse```](SignatureRequestResponse.md) |    |  |
 | `template` | [```TemplateResponse```](TemplateResponse.md) |    |  |

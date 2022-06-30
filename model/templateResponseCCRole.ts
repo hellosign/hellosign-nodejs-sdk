@@ -12,9 +12,6 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
-/**
- * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
- */
 export class TemplateResponseCCRole {
   /**
    * The name of the Role.

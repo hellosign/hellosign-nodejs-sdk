@@ -200,7 +200,7 @@ result.then(response => {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **string**| The client id of the ApiApp to delete. | |
+| **clientId** | **string**| The client id of the API App to delete. | |
 
 ### Return type
 
@@ -285,7 +285,7 @@ result.then(response => {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **string**| The client ID of the ApiApp to retrieve. | |
+| **clientId** | **string**| The client id of the API App to retrieve. | |
 
 ### Return type
 
@@ -372,7 +372,7 @@ result.then(response => {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | **number**| Which page number of the ApiApp List to return. Defaults to `1`. | [optional] [default to 1] |
+| **page** | **number**| Which page number of the API App List to return. Defaults to `1`. | [optional] [default to 1] |
 | **pageSize** | **number**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
 
 ### Return type
@@ -482,7 +482,7 @@ result.then(response => {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **string**| The client ID of the ApiApp to update. | |
+| **clientId** | **string**| The client id of the API App to update. | |
 | **apiAppUpdateRequest** | [**ApiAppUpdateRequest**](../model/ApiAppUpdateRequest.md)|  | |
 
 ### Return type

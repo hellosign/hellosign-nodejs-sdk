@@ -13,7 +13,7 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 /**
- * An array of signature obects, 1 for each signer.
+ * An array of signature objects, 1 for each signer.
  */
 export class SignatureRequestResponseSignatures {
   /**
@@ -64,6 +64,14 @@ export class SignatureRequestResponseSignatures {
    * Boolean to indicate whether this signature has SMS authentication enabled.
    */
   "hasSmsAuth"?: boolean | null;
+  /**
+   * Boolean to indicate whether this signature has SMS delivery enabled.
+   */
+  "hasSmsDelivery"?: boolean | null;
+  /**
+   * The SMS phone number used for authentication or signature request delivery.
+   */
+  "smsPhoneNumber"?: string | null;
   /**
    * Email address of original signer who reassigned to this signer.
    */
@@ -139,6 +147,16 @@ export class SignatureRequestResponseSignatures {
       name: "hasSmsAuth",
       baseName: "has_sms_auth",
       type: "boolean",
+    },
+    {
+      name: "hasSmsDelivery",
+      baseName: "has_sms_delivery",
+      type: "boolean",
+    },
+    {
+      name: "smsPhoneNumber",
+      baseName: "sms_phone_number",
+      type: "string",
     },
     {
       name: "reassignedBy",

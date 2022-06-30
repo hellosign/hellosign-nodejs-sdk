@@ -20,7 +20,7 @@ export class SubTemplateRole {
   /**
    * The order in which this signer role is required to sign.
    */
-  "order"?: number;
+  "order"?: number | null;
 
   static discriminator: string | undefined = undefined;
 

@@ -13,13 +13,25 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { WarningResponse } from "./warningResponse";
 
+/**
+ * Template object with parameters: `template_id`, `edit_url`, `expires_at`.
+ */
 export class TemplateCreateEmbeddedDraftResponseTemplate {
   /**
    * The id of the Template.
    */
   "templateId"?: string;
+  /**
+   * Link to edit the template.
+   */
   "editUrl"?: string;
+  /**
+   * When the link expires.
+   */
   "expiresAt"?: number;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

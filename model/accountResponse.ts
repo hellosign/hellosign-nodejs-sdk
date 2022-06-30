@@ -14,14 +14,39 @@ import { RequestFile, AttributeTypeMap } from "./models";
 import { AccountResponseQuotas } from "./accountResponseQuotas";
 
 export class AccountResponse {
+  /**
+   * The ID of the Account
+   */
   "accountId"?: string;
+  /**
+   * The email address associated with the Account.
+   */
   "emailAddress"?: string;
+  /**
+   * Returns `true` if the user has been locked out of their account by a team admin.
+   */
   "isLocked"?: boolean;
+  /**
+   * Returns `true` if the user has a paid HelloSign account.
+   */
   "isPaidHs"?: boolean;
+  /**
+   * Returns `true` if the user has a paid HelloFax account.
+   */
   "isPaidHf"?: boolean;
   "quotas"?: AccountResponseQuotas;
+  /**
+   * The URL that HelloSign events will `POST` to.
+   */
   "callbackUrl"?: string | null;
+  /**
+   * The membership role for the team.
+   */
   "roleCode"?: string | null;
+  /**
+   * The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+   */
+  "locale"?: string | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -64,6 +89,11 @@ export class AccountResponse {
     {
       name: "roleCode",
       baseName: "role_code",
+      type: "string",
+    },
+    {
+      name: "locale",
+      baseName: "locale",
       type: "string",
     },
   ];

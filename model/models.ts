@@ -52,7 +52,11 @@ export * from "./signatureRequestGetResponse";
 export * from "./signatureRequestListResponse";
 export * from "./signatureRequestRemindRequest";
 export * from "./signatureRequestResponse";
-export * from "./signatureRequestResponseCustomField";
+export * from "./signatureRequestResponseAttachment";
+export * from "./signatureRequestResponseCustomFieldBase";
+export * from "./signatureRequestResponseCustomFieldCheckbox";
+export * from "./signatureRequestResponseCustomFieldText";
+export * from "./signatureRequestResponseCustomFieldTypeEnum";
 export * from "./signatureRequestResponseData";
 export * from "./signatureRequestResponseSignatures";
 export * from "./signatureRequestSendRequest";
@@ -112,9 +116,11 @@ export * from "./templateResponseCCRole";
 export * from "./templateResponseCustomField";
 export * from "./templateResponseDocument";
 export * from "./templateResponseDocumentCustomField";
-export * from "./templateResponseDocumentCustomFieldAvgTextLength";
 export * from "./templateResponseDocumentFieldGroup";
 export * from "./templateResponseDocumentFormField";
+export * from "./templateResponseDocumentStaticField";
+export * from "./templateResponseFieldAvgTextLength";
+export * from "./templateResponseNamedFormField";
 export * from "./templateResponseSignerRole";
 export * from "./templateUpdateFilesRequest";
 export * from "./templateUpdateFilesResponse";
@@ -200,7 +206,11 @@ import { SignatureRequestGetResponse } from "./signatureRequestGetResponse";
 import { SignatureRequestListResponse } from "./signatureRequestListResponse";
 import { SignatureRequestRemindRequest } from "./signatureRequestRemindRequest";
 import { SignatureRequestResponse } from "./signatureRequestResponse";
-import { SignatureRequestResponseCustomField } from "./signatureRequestResponseCustomField";
+import { SignatureRequestResponseAttachment } from "./signatureRequestResponseAttachment";
+import { SignatureRequestResponseCustomFieldBase } from "./signatureRequestResponseCustomFieldBase";
+import { SignatureRequestResponseCustomFieldCheckbox } from "./signatureRequestResponseCustomFieldCheckbox";
+import { SignatureRequestResponseCustomFieldText } from "./signatureRequestResponseCustomFieldText";
+import { SignatureRequestResponseCustomFieldTypeEnum } from "./signatureRequestResponseCustomFieldTypeEnum";
 import { SignatureRequestResponseData } from "./signatureRequestResponseData";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
 import { SignatureRequestSendRequest } from "./signatureRequestSendRequest";
@@ -260,9 +270,11 @@ import { TemplateResponseCCRole } from "./templateResponseCCRole";
 import { TemplateResponseCustomField } from "./templateResponseCustomField";
 import { TemplateResponseDocument } from "./templateResponseDocument";
 import { TemplateResponseDocumentCustomField } from "./templateResponseDocumentCustomField";
-import { TemplateResponseDocumentCustomFieldAvgTextLength } from "./templateResponseDocumentCustomFieldAvgTextLength";
 import { TemplateResponseDocumentFieldGroup } from "./templateResponseDocumentFieldGroup";
 import { TemplateResponseDocumentFormField } from "./templateResponseDocumentFormField";
+import { TemplateResponseDocumentStaticField } from "./templateResponseDocumentStaticField";
+import { TemplateResponseFieldAvgTextLength } from "./templateResponseFieldAvgTextLength";
+import { TemplateResponseNamedFormField } from "./templateResponseNamedFormField";
 import { TemplateResponseSignerRole } from "./templateResponseSignerRole";
 import { TemplateUpdateFilesRequest } from "./templateUpdateFilesRequest";
 import { TemplateUpdateFilesResponse } from "./templateUpdateFilesResponse";
@@ -292,8 +304,8 @@ let enumsMap: { [index: string]: any } = {
     EventCallbackRequestEvent.EventTypeEnum,
   "ReportCreateRequest.ReportTypeEnum": ReportCreateRequest.ReportTypeEnum,
   "ReportResponse.ReportTypeEnum": ReportResponse.ReportTypeEnum,
-  "SignatureRequestResponseCustomField.TypeEnum":
-    SignatureRequestResponseCustomField.TypeEnum,
+  SignatureRequestResponseCustomFieldTypeEnum:
+    SignatureRequestResponseCustomFieldTypeEnum,
   "SignatureRequestResponseData.TypeEnum":
     SignatureRequestResponseData.TypeEnum,
   "SubFieldOptions.DateFormatEnum": SubFieldOptions.DateFormatEnum,
@@ -304,9 +316,15 @@ let enumsMap: { [index: string]: any } = {
   SubFormFieldsPerDocumentTypeEnum: SubFormFieldsPerDocumentTypeEnum,
   "SubMergeField.TypeEnum": SubMergeField.TypeEnum,
   "SubOAuth.ScopesEnum": SubOAuth.ScopesEnum,
+  "SubSignatureRequestSigner.SmsPhoneNumberTypeEnum":
+    SubSignatureRequestSigner.SmsPhoneNumberTypeEnum,
+  "SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum":
+    SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum,
   "SubSigningOptions.DefaultTypeEnum": SubSigningOptions.DefaultTypeEnum,
   "SubWhiteLabelingOptions.LegalVersionEnum":
     SubWhiteLabelingOptions.LegalVersionEnum,
+  "TeamRemoveMemberRequest.NewRoleEnum": TeamRemoveMemberRequest.NewRoleEnum,
+  "TemplateResponseCustomField.TypeEnum": TemplateResponseCustomField.TypeEnum,
   "TemplateResponseDocumentCustomField.TypeEnum":
     TemplateResponseDocumentCustomField.TypeEnum,
   "TemplateResponseDocumentFormField.TypeEnum":
@@ -373,7 +391,13 @@ let typeMap: { [index: string]: any } = {
   SignatureRequestListResponse: SignatureRequestListResponse,
   SignatureRequestRemindRequest: SignatureRequestRemindRequest,
   SignatureRequestResponse: SignatureRequestResponse,
-  SignatureRequestResponseCustomField: SignatureRequestResponseCustomField,
+  SignatureRequestResponseAttachment: SignatureRequestResponseAttachment,
+  SignatureRequestResponseCustomFieldBase:
+    SignatureRequestResponseCustomFieldBase,
+  SignatureRequestResponseCustomFieldCheckbox:
+    SignatureRequestResponseCustomFieldCheckbox,
+  SignatureRequestResponseCustomFieldText:
+    SignatureRequestResponseCustomFieldText,
   SignatureRequestResponseData: SignatureRequestResponseData,
   SignatureRequestResponseSignatures: SignatureRequestResponseSignatures,
   SignatureRequestSendRequest: SignatureRequestSendRequest,
@@ -434,10 +458,11 @@ let typeMap: { [index: string]: any } = {
   TemplateResponseCustomField: TemplateResponseCustomField,
   TemplateResponseDocument: TemplateResponseDocument,
   TemplateResponseDocumentCustomField: TemplateResponseDocumentCustomField,
-  TemplateResponseDocumentCustomFieldAvgTextLength:
-    TemplateResponseDocumentCustomFieldAvgTextLength,
   TemplateResponseDocumentFieldGroup: TemplateResponseDocumentFieldGroup,
   TemplateResponseDocumentFormField: TemplateResponseDocumentFormField,
+  TemplateResponseDocumentStaticField: TemplateResponseDocumentStaticField,
+  TemplateResponseFieldAvgTextLength: TemplateResponseFieldAvgTextLength,
+  TemplateResponseNamedFormField: TemplateResponseNamedFormField,
   TemplateResponseSignerRole: TemplateResponseSignerRole,
   TemplateUpdateFilesRequest: TemplateUpdateFilesRequest,
   TemplateUpdateFilesResponse: TemplateUpdateFilesResponse,

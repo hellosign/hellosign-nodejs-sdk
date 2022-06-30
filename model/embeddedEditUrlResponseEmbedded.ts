@@ -11,12 +11,19 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * An embedded template object.
+ */
 export class EmbeddedEditUrlResponseEmbedded {
+  /**
+   * A template url that can be opened in an iFrame.
+   */
   "editUrl"?: string;
+  /**
+   * The specific time that the the `edit_url` link expires, in epoch.
+   */
   "expiresAt"?: number;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -30,11 +37,6 @@ export class EmbeddedEditUrlResponseEmbedded {
       name: "expiresAt",
       baseName: "expires_at",
       type: "number",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

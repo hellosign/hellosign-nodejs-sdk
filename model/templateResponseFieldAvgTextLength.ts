@@ -13,9 +13,9 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 /**
- * Average text length in custom field.
+ * Average text length in this field.
  */
-export class TemplateResponseDocumentCustomFieldAvgTextLength {
+export class TemplateResponseFieldAvgTextLength {
   /**
    * Number of lines.
    */
@@ -41,6 +41,6 @@ export class TemplateResponseDocumentCustomFieldAvgTextLength {
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
-    return TemplateResponseDocumentCustomFieldAvgTextLength.attributeTypeMap;
+    return TemplateResponseFieldAvgTextLength.attributeTypeMap;
   }
 }

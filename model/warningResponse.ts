@@ -12,8 +12,17 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * A list of warnings.
+ */
 export class WarningResponse {
+  /**
+   * Warning message
+   */
   "warningMsg": string;
+  /**
+   * Warning name
+   */
   "warningName": string;
 
   static discriminator: string | undefined = undefined;

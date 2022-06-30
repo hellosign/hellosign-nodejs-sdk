@@ -12,13 +12,16 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * OAuth related parameters.
+ */
 export class SubOAuth {
   /**
    * The callback URL to be used for OAuth flows. (Required if `oauth[scopes]` is provided)
    */
   "callbackUrl"?: string;
   /**
-   * A list of OAuth scopes to be granted to the app. (Required if `oauth[callback_url]` is provided).
+   * A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
    */
   "scopes"?: Array<SubOAuth.ScopesEnum>;
 
@@ -44,19 +47,13 @@ export class SubOAuth {
 
 export namespace SubOAuth {
   export enum ScopesEnum {
-    AccessDocs = "access_docs",
-    AccessReusableForms = "access_reusable_forms",
-    ManageDocs = "manage_docs",
     RequestSignature = "request_signature",
-    SendDocs = "send_docs",
     BasicAccountInfo = "basic_account_info",
-    Signatures = "signatures",
     AccountAccess = "account_access",
     SignatureRequestAccess = "signature_request_access",
     TemplateAccess = "template_access",
     TeamAccess = "team_access",
     ApiAppAccess = "api_app_access",
-    UniversalSignatureRequestAccess = "universal_signature_request_access",
     Empty = "",
   }
 }

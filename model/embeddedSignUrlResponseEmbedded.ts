@@ -11,12 +11,19 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * An object that contains necessary information to set up embedded signing.
+ */
 export class EmbeddedSignUrlResponseEmbedded {
+  /**
+   * A signature url that can be opened in an iFrame.
+   */
   "signUrl"?: string;
+  /**
+   * The specific time that the the `sign_url` link expires, in epoch.
+   */
   "expiresAt"?: number;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -30,11 +37,6 @@ export class EmbeddedSignUrlResponseEmbedded {
       name: "expiresAt",
       baseName: "expires_at",
       type: "number",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

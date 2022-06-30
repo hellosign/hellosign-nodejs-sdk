@@ -12,6 +12,9 @@
 
 import { RequestFile, AttributeTypeMap } from "./models";
 
+/**
+ * Additional options supported by API App.
+ */
 export class SubOptions {
   /**
    * Determines if signers can use \"Insert Everywhere\" when signing a document.

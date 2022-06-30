@@ -16,8 +16,14 @@ import { SignatureRequestResponse } from "./signatureRequestResponse";
 import { WarningResponse } from "./warningResponse";
 
 export class SignatureRequestListResponse {
+  /**
+   * Contains information about signature requests.
+   */
   "signatureRequests"?: Array<SignatureRequestResponse>;
   "listInfo"?: ListInfoResponse;
+  /**
+   * A list of warnings.
+   */
   "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;

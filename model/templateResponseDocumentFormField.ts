@@ -11,10 +11,8 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
+import { TemplateResponseFieldAvgTextLength } from "./templateResponseFieldAvgTextLength";
 
-/**
- * An array of Form Field objects containing the name and type of each named textbox and checkmark field.
- */
 export class TemplateResponseDocumentFormField {
   /**
    * A unique id for the form field.
@@ -28,6 +26,10 @@ export class TemplateResponseDocumentFormField {
    * The type of this form field. See [field types](/api/reference/constants/#field-types).
    */
   "type"?: TemplateResponseDocumentFormField.TypeEnum;
+  /**
+   * The signer of the Form Field.
+   */
+  "signer"?: string;
   /**
    * The horizontal offset in pixels for this form field.
    */
@@ -52,6 +54,19 @@ export class TemplateResponseDocumentFormField {
    * The name of the group this field is in. If this field is not a group, this defaults to `null`.
    */
   "group"?: string | null;
+  "avgTextLength"?: TemplateResponseFieldAvgTextLength;
+  /**
+   * Whether this form field is multiline text.
+   */
+  "isMultiline"?: boolean | null;
+  /**
+   * Original font size used in this form field\'s text.
+   */
+  "originalFontSize"?: number | null;
+  /**
+   * Font family used in this form field\'s text.
+   */
+  "fontFamily"?: string | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -70,6 +85,11 @@ export class TemplateResponseDocumentFormField {
       name: "type",
       baseName: "type",
       type: "TemplateResponseDocumentFormField.TypeEnum",
+    },
+    {
+      name: "signer",
+      baseName: "signer",
+      type: "string",
     },
     {
       name: "x",
@@ -99,6 +119,26 @@ export class TemplateResponseDocumentFormField {
     {
       name: "group",
       baseName: "group",
+      type: "string",
+    },
+    {
+      name: "avgTextLength",
+      baseName: "avg_text_length",
+      type: "TemplateResponseFieldAvgTextLength",
+    },
+    {
+      name: "isMultiline",
+      baseName: "isMultiline",
+      type: "boolean",
+    },
+    {
+      name: "originalFontSize",
+      baseName: "originalFontSize",
+      type: "number",
+    },
+    {
+      name: "fontFamily",
+      baseName: "fontFamily",
       type: "string",
     },
   ];

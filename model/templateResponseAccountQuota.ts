@@ -28,6 +28,10 @@ export class TemplateResponseAccountQuota {
    * Signature requests remaining.
    */
   "documentsLeft"?: number;
+  /**
+   * SMS verifications remaining.
+   */
+  "smsVerificationsLeft"?: number;
 
   static discriminator: string | undefined = undefined;
 
@@ -45,6 +49,11 @@ export class TemplateResponseAccountQuota {
     {
       name: "documentsLeft",
       baseName: "documents_left",
+      type: "number",
+    },
+    {
+      name: "smsVerificationsLeft",
+      baseName: "sms_verifications_left",
       type: "number",
     },
   ];

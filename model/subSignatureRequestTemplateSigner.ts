@@ -14,7 +14,7 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class SubSignatureRequestTemplateSigner {
   /**
-   * Must match an existing role in chosen Template(s).
+   * Must match an existing role in chosen Template(s). It\'s case-sensitive.
    */
   "role": string;
   /**
@@ -30,9 +30,13 @@ export class SubSignatureRequestTemplateSigner {
    */
   "pin"?: string;
   /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer\'s signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
+   * An E.164 formatted phone number.  **Note**: Not available in test mode and requires a Standard plan or higher.
    */
   "smsPhoneNumber"?: string;
+  /**
+   * **Note**: This only works in non embedded endpoints.  If set, the value must be either `authentication` or `delivery`. Default `authentication`.   If `authentication` is set, `sms_phone_number` will receive a code via SMS to access this signer\'s signature page.  If `delivery` is set, signature request will be delivered to both email and `sms_phone_number`.
+   */
+  "smsPhoneNumberType"?: SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum;
 
   static discriminator: string | undefined = undefined;
 
@@ -62,9 +66,21 @@ export class SubSignatureRequestTemplateSigner {
       baseName: "sms_phone_number",
       type: "string",
     },
+    {
+      name: "smsPhoneNumberType",
+      baseName: "sms_phone_number_type",
+      type: "SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum",
+    },
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
     return SubSignatureRequestTemplateSigner.attributeTypeMap;
+  }
+}
+
+export namespace SubSignatureRequestTemplateSigner {
+  export enum SmsPhoneNumberTypeEnum {
+    Authentication = "authentication",
+    Delivery = "delivery",
   }
 }

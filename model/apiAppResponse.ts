@@ -15,15 +15,17 @@ import { ApiAppResponseOAuth } from "./apiAppResponseOAuth";
 import { ApiAppResponseOptions } from "./apiAppResponseOptions";
 import { ApiAppResponseOwnerAccount } from "./apiAppResponseOwnerAccount";
 import { ApiAppResponseWhiteLabelingOptions } from "./apiAppResponseWhiteLabelingOptions";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * Contains information about an API App.
+ */
 export class ApiAppResponse {
   /**
    * The app\'s callback URL (for events)
    */
   "callbackUrl"?: string | null;
   /**
-   * The app\'s client ID
+   * The app\'s client id
    */
   "clientId"?: string;
   /**
@@ -31,9 +33,9 @@ export class ApiAppResponse {
    */
   "createdAt"?: number;
   /**
-   * The domain name associated with the app
+   * The domain name(s) associated with the app
    */
-  "domain"?: string;
+  "domains"?: Array<string>;
   /**
    * The name of the app
    */
@@ -46,7 +48,6 @@ export class ApiAppResponse {
   "options"?: ApiAppResponseOptions | null;
   "ownerAccount"?: ApiAppResponseOwnerAccount;
   "whiteLabelingOptions"?: ApiAppResponseWhiteLabelingOptions;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -67,9 +68,9 @@ export class ApiAppResponse {
       type: "number",
     },
     {
-      name: "domain",
-      baseName: "domain",
-      type: "string",
+      name: "domains",
+      baseName: "domains",
+      type: "Array<string>",
     },
     {
       name: "name",
@@ -100,11 +101,6 @@ export class ApiAppResponse {
       name: "whiteLabelingOptions",
       baseName: "white_labeling_options",
       type: "ApiAppResponseWhiteLabelingOptions",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 

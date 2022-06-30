@@ -13,21 +13,17 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 
 /**
- * An array of Custom Field objects containing the name and type of each custom field.
+ * An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses `SignatureRequestResponseCustomFieldText` * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`
  */
-export class SignatureRequestResponseCustomField {
-  /**
-   * The name of the Custom Field.
-   */
-  "name"?: string;
+export abstract class SignatureRequestResponseCustomFieldBase {
   /**
    * The type of this Custom Field. Only \'text\' and \'checkbox\' are currently supported.
    */
-  "type"?: SignatureRequestResponseCustomField.TypeEnum;
+  "type": string;
   /**
-   * A text string for text fields or true/false for checkbox fields
+   * The name of the Custom Field.
    */
-  "value"?: string;
+  "name": string;
   /**
    * A boolean value denoting if this field is required.
    */
@@ -41,22 +37,17 @@ export class SignatureRequestResponseCustomField {
    */
   "editor"?: string;
 
-  static discriminator: string | undefined = undefined;
+  static discriminator: string | undefined = "type";
 
   static attributeTypeMap: AttributeTypeMap = [
     {
-      name: "name",
-      baseName: "name",
+      name: "type",
+      baseName: "type",
       type: "string",
     },
     {
-      name: "type",
-      baseName: "type",
-      type: "SignatureRequestResponseCustomField.TypeEnum",
-    },
-    {
-      name: "value",
-      baseName: "value",
+      name: "name",
+      baseName: "name",
       type: "string",
     },
     {
@@ -77,13 +68,21 @@ export class SignatureRequestResponseCustomField {
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
-    return SignatureRequestResponseCustomField.attributeTypeMap;
+    return SignatureRequestResponseCustomFieldBase.attributeTypeMap;
   }
-}
 
-export namespace SignatureRequestResponseCustomField {
-  export enum TypeEnum {
-    Text = "text",
-    Checkbox = "checkbox",
+  static discriminatorClassName(value: any): string | null {
+    if (value === undefined || value === null) {
+      return null;
+    }
+
+    if (value === "checkbox") {
+      return "SignatureRequestResponseCustomFieldCheckbox";
+    }
+    if (value === "text") {
+      return "SignatureRequestResponseCustomFieldText";
+    }
+
+    return null;
   }
 }

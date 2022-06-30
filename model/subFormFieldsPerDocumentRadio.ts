@@ -28,7 +28,7 @@ export class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
   /**
    * `true` for checking the radio field by default, otherwise `false`. Only one radio field per group can be `true`.
    */
-  "checked": boolean;
+  "isChecked": boolean;
 
   static discriminator: string | undefined = undefined;
 
@@ -44,8 +44,8 @@ export class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
       type: "string",
     },
     {
-      name: "checked",
-      baseName: "checked",
+      name: "isChecked",
+      baseName: "is_checked",
       type: "boolean",
     },
   ];

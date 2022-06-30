@@ -18,7 +18,7 @@ import { SubFormFieldsPerDocumentBase } from "./subFormFieldsPerDocumentBase";
  */
 export class SubFormFieldsPerDocumentCheckboxMerge extends SubFormFieldsPerDocumentBase {
   /**
-   * A checkbox field that has default value set by the api. Use the `SubFormFieldsPerDocumentCheckboxMerge` class.
+   * A checkbox field that has default value set using pre-filled data. Use the `SubFormFieldsPerDocumentCheckboxMerge` class.
    */
   "type": string = "checkbox-merge";
 

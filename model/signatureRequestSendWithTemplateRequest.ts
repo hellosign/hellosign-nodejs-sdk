@@ -34,19 +34,19 @@ export class SignatureRequestSendWithTemplateRequest {
    */
   "ccs"?: Array<SubCC>;
   /**
-   * The client ID of the ApiApp you want to associate with this request.
+   * Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.
    */
   "clientId"?: string;
   /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    */
   "customFields"?: Array<SubCustomField>;
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**

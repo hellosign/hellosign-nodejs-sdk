@@ -17,7 +17,7 @@ import { SubWhiteLabelingOptions } from "./subWhiteLabelingOptions";
 
 export class ApiAppUpdateRequest {
   /**
-   * The URL at which the ApiApp should receive event callbacks.
+   * The URL at which the API App should receive event callbacks.
    */
   "callbackUrl"?: string;
   /**

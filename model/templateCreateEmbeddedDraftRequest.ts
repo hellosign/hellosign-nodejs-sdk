@@ -22,25 +22,28 @@ import { SubTemplateRole } from "./subTemplateRole";
 
 export class TemplateCreateEmbeddedDraftRequest {
   /**
-   * Client id of the app you\'re using to create this draft.
+   * Client id of the app you\'re using to create this draft. Used to apply the branding and callback url defined for the app.
    */
   "clientId": string;
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to use for the template  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to use for the template.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
    * This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template.
    */
-  "allowCcs"?: boolean = false;
+  "allowCcs"?: boolean = true;
   /**
-   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.
    */
   "allowReassign"?: boolean = false;
+  /**
+   * A list describing the attachments
+   */
   "attachments"?: Array<SubAttachment>;
   /**
    * The CC roles that must be assigned when using the template to send a signature request
@@ -48,6 +51,14 @@ export class TemplateCreateEmbeddedDraftRequest {
   "ccRoles"?: Array<string>;
   "editorOptions"?: SubEditorOptions;
   "fieldOptions"?: SubFieldOptions;
+  /**
+   * Provide users the ability to review/edit the template signer roles.
+   */
+  "forceSignerRoles"?: boolean = false;
+  /**
+   * Provide users the ability to review/edit the template subject and message.
+   */
+  "forceSubjectMessage"?: boolean = false;
   /**
    * Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.
    */
@@ -57,9 +68,12 @@ export class TemplateCreateEmbeddedDraftRequest {
    */
   "formFieldRules"?: Array<SubFormFieldRule>;
   /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
    */
-  "formFieldsPerDocument"?: Array<Array<SubFormFieldsPerDocumentBase>>;
+  "formFieldsPerDocument"?: Array<SubFormFieldsPerDocumentBase>;
+  /**
+   * Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.   If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
+   */
   "mergeFields"?: Array<SubMergeField>;
   /**
    * The default template email message.
@@ -73,6 +87,13 @@ export class TemplateCreateEmbeddedDraftRequest {
    * This allows the requester to enable the editor/preview experience.  - `show_preview=true`: Allows requesters to enable the editor/preview experience. - `show_preview=false`: Allows requesters to disable the editor/preview experience.
    */
   "showPreview"?: boolean = false;
+  /**
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+   */
+  "showProgressStepper"?: boolean = true;
+  /**
+   * An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+   */
   "signerRoles"?: Array<SubTemplateRole>;
   /**
    * Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.
@@ -144,6 +165,16 @@ export class TemplateCreateEmbeddedDraftRequest {
       type: "SubFieldOptions",
     },
     {
+      name: "forceSignerRoles",
+      baseName: "force_signer_roles",
+      type: "boolean",
+    },
+    {
+      name: "forceSubjectMessage",
+      baseName: "force_subject_message",
+      type: "boolean",
+    },
+    {
       name: "formFieldGroups",
       baseName: "form_field_groups",
       type: "Array<SubFormFieldGroup>",
@@ -156,7 +187,7 @@ export class TemplateCreateEmbeddedDraftRequest {
     {
       name: "formFieldsPerDocument",
       baseName: "form_fields_per_document",
-      type: "Array<Array<SubFormFieldsPerDocumentBase>>",
+      type: "Array<SubFormFieldsPerDocumentBase>",
     },
     {
       name: "mergeFields",
@@ -176,6 +207,11 @@ export class TemplateCreateEmbeddedDraftRequest {
     {
       name: "showPreview",
       baseName: "show_preview",
+      type: "boolean",
+    },
+    {
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
       type: "boolean",
     },
     {

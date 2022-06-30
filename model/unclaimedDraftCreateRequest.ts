@@ -22,24 +22,35 @@ import { SubUnclaimedDraftSigner } from "./subUnclaimedDraftSigner";
 
 export class UnclaimedDraftCreateRequest {
   /**
-   * **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.
+   */
+  "type": UnclaimedDraftCreateRequest.TypeEnum;
+  /**
+   * Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "file"?: Array<RequestFile>;
   /**
-   * **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
    * Allows signers to decline to sign a document if `true`. Defaults to `false`.
    */
   "allowDecline"?: boolean = false;
+  /**
+   * A list describing the attachments
+   */
   "attachments"?: Array<SubAttachment>;
   /**
    * The email addresses that should be CCed.
    */
   "ccEmailAddresses"?: Array<string>;
   /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
+   */
+  "clientId"?: string;
+  /**
+   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
    */
   "customFields"?: Array<SubCustomField>;
   "fieldOptions"?: SubFieldOptions;
@@ -52,9 +63,9 @@ export class UnclaimedDraftCreateRequest {
    */
   "formFieldRules"?: Array<SubFormFieldRule>;
   /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`
    */
-  "formFieldsPerDocument"?: Array<Array<SubFormFieldsPerDocumentBase>>;
+  "formFieldsPerDocument"?: Array<SubFormFieldsPerDocumentBase>;
   /**
    * Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.
    */
@@ -67,6 +78,10 @@ export class UnclaimedDraftCreateRequest {
    * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer\'s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.
    */
   "metadata"?: { [key: string]: any };
+  /**
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+   */
+  "showProgressStepper"?: boolean = true;
   /**
    * Add Signers to your Unclaimed Draft Signature Request.
    */
@@ -85,10 +100,6 @@ export class UnclaimedDraftCreateRequest {
    */
   "testMode"?: boolean = false;
   /**
-   * The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.
-   */
-  "type"?: UnclaimedDraftCreateRequest.TypeEnum;
-  /**
    * Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.
    */
   "usePreexistingFields"?: boolean = false;
@@ -100,6 +111,11 @@ export class UnclaimedDraftCreateRequest {
   static discriminator: string | undefined = undefined;
 
   static attributeTypeMap: AttributeTypeMap = [
+    {
+      name: "type",
+      baseName: "type",
+      type: "UnclaimedDraftCreateRequest.TypeEnum",
+    },
     {
       name: "file",
       baseName: "file",
@@ -126,6 +142,11 @@ export class UnclaimedDraftCreateRequest {
       type: "Array<string>",
     },
     {
+      name: "clientId",
+      baseName: "client_id",
+      type: "string",
+    },
+    {
       name: "customFields",
       baseName: "custom_fields",
       type: "Array<SubCustomField>",
@@ -148,7 +169,7 @@ export class UnclaimedDraftCreateRequest {
     {
       name: "formFieldsPerDocument",
       baseName: "form_fields_per_document",
-      type: "Array<Array<SubFormFieldsPerDocumentBase>>",
+      type: "Array<SubFormFieldsPerDocumentBase>",
     },
     {
       name: "hideTextTags",
@@ -164,6 +185,11 @@ export class UnclaimedDraftCreateRequest {
       name: "metadata",
       baseName: "metadata",
       type: "{ [key: string]: any; }",
+    },
+    {
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
+      type: "boolean",
     },
     {
       name: "signers",
@@ -189,11 +215,6 @@ export class UnclaimedDraftCreateRequest {
       name: "testMode",
       baseName: "test_mode",
       type: "boolean",
-    },
-    {
-      name: "type",
-      baseName: "type",
-      type: "UnclaimedDraftCreateRequest.TypeEnum",
     },
     {
       name: "usePreexistingFields",

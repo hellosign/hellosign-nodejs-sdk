@@ -15,14 +15,14 @@ import { SubEditorOptions } from "./subEditorOptions";
 
 export class UnclaimedDraftEditAndResendRequest {
   /**
-   * Client id of the app you\'re using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
    */
   "clientId": string;
   "editorOptions"?: SubEditorOptions;
   /**
-   * The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.
+   * The request created from this draft will also be signable in embedded mode if set to `true`.
    */
-  "isForEmbeddedSigning"?: boolean = false;
+  "isForEmbeddedSigning"?: boolean;
   /**
    * The email address of the user that should be designated as the requester of this draft. If not set, original requester\'s email address will be used.
    */
@@ -31,6 +31,10 @@ export class UnclaimedDraftEditAndResendRequest {
    * The URL you want signers redirected to after they successfully request a signature.
    */
   "requestingRedirectUrl"?: string;
+  /**
+   * When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+   */
+  "showProgressStepper"?: boolean = true;
   /**
    * The URL you want signers redirected to after they successfully sign.
    */
@@ -67,6 +71,11 @@ export class UnclaimedDraftEditAndResendRequest {
       name: "requestingRedirectUrl",
       baseName: "requesting_redirect_url",
       type: "string",
+    },
+    {
+      name: "showProgressStepper",
+      baseName: "show_progress_stepper",
+      type: "boolean",
     },
     {
       name: "signingRedirectUrl",

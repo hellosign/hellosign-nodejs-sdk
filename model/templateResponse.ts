@@ -15,9 +15,12 @@ import { TemplateResponseAccount } from "./templateResponseAccount";
 import { TemplateResponseCCRole } from "./templateResponseCCRole";
 import { TemplateResponseCustomField } from "./templateResponseCustomField";
 import { TemplateResponseDocument } from "./templateResponseDocument";
+import { TemplateResponseNamedFormField } from "./templateResponseNamedFormField";
 import { TemplateResponseSignerRole } from "./templateResponseSignerRole";
-import { WarningResponse } from "./warningResponse";
 
+/**
+ * Contains information about the templates you and your team have created.
+ */
 export class TemplateResponse {
   /**
    * The id of the Template.
@@ -48,19 +51,37 @@ export class TemplateResponse {
    */
   "canEdit"?: boolean | null;
   /**
-   * `true` if you exceed Template quota; these can only be used in test mode. `false` if the template is included with the Template quota; these can be used at any time.
+   * Indicates whether the template is locked.  If `true`, then the template was created outside your quota and can only be used in `test_mode`.  If `false`, then the template is within your quota and can be used to create signature requests.
    */
   "isLocked"?: boolean | null;
   /**
    * The metadata attached to the template.
    */
   "metadata"?: object;
+  /**
+   * An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+   */
   "signerRoles"?: Array<TemplateResponseSignerRole>;
+  /**
+   * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+   */
   "ccRoles"?: Array<TemplateResponseCCRole>;
+  /**
+   * An array describing each document associated with this Template. Includes form field data for each document.
+   */
   "documents"?: Array<TemplateResponseDocument>;
+  /**
+   * An array of Custom Field objects.
+   */
   "customFields"?: Array<TemplateResponseCustomField> | null;
+  /**
+   * Use \"form_fields\" under the \"documents\" array instead.
+   */
+  "namedFormFields"?: Array<TemplateResponseNamedFormField> | null;
+  /**
+   * An array of the Accounts that can use this Template.
+   */
   "accounts"?: Array<TemplateResponseAccount> | null;
-  "warnings"?: Array<WarningResponse>;
 
   static discriminator: string | undefined = undefined;
 
@@ -131,14 +152,14 @@ export class TemplateResponse {
       type: "Array<TemplateResponseCustomField>",
     },
     {
+      name: "namedFormFields",
+      baseName: "named_form_fields",
+      type: "Array<TemplateResponseNamedFormField>",
+    },
+    {
       name: "accounts",
       baseName: "accounts",
       type: "Array<TemplateResponseAccount>",
-    },
-    {
-      name: "warnings",
-      baseName: "warnings",
-      type: "Array<WarningResponse>",
     },
   ];
 
