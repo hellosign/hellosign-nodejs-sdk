@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 | `apiId` | ```string``` |  The unique ID for this field.  |  |
 | `group` | ```string``` |  The name of the group this field is in. If this field is not a group, this defaults to `null`.  |  |
 | `avgTextLength` | [```TemplateResponseFieldAvgTextLength```](TemplateResponseFieldAvgTextLength.md) |    |  |
-| `isMultiline` | ```string``` |  Whether this form field is multiline text.  |  |
+| `isMultiline` | ```boolean``` |  Whether this form field is multiline text.  |  |
 | `originalFontSize` | ```number``` |  Original font size used in this form field&#39;s text.  |  |
-| `fontFamily` | ```number``` |  Font family used in this form field&#39;s text.  |  |
+| `fontFamily` | ```string``` |  Font family used in this form field&#39;s text.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

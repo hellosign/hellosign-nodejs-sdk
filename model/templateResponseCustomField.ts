@@ -54,7 +54,7 @@ export class TemplateResponseCustomField {
   /**
    * Whether this form field is multiline text.
    */
-  "isMultiline"?: string | null;
+  "isMultiline"?: boolean | null;
   /**
    * Original font size used in this form field\'s text.
    */
@@ -62,7 +62,7 @@ export class TemplateResponseCustomField {
   /**
    * Font family used in this form field\'s text.
    */
-  "fontFamily"?: number | null;
+  "fontFamily"?: string | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -120,7 +120,7 @@ export class TemplateResponseCustomField {
     {
       name: "isMultiline",
       baseName: "isMultiline",
-      type: "string",
+      type: "boolean",
     },
     {
       name: "originalFontSize",
@@ -130,7 +130,7 @@ export class TemplateResponseCustomField {
     {
       name: "fontFamily",
       baseName: "fontFamily",
-      type: "number",
+      type: "string",
     },
   ];
 
