@@ -138,10 +138,12 @@ export class TeamApi {
    * Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
    * @summary Add User to Team
    * @param teamAddMemberRequest
+   * @param teamId The id of the team.
    * @param options
    */
   public async teamAddMember(
     teamAddMemberRequest: TeamAddMemberRequest,
+    teamId?: string,
     options: optionsI = { headers: {} }
   ): Promise<returnTypeT<TeamGetResponse>> {
     const localVarPath = this.basePath + "/team/add_member";
@@ -164,6 +166,13 @@ export class TeamApi {
     if (teamAddMemberRequest === null || teamAddMemberRequest === undefined) {
       throw new Error(
         "Required parameter teamAddMemberRequest was null or undefined when calling teamAddMember."
+      );
+    }
+
+    if (teamId !== undefined) {
+      localVarQueryParameters["team_id"] = ObjectSerializer.serialize(
+        teamId,
+        "string"
       );
     }
 

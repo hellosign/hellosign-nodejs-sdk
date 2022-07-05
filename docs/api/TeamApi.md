@@ -15,7 +15,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 ## `teamAddMember()`
 
 ```typescript
-teamAddMember(teamAddMemberRequest: TeamAddMemberRequest): TeamGetResponse
+teamAddMember(teamAddMemberRequest: TeamAddMemberRequest, teamId: string): TeamGetResponse
 ```
 
 Add User to Team
@@ -83,6 +83,7 @@ result.then(response => {
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **teamAddMemberRequest** | [**TeamAddMemberRequest**](../model/TeamAddMemberRequest.md)|  | |
+| **teamId** | **string**| The id of the team. | [optional] |
 
 ### Return type
 
