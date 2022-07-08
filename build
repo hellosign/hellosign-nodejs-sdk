@@ -20,6 +20,7 @@ docker run --rm \
     --global-property=modelDocs=false
 
 # Generate API docs
+echo "step 1..."
 rm -rf "${PWD}/docs/api" "${PWD}/tmp_docs"
 mkdir -p "${PWD}/docs/api"
 mkdir -p "${PWD}/tmp_docs"
@@ -36,10 +37,12 @@ docker run --rm \
     --global-property=modelDocs=false
 
 # Only need README.md from initial run
+echo "step 2..."
 rm -f "${PWD}/tmp_docs/README.md"
 mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/api/"
 
 # Generate Model docs
+echo "step 3..."
 rm -rf "${PWD}/docs/model" "${PWD}/tmp_docs"
 mkdir -p "${PWD}/docs/model"
 mkdir -p "${PWD}/tmp_docs"
@@ -56,9 +59,11 @@ docker run --rm \
     --global-property=modelDocs=true
 
 # Only need README.md from initial run
+echo "step 4..."
 rm -f "${PWD}/tmp_docs/README.md"
 mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/model/"
 
+echo "step 5..."
 rm -rf "${PWD}/tmp_docs"
 
 printf "\nInstalling composer dependencies ...\n"
