@@ -8,6 +8,7 @@ WORKINGDIR="/app/javascript"
 
 docker run --rm \
   -v "${PWD}/:/local" \
+  --user "$(id -u):$(id -g)" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
