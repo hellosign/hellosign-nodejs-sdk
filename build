@@ -6,65 +6,13 @@ set -e
 
 WORKINGDIR="/app/javascript"
 
-# Generate code
 docker run --rm \
   -v "${PWD}/:/local" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
     -t "/local/templates" \
-    -o "/local/" \
-    --global-property=api=true \
-    --global-property=model=true \
-    --global-property=apiDocs=false \
-    --global-property=modelDocs=false
-
-# Generate API docs
-echo "step 1..."
-rm -rf "${PWD}/docs/api" "${PWD}/tmp_docs"
-mkdir -p "${PWD}/docs/api"
-mkdir -p "${PWD}/tmp_docs"
-docker run --rm \
-  -v "${PWD}/:/local" \
-  openapitools/openapi-generator-cli:v5.3.0 generate \
-    -i "/local/oas/openapi-sdk.yaml" \
-    -c "/local/openapi-config.yaml" \
-    -t "/local/templates" \
-    -o "/local/tmp_docs" \
-    --global-property=api=false \
-    --global-property=model=false \
-    --global-property=apiDocs=true \
-    --global-property=modelDocs=false
-
-# Only need README.md from initial run
-echo "step 2..."
-rm -f "${PWD}/tmp_docs/README.md"
-mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/api/"
-
-# Generate Model docs
-echo "step 3..."
-rm -rf "${PWD}/docs/model" "${PWD}/tmp_docs"
-mkdir -p "${PWD}/docs/model"
-mkdir -p "${PWD}/tmp_docs"
-docker run --rm \
-  -v "${PWD}/:/local" \
-  openapitools/openapi-generator-cli:v5.3.0 generate \
-    -i "/local/oas/openapi-sdk.yaml" \
-    -c "/local/openapi-config.yaml" \
-    -t "/local/templates" \
-    -o "/local/tmp_docs" \
-    --global-property=api=false \
-    --global-property=model=false \
-    --global-property=apiDocs=false \
-    --global-property=modelDocs=true
-
-# Only need README.md from initial run
-echo "step 4..."
-rm -f "${PWD}/tmp_docs/README.md"
-mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/model/"
-
-echo "step 5..."
-rm -rf "${PWD}/tmp_docs"
+    -o "/local/"
 
 printf "\nInstalling composer dependencies ...\n"
 mkdir -p "${PWD}/vendor"
