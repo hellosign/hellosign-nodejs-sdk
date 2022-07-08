@@ -33,7 +33,7 @@ mkdir -p "${PWD}/node_modules"
 bash "${PWD}/bin/node" npm install
 
 printf "Running prettier ...\n"
-bash "${PWD}/bin/node" npm run prettier
+# bash "${PWD}/bin/node" npm run prettier
 
 printf "Replacing strings ...\n"
 docker run --rm \
