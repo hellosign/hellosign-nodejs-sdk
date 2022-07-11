@@ -9,6 +9,7 @@ WORKINGDIR="/app/javascript"
 # Generate code
 docker run --rm \
   -v "${PWD}/:/local" \
+  --user "$(id -u):$(id -g)" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
@@ -25,6 +26,7 @@ mkdir -p "${PWD}/docs/api"
 mkdir -p "${PWD}/tmp_docs"
 docker run --rm \
   -v "${PWD}/:/local" \
+  --user "$(id -u):$(id -g)" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
@@ -45,6 +47,7 @@ mkdir -p "${PWD}/docs/model"
 mkdir -p "${PWD}/tmp_docs"
 docker run --rm \
   -v "${PWD}/:/local" \
+  --user "$(id -u):$(id -g)" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
@@ -58,7 +61,6 @@ docker run --rm \
 # Only need README.md from initial run
 rm -f "${PWD}/tmp_docs/README.md"
 mv "${PWD}/tmp_docs/"*.md "${PWD}/docs/model/"
-
 rm -rf "${PWD}/tmp_docs"
 
 printf "\nInstalling composer dependencies ...\n"
@@ -83,13 +85,13 @@ printf "Running prettier ...\n"
 bash "${PWD}/bin/node" npm run prettier
 
 printf "Replacing strings ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/scan_for

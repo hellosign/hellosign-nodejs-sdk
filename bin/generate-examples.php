@@ -259,7 +259,7 @@ class GenerateExamples
 }
 
 $generate = new GenerateExamples(
-    Yaml::parse(file_get_contents(__DIR__ . '/../oas/openapi.yaml')),
+    Yaml::parse(file_get_contents(__DIR__ . '/../oas/openapi-sdk.yaml')),
     ['JavaScript', 'TypeScript'],
     [__DIR__ . '/../docs/api', __DIR__ . '/../docs/model'],
     [__DIR__ . '/../README.md'],
