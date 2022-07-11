@@ -32,7 +32,6 @@ bash "${PWD}/bin/php" ./bin/generate-examples.php
 printf "Install NPM dependencies ...\n"
 mkdir -p "${PWD}/node_modules"
 bash "${PWD}/bin/node" npm install
-bash "${PWD}/bin/node" npm install qs
 
 printf "Running prettier ...\n"
 bash "${PWD}/bin/node" npm run prettier
