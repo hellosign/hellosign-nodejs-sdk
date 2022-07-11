@@ -32,7 +32,3 @@ jobs:
           cd oas && git fetch origin && git checkout ${{ env.branch_name }}
           cd ../
           ./build
-      - uses: actions/checkout@v2
-      - name: Setup tmate session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
