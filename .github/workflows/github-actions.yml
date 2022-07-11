@@ -14,9 +14,6 @@ jobs:
   run-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
       - name: set branch name variable
         run: |
           if [ -z ${{ inputs.branch_name }} ]
@@ -35,3 +32,7 @@ jobs:
           cd oas && git fetch origin && git checkout ${{ env.branch_name }}
           cd ../
           ./build
+      - uses: actions/checkout@v2
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
