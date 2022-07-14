@@ -732,7 +732,7 @@ export class TemplateApi {
     });
   }
   /**
-   * Returns the Template specified by the `id` parameter.
+   * Returns the Template specified by the `template_id` parameter.
    * @summary Get Template
    * @param templateId The id of the Template to retrieve.
    * @param options

@@ -68,7 +68,7 @@ export class TemplateResponseDocumentCustomField {
    */
   "fontFamily"?: string | null;
   /**
-   * _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
+   * Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
    */
   "namedFormFields"?: object | null;
   "reusableFormId"?: string | null;

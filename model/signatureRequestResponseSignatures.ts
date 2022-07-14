@@ -27,7 +27,7 @@ export class SignatureRequestResponseSignatures {
   /**
    * The name of the signer.
    */
-  "signerName"?: string;
+  "signerName"?: string | null;
   /**
    * The role of the signer.
    */
