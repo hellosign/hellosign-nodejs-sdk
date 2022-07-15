@@ -58,6 +58,16 @@ export * from "./signatureRequestResponseCustomFieldCheckbox";
 export * from "./signatureRequestResponseCustomFieldText";
 export * from "./signatureRequestResponseCustomFieldTypeEnum";
 export * from "./signatureRequestResponseData";
+export * from "./signatureRequestResponseDataTypeEnum";
+export * from "./signatureRequestResponseDataValueCheckbox";
+export * from "./signatureRequestResponseDataValueCheckboxMerge";
+export * from "./signatureRequestResponseDataValueDateSigned";
+export * from "./signatureRequestResponseDataValueDropdown";
+export * from "./signatureRequestResponseDataValueInitials";
+export * from "./signatureRequestResponseDataValueRadio";
+export * from "./signatureRequestResponseDataValueSignature";
+export * from "./signatureRequestResponseDataValueText";
+export * from "./signatureRequestResponseDataValueTextMerge";
 export * from "./signatureRequestResponseSignatures";
 export * from "./signatureRequestSendRequest";
 export * from "./signatureRequestSendWithTemplateRequest";
@@ -91,15 +101,22 @@ export * from "./subOptions";
 export * from "./subSignatureRequestSigner";
 export * from "./subSignatureRequestTemplateSigner";
 export * from "./subSigningOptions";
+export * from "./subTeamResponse";
 export * from "./subTemplateRole";
 export * from "./subUnclaimedDraftSigner";
 export * from "./subUnclaimedDraftTemplateSigner";
 export * from "./subWhiteLabelingOptions";
 export * from "./teamAddMemberRequest";
 export * from "./teamCreateRequest";
+export * from "./teamGetInfoResponse";
 export * from "./teamGetResponse";
+export * from "./teamInfoResponse";
+export * from "./teamMemberResponse";
+export * from "./teamMembersResponse";
+export * from "./teamParentResponse";
 export * from "./teamRemoveMemberRequest";
 export * from "./teamResponse";
+export * from "./teamSubTeamsResponse";
 export * from "./teamUpdateRequest";
 export * from "./templateAddUserRequest";
 export * from "./templateCreateEmbeddedDraftRequest";
@@ -212,6 +229,16 @@ import { SignatureRequestResponseCustomFieldCheckbox } from "./signatureRequestR
 import { SignatureRequestResponseCustomFieldText } from "./signatureRequestResponseCustomFieldText";
 import { SignatureRequestResponseCustomFieldTypeEnum } from "./signatureRequestResponseCustomFieldTypeEnum";
 import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataTypeEnum } from "./signatureRequestResponseDataTypeEnum";
+import { SignatureRequestResponseDataValueCheckbox } from "./signatureRequestResponseDataValueCheckbox";
+import { SignatureRequestResponseDataValueCheckboxMerge } from "./signatureRequestResponseDataValueCheckboxMerge";
+import { SignatureRequestResponseDataValueDateSigned } from "./signatureRequestResponseDataValueDateSigned";
+import { SignatureRequestResponseDataValueDropdown } from "./signatureRequestResponseDataValueDropdown";
+import { SignatureRequestResponseDataValueInitials } from "./signatureRequestResponseDataValueInitials";
+import { SignatureRequestResponseDataValueRadio } from "./signatureRequestResponseDataValueRadio";
+import { SignatureRequestResponseDataValueSignature } from "./signatureRequestResponseDataValueSignature";
+import { SignatureRequestResponseDataValueText } from "./signatureRequestResponseDataValueText";
+import { SignatureRequestResponseDataValueTextMerge } from "./signatureRequestResponseDataValueTextMerge";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
 import { SignatureRequestSendRequest } from "./signatureRequestSendRequest";
 import { SignatureRequestSendWithTemplateRequest } from "./signatureRequestSendWithTemplateRequest";
@@ -245,15 +272,22 @@ import { SubOptions } from "./subOptions";
 import { SubSignatureRequestSigner } from "./subSignatureRequestSigner";
 import { SubSignatureRequestTemplateSigner } from "./subSignatureRequestTemplateSigner";
 import { SubSigningOptions } from "./subSigningOptions";
+import { SubTeamResponse } from "./subTeamResponse";
 import { SubTemplateRole } from "./subTemplateRole";
 import { SubUnclaimedDraftSigner } from "./subUnclaimedDraftSigner";
 import { SubUnclaimedDraftTemplateSigner } from "./subUnclaimedDraftTemplateSigner";
 import { SubWhiteLabelingOptions } from "./subWhiteLabelingOptions";
 import { TeamAddMemberRequest } from "./teamAddMemberRequest";
 import { TeamCreateRequest } from "./teamCreateRequest";
+import { TeamGetInfoResponse } from "./teamGetInfoResponse";
 import { TeamGetResponse } from "./teamGetResponse";
+import { TeamInfoResponse } from "./teamInfoResponse";
+import { TeamMemberResponse } from "./teamMemberResponse";
+import { TeamMembersResponse } from "./teamMembersResponse";
+import { TeamParentResponse } from "./teamParentResponse";
 import { TeamRemoveMemberRequest } from "./teamRemoveMemberRequest";
 import { TeamResponse } from "./teamResponse";
+import { TeamSubTeamsResponse } from "./teamSubTeamsResponse";
 import { TeamUpdateRequest } from "./teamUpdateRequest";
 import { TemplateAddUserRequest } from "./templateAddUserRequest";
 import { TemplateCreateEmbeddedDraftRequest } from "./templateCreateEmbeddedDraftRequest";
@@ -306,8 +340,7 @@ let enumsMap: { [index: string]: any } = {
   "ReportResponse.ReportTypeEnum": ReportResponse.ReportTypeEnum,
   SignatureRequestResponseCustomFieldTypeEnum:
     SignatureRequestResponseCustomFieldTypeEnum,
-  "SignatureRequestResponseData.TypeEnum":
-    SignatureRequestResponseData.TypeEnum,
+  SignatureRequestResponseDataTypeEnum: SignatureRequestResponseDataTypeEnum,
   "SubFieldOptions.DateFormatEnum": SubFieldOptions.DateFormatEnum,
   "SubFormFieldRuleAction.TypeEnum": SubFormFieldRuleAction.TypeEnum,
   "SubFormFieldRuleTrigger.OperatorEnum": SubFormFieldRuleTrigger.OperatorEnum,
@@ -399,6 +432,23 @@ let typeMap: { [index: string]: any } = {
   SignatureRequestResponseCustomFieldText:
     SignatureRequestResponseCustomFieldText,
   SignatureRequestResponseData: SignatureRequestResponseData,
+  SignatureRequestResponseDataValueCheckbox:
+    SignatureRequestResponseDataValueCheckbox,
+  SignatureRequestResponseDataValueCheckboxMerge:
+    SignatureRequestResponseDataValueCheckboxMerge,
+  SignatureRequestResponseDataValueDateSigned:
+    SignatureRequestResponseDataValueDateSigned,
+  SignatureRequestResponseDataValueDropdown:
+    SignatureRequestResponseDataValueDropdown,
+  SignatureRequestResponseDataValueInitials:
+    SignatureRequestResponseDataValueInitials,
+  SignatureRequestResponseDataValueRadio:
+    SignatureRequestResponseDataValueRadio,
+  SignatureRequestResponseDataValueSignature:
+    SignatureRequestResponseDataValueSignature,
+  SignatureRequestResponseDataValueText: SignatureRequestResponseDataValueText,
+  SignatureRequestResponseDataValueTextMerge:
+    SignatureRequestResponseDataValueTextMerge,
   SignatureRequestResponseSignatures: SignatureRequestResponseSignatures,
   SignatureRequestSendRequest: SignatureRequestSendRequest,
   SignatureRequestSendWithTemplateRequest:
@@ -432,15 +482,22 @@ let typeMap: { [index: string]: any } = {
   SubSignatureRequestSigner: SubSignatureRequestSigner,
   SubSignatureRequestTemplateSigner: SubSignatureRequestTemplateSigner,
   SubSigningOptions: SubSigningOptions,
+  SubTeamResponse: SubTeamResponse,
   SubTemplateRole: SubTemplateRole,
   SubUnclaimedDraftSigner: SubUnclaimedDraftSigner,
   SubUnclaimedDraftTemplateSigner: SubUnclaimedDraftTemplateSigner,
   SubWhiteLabelingOptions: SubWhiteLabelingOptions,
   TeamAddMemberRequest: TeamAddMemberRequest,
   TeamCreateRequest: TeamCreateRequest,
+  TeamGetInfoResponse: TeamGetInfoResponse,
   TeamGetResponse: TeamGetResponse,
+  TeamInfoResponse: TeamInfoResponse,
+  TeamMemberResponse: TeamMemberResponse,
+  TeamMembersResponse: TeamMembersResponse,
+  TeamParentResponse: TeamParentResponse,
   TeamRemoveMemberRequest: TeamRemoveMemberRequest,
   TeamResponse: TeamResponse,
+  TeamSubTeamsResponse: TeamSubTeamsResponse,
   TeamUpdateRequest: TeamUpdateRequest,
   TemplateAddUserRequest: TemplateAddUserRequest,
   TemplateCreateEmbeddedDraftRequest: TemplateCreateEmbeddedDraftRequest,

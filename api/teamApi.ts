@@ -16,8 +16,11 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { ErrorResponse } from "../model/errorResponse";
 import { TeamAddMemberRequest } from "../model/teamAddMemberRequest";
 import { TeamCreateRequest } from "../model/teamCreateRequest";
+import { TeamGetInfoResponse } from "../model/teamGetInfoResponse";
 import { TeamGetResponse } from "../model/teamGetResponse";
+import { TeamMembersResponse } from "../model/teamMembersResponse";
 import { TeamRemoveMemberRequest } from "../model/teamRemoveMemberRequest";
+import { TeamSubTeamsResponse } from "../model/teamSubTeamsResponse";
 import { TeamUpdateRequest } from "../model/teamUpdateRequest";
 
 import {
@@ -649,6 +652,291 @@ export class TeamApi {
     });
   }
   /**
+   * Provides information about a team.
+   * @summary Get Team Info
+   * @param teamId The id of the team.
+   * @param options
+   */
+  public async teamInfo(
+    teamId?: string,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<TeamGetInfoResponse>> {
+    const localVarPath = this.basePath + "/team/info";
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    if (teamId !== undefined) {
+      localVarQueryParameters["team_id"] = ObjectSerializer.serialize(
+        teamId,
+        "string"
+      );
+    }
+
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "json",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
+      );
+    }
+
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<TeamGetInfoResponse>>(
+        (resolve, reject) => {
+          axios.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+
+              if (
+                response.status &&
+                response.status >= 200 &&
+                response.status <= 299
+              ) {
+                body = ObjectSerializer.deserialize(
+                  body,
+                  "TeamGetInfoResponse"
+                );
+                resolve({ response: response, body: body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error: AxiosError) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+
+              const response = error.response;
+
+              let body;
+
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TeamGetInfoResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        }
+      );
+    });
+  }
+  /**
+   * Provides a paginated list of members (and their roles) that belong to a given team.
+   * @summary List Team Members
+   * @param teamId The id of the team that a member list is being requested from.
+   * @param page Which page number of the team member list to return. Defaults to &#x60;1&#x60;.
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;.
+   * @param options
+   */
+  public async teamMembers(
+    teamId: string,
+    page?: number,
+    pageSize?: number,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<TeamMembersResponse>> {
+    const localVarPath =
+      this.basePath +
+      "/team/members/{team_id}".replace(
+        "{" + "team_id" + "}",
+        encodeURIComponent(String(teamId))
+      );
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    // verify required parameter 'teamId' is not null or undefined
+    if (teamId === null || teamId === undefined) {
+      throw new Error(
+        "Required parameter teamId was null or undefined when calling teamMembers."
+      );
+    }
+
+    if (page !== undefined) {
+      localVarQueryParameters["page"] = ObjectSerializer.serialize(
+        page,
+        "number"
+      );
+    }
+
+    if (pageSize !== undefined) {
+      localVarQueryParameters["page_size"] = ObjectSerializer.serialize(
+        pageSize,
+        "number"
+      );
+    }
+
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "json",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
+      );
+    }
+
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<TeamMembersResponse>>(
+        (resolve, reject) => {
+          axios.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+
+              if (
+                response.status &&
+                response.status >= 200 &&
+                response.status <= 299
+              ) {
+                body = ObjectSerializer.deserialize(
+                  body,
+                  "TeamMembersResponse"
+                );
+                resolve({ response: response, body: body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error: AxiosError) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+
+              const response = error.response;
+
+              let body;
+
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TeamMembersResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        }
+      );
+    });
+  }
+  /**
    * Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
    * @summary Remove User from Team
    * @param teamRemoveMemberRequest
@@ -799,6 +1087,160 @@ export class TeamApi {
           }
         );
       });
+    });
+  }
+  /**
+   * Provides a paginated list of sub teams that belong to a given team.
+   * @summary List Sub Teams
+   * @param teamId The id of the parent Team.
+   * @param page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;.
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;.
+   * @param options
+   */
+  public async teamSubTeams(
+    teamId: string,
+    page?: number,
+    pageSize?: number,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<TeamSubTeamsResponse>> {
+    const localVarPath =
+      this.basePath +
+      "/team/sub_teams/{team_id}".replace(
+        "{" + "team_id" + "}",
+        encodeURIComponent(String(teamId))
+      );
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    // verify required parameter 'teamId' is not null or undefined
+    if (teamId === null || teamId === undefined) {
+      throw new Error(
+        "Required parameter teamId was null or undefined when calling teamSubTeams."
+      );
+    }
+
+    if (page !== undefined) {
+      localVarQueryParameters["page"] = ObjectSerializer.serialize(
+        page,
+        "number"
+      );
+    }
+
+    if (pageSize !== undefined) {
+      localVarQueryParameters["page_size"] = ObjectSerializer.serialize(
+        pageSize,
+        "number"
+      );
+    }
+
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "json",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
+      );
+    }
+
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<TeamSubTeamsResponse>>(
+        (resolve, reject) => {
+          axios.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+
+              if (
+                response.status &&
+                response.status >= 200 &&
+                response.status <= 299
+              ) {
+                body = ObjectSerializer.deserialize(
+                  body,
+                  "TeamSubTeamsResponse"
+                );
+                resolve({ response: response, body: body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error: AxiosError) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+
+              const response = error.response;
+
+              let body;
+
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TeamSubTeamsResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        }
+      );
     });
   }
   /**

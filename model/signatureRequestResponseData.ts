@@ -15,7 +15,7 @@ import { RequestFile, AttributeTypeMap } from "./models";
 /**
  * An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
  */
-export class SignatureRequestResponseData {
+export abstract class SignatureRequestResponseData {
   /**
    * The unique ID for this field.
    */
@@ -29,19 +29,15 @@ export class SignatureRequestResponseData {
    */
   "name"?: string;
   /**
-   * The value of the form field.
-   */
-  "value"?: string;
-  /**
    * A boolean value denoting if this field is required.
    */
   "required"?: boolean;
   /**
-   * - `text`: A text input field - `checkbox`: A yes/no checkbox - `date_signed`: A date - `dropdown`: An input field for dropdowns - `initials`: An input field for initials - `radio`: An input field for radios - `signature`: A signature input field - `text-merge`: A text field that has default text set by the api - `checkbox-merge`: A checkbox field that has default value set by the api
+   * TEST DESCRIPTION
    */
-  "type"?: SignatureRequestResponseData.TypeEnum;
+  "type"?: string;
 
-  static discriminator: string | undefined = undefined;
+  static discriminator: string | undefined = "type";
 
   static attributeTypeMap: AttributeTypeMap = [
     {
@@ -60,11 +56,6 @@ export class SignatureRequestResponseData {
       type: "string",
     },
     {
-      name: "value",
-      baseName: "value",
-      type: "string",
-    },
-    {
       name: "required",
       baseName: "required",
       type: "boolean",
@@ -72,25 +63,47 @@ export class SignatureRequestResponseData {
     {
       name: "type",
       baseName: "type",
-      type: "SignatureRequestResponseData.TypeEnum",
+      type: "string",
     },
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
     return SignatureRequestResponseData.attributeTypeMap;
   }
-}
 
-export namespace SignatureRequestResponseData {
-  export enum TypeEnum {
-    Text = "text",
-    Checkbox = "checkbox",
-    DateSigned = "date_signed",
-    Dropdown = "dropdown",
-    Initials = "initials",
-    Radio = "radio",
-    Signature = "signature",
-    TextMerge = "text-merge",
-    CheckboxMerge = "checkbox-merge",
+  static discriminatorClassName(value: any): string | null {
+    if (value === undefined || value === null) {
+      return null;
+    }
+
+    if (value === "checkbox") {
+      return "SignatureRequestResponseDataValueCheckbox";
+    }
+    if (value === "checkbox-merge") {
+      return "SignatureRequestResponseDataValueCheckboxMerge";
+    }
+    if (value === "date_signed") {
+      return "SignatureRequestResponseDataValueDateSigned";
+    }
+    if (value === "dropdown") {
+      return "SignatureRequestResponseDataValueDropdown";
+    }
+    if (value === "initials") {
+      return "SignatureRequestResponseDataValueInitials";
+    }
+    if (value === "radio") {
+      return "SignatureRequestResponseDataValueRadio";
+    }
+    if (value === "signature") {
+      return "SignatureRequestResponseDataValueSignature";
+    }
+    if (value === "text") {
+      return "SignatureRequestResponseDataValueText";
+    }
+    if (value === "text-merge") {
+      return "SignatureRequestResponseDataValueTextMerge";
+    }
+
+    return null;
   }
 }

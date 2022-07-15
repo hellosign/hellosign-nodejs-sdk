@@ -43,7 +43,7 @@ export class SignatureRequestResponse {
   /**
    * The subject in the email that was initially sent to the signers.
    */
-  "subject"?: string;
+  "subject"?: string | null;
   /**
    * The custom message in the email that was initially sent to the signers.
    */

@@ -75,7 +75,7 @@ export class TemplateResponse {
    */
   "customFields"?: Array<TemplateResponseCustomField> | null;
   /**
-   * Use \"form_fields\" under the \"documents\" array instead.
+   * Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
    */
   "namedFormFields"?: Array<TemplateResponseNamedFormField> | null;
   /**

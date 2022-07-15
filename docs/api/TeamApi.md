@@ -8,7 +8,10 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**teamCreate()**](TeamApi.md#teamCreate) | **POST** /team/create | Create Team |
 | [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team |
 | [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Get Team |
+| [**teamInfo()**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info |
+| [**teamMembers()**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team |
+| [**teamSubTeams()**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
 | [**teamUpdate()**](TeamApi.md#teamUpdate) | **PUT** /team | Update Team |
 
 
@@ -349,6 +352,174 @@ result.then(response => {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `teamInfo()`
+
+```typescript
+teamInfo(teamId: string): TeamGetInfoResponse
+```
+
+Get Team Info
+
+Provides information about a team.
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const result = api.teamInfo();
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const result = api.teamInfo();
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The id of the team. | [optional] |
+
+### Return type
+
+[**TeamGetInfoResponse**](../model/TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamMembers()`
+
+```typescript
+teamMembers(teamId: string, page: number, pageSize: number): TeamMembersResponse
+```
+
+List Team Members
+
+Provides a paginated list of members (and their roles) that belong to a given team.
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+const result = api.teamMembers(teamId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+const result = api.teamMembers(teamId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The id of the team that a member list is being requested from. | |
+| **page** | **number**| Which page number of the team member list to return. Defaults to `1`. | [optional] [default to 1] |
+| **pageSize** | **number**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**TeamMembersResponse**](../model/TeamMembersResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `teamRemoveMember()`
 
 ```typescript
@@ -434,6 +605,93 @@ result.then(response => {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamSubTeams()`
+
+```typescript
+teamSubTeams(teamId: string, page: number, pageSize: number): TeamSubTeamsResponse
+```
+
+List Sub Teams
+
+Provides a paginated list of sub teams that belong to a given team.
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+const result = api.teamSubTeams(teamId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK
+  from "@hellosign/openapi-javascript-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+const result = api.teamSubTeams(teamId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The id of the parent Team. | |
+| **page** | **number**| Which page number of the SubTeam List to return. Defaults to `1`. | [optional] [default to 1] |
+| **pageSize** | **number**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**TeamSubTeamsResponse**](../model/TeamSubTeamsResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

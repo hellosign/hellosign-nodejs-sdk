@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 | `isMultiline` | ```boolean``` |  Whether this form field is multiline text.  |  |
 | `originalFontSize` | ```number``` |  Original font size used in this form field&#39;s text.  |  |
 | `fontFamily` | ```string``` |  Font family used in this form field&#39;s text.  |  |
-| `namedFormFields` | ```object``` |  _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS  |  |
+| `namedFormFields` | ```object``` |  Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.  |  |
 | `reusableFormId` | ```string``` |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
