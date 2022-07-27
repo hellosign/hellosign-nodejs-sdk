@@ -20,8 +20,7 @@ Request the creation of one or more report(s).  When the report(s) have been gen
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.ReportApi();
 
@@ -50,8 +49,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.ReportApi();
 

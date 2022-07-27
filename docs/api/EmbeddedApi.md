@@ -21,8 +21,7 @@ Retrieves an embedded object containing a template url that can be opened in an 
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.EmbeddedApi();
 
@@ -52,8 +51,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.EmbeddedApi();
 
@@ -117,8 +115,7 @@ Retrieves an embedded object containing a signature url that can be opened in an
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.EmbeddedApi();
 
@@ -143,8 +140,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.EmbeddedApi();
 

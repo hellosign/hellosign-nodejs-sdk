@@ -27,8 +27,7 @@ Gives the specified Account access to the specified Template. The specified Acco
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -57,8 +56,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -121,8 +119,7 @@ The first step in an embedded template workflow. Creates a draft template that c
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -188,8 +185,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -288,8 +284,7 @@ Completely deletes the template specified from the account.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -314,8 +309,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -373,8 +367,7 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -399,8 +392,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -461,8 +453,7 @@ Returns the Template specified by the `template_id` parameter.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -487,8 +478,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -546,8 +536,7 @@ Returns a list of the Templates that are accessible by you.  Take a look at our 
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -572,8 +561,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -634,8 +622,7 @@ Removes the specified Account\'s access to the specified Template.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -664,8 +651,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -728,8 +714,7 @@ Overlays a new file with the overlay of an existing template. The new file(s) mu
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -758,8 +743,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.TemplateApi();
 

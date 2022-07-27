@@ -21,8 +21,7 @@ Returns the status of the BulkSendJob and its SignatureRequests specified by the
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.BulkSendJobApi();
 
@@ -47,8 +46,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.BulkSendJobApi();
 
@@ -106,8 +104,7 @@ Returns a list of BulkSendJob that you can access.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.BulkSendJobApi();
 
@@ -133,8 +130,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.BulkSendJobApi();
 

@@ -23,8 +23,7 @@ Creates a new HelloSign Account that is associated with the specified `email_add
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -51,8 +50,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -112,8 +110,7 @@ Returns the properties and settings of your Account.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -136,8 +133,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -193,8 +189,7 @@ Updates the properties and settings of your Account. Currently only allows for u
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -221,8 +216,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -282,8 +276,7 @@ Verifies whether an HelloSign Account exists for the given email address.
 ### TypeScript Example
 
 ```typescript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 
@@ -310,8 +303,7 @@ result.then(response => {
 ### JavaScript Example
 
 ```javascript
-import * as HelloSignSDK
-  from "@hellosign/openapi-javascript-sdk";
+import * as HelloSignSDK from "hellosign-sdk";
 
 const api = new HelloSignSDK.AccountApi();
 

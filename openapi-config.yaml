@@ -1,8 +1,8 @@
 generatorName: typescript-node
 typeMappings: {}
 additionalProperties:
-  npmName: "@hellosign/openapi-javascript-sdk"
-  npmVersion: "3.0.0"
+  npmName: "hellosign-sdk"
+  npmVersion: "6.0.0"
   supportsES6: true
   apiDocPath: ./docs/api
   modelDocPath: ./docs/model
