@@ -32,9 +32,6 @@ export abstract class SignatureRequestResponseData {
    * A boolean value denoting if this field is required.
    */
   "required"?: boolean;
-  /**
-   * TEST DESCRIPTION
-   */
   "type"?: string;
 
   static discriminator: string | undefined = "type";
