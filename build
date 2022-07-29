@@ -98,6 +98,7 @@ docker run --rm \
 
 printf "Running build ...\n"
 bash "${PWD}/bin/node" npm run build
+bash "${PWD}/bin/node" npm run build-types
 
 printf "Running tests ...\n"
 bash "${PWD}/bin/node" npm run test
