@@ -10,9 +10,9 @@
 /openapi-config.yaml        export-ignore
 /api                        export-ignore
 /bin                        export-ignore
-/build                      export-ignore
 /examples                   export-ignore
 /model                      export-ignore
 /oas                        export-ignore
+/run-build                  export-ignore
 /templates                  export-ignore
 /test                       export-ignore

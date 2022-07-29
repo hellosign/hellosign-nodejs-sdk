@@ -17,17 +17,17 @@ guaranteed nor implied!
 ### From NPM Package
 
 ```
-npm install @hellosign/openapi-javascript-sdk
+npm install hellosign-sdk@github:HelloFax/hellosign-nodejs-sdk#openapi
 ```
 
 ### From Repo
 
 * Clone this repo locally
 * Run `npm pack`
-* The generated file will be named similar to `hellosign-openapi-javascript-sdk-3.0.0.tgz`
+* The generated file will be named similar to `hellosign-sdk-6.0.0.tgz`
 * Move this file to your project directory
 * Add the following to your project's `package.json` under `dependencies`:
-  * `"@hellosign/openapi-javascript-sdk": "file:hellosign-openapi-javascript-sdk-3.0.0.tgz"`
+  * `"hellosign-sdk": "file:hellosign-sdk-6.0.0.tgz"`
 * Run `npm install`
 
 ## Getting Started
