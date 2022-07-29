@@ -12,8 +12,10 @@
         "sourceMap": true,
         "noLib": false,
         "declaration": true,
+        "emitDeclarationOnly": true,
         "lib": ["dom", "es6", "es5", "dom.iterable", "scripthost"],
         "outDir": "dist",
+        "declarationDir": "./types",
         "typeRoots": [
             "node_modules/@types"
         ],
@@ -23,6 +25,7 @@
         "*.tgz",
         ".openapi-generator-ignore",
         ".openapi-generator",
+        "jest.config.ts",
         "bin",
         "dist",
         "examples",
@@ -31,6 +34,7 @@
         "oas",
         "templates",
         "tests",
-        "test.*"
+        "test.*",
+        "./types/**/*"
     ]
 }

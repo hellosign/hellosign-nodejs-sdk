@@ -4,10 +4,11 @@
     "description": "NodeJS client for hellosign-sdk",
     "repository": "GIT_USER_ID/GIT_REPO_ID",
     "main": "dist/api.js",
-    "types": "dist/api.d.ts",
+    "types": "types/api.d.ts",
     "scripts": {
         "clean": "rm -Rf node_modules/ *.js",
-        "build": "tsc",
+        "build": "esbuild api.ts --bundle --platform=node --outfile=dist/api.js",
+        "build-types": "tsc",
         "test": "jest",
         "prettier": "prettier --write ./api/ ./model/"
     },
@@ -27,6 +28,7 @@
         "@types/jest": "^27.4.0",
         "@types/node": "^17.0.10",
         "axios-mock-adapter": "^1.20.0",
+        "esbuild": "^0.14.51",
         "jest": "^27.4.7",
         "json-diff": "^0.7.1",
         "prettier": "2.5.1",

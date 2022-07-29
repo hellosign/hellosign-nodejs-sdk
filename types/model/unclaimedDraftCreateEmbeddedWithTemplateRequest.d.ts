@@ -1,0 +1,42 @@
+import { RequestFile, AttributeTypeMap } from "./models";
+import { SubCC } from "./subCC";
+import { SubCustomField } from "./subCustomField";
+import { SubEditorOptions } from "./subEditorOptions";
+import { SubFieldOptions } from "./subFieldOptions";
+import { SubSigningOptions } from "./subSigningOptions";
+import { SubUnclaimedDraftTemplateSigner } from "./subUnclaimedDraftTemplateSigner";
+export declare class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
+    "clientId": string;
+    "requesterEmailAddress": string;
+    "templateIds": Array<string>;
+    "allowDecline"?: boolean;
+    "allowReassign"?: boolean;
+    "ccs"?: Array<SubCC>;
+    "customFields"?: Array<SubCustomField>;
+    "editorOptions"?: SubEditorOptions;
+    "fieldOptions"?: SubFieldOptions;
+    "file"?: Array<RequestFile>;
+    "fileUrl"?: Array<string>;
+    "forceSignerRoles"?: boolean;
+    "forceSubjectMessage"?: boolean;
+    "holdRequest"?: boolean;
+    "isForEmbeddedSigning"?: boolean;
+    "message"?: string;
+    "metadata"?: {
+        [key: string]: any;
+    };
+    "previewOnly"?: boolean;
+    "requestingRedirectUrl"?: string;
+    "showPreview"?: boolean;
+    "showProgressStepper"?: boolean;
+    "signers"?: Array<SubUnclaimedDraftTemplateSigner>;
+    "signingOptions"?: SubSigningOptions;
+    "signingRedirectUrl"?: string;
+    "skipMeNow"?: boolean;
+    "subject"?: string;
+    "testMode"?: boolean;
+    "title"?: string;
+    static discriminator: string | undefined;
+    static attributeTypeMap: AttributeTypeMap;
+    static getAttributeTypeMap(): AttributeTypeMap;
+}
