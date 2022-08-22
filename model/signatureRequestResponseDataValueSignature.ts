@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueSignature extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueSignature extends SignatureRequestResponseDataBase {
   /**
    * A signature input field
    */

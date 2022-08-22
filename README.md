@@ -27,7 +27,7 @@ npm install hellosign-sdk@github:HelloFax/hellosign-nodejs-sdk#openapi
 * The generated file will be named similar to `hellosign-sdk-6.0.0.tgz`
 * Move this file to your project directory
 * Add the following to your project's `package.json` under `dependencies`:
-  * `"hellosign-sdk": "file:hellosign-sdk-6.0.0.tgz"`
+* `"hellosign-sdk": "file:hellosign-sdk-6.0.0.tgz"`
 * Run `npm install`
 
 ## Getting Started
@@ -209,7 +209,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SignatureRequestResponseCustomFieldCheckbox](./docs/model/SignatureRequestResponseCustomFieldCheckbox.md)
 - [SignatureRequestResponseCustomFieldText](./docs/model/SignatureRequestResponseCustomFieldText.md)
 - [SignatureRequestResponseCustomFieldTypeEnum](./docs/model/SignatureRequestResponseCustomFieldTypeEnum.md)
-- [SignatureRequestResponseData](./docs/model/SignatureRequestResponseData.md)
+- [SignatureRequestResponseDataBase](./docs/model/SignatureRequestResponseDataBase.md)
 - [SignatureRequestResponseDataTypeEnum](./docs/model/SignatureRequestResponseDataTypeEnum.md)
 - [SignatureRequestResponseDataValueCheckbox](./docs/model/SignatureRequestResponseDataValueCheckbox.md)
 - [SignatureRequestResponseDataValueCheckboxMerge](./docs/model/SignatureRequestResponseDataValueCheckboxMerge.md)

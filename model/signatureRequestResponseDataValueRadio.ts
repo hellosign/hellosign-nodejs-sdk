@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueRadio extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueRadio extends SignatureRequestResponseDataBase {
   /**
    * An input field for radios
    */

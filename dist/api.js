@@ -18306,7 +18306,7 @@ __export(api_exports, {
   SignatureRequestResponseCustomFieldCheckbox: () => SignatureRequestResponseCustomFieldCheckbox,
   SignatureRequestResponseCustomFieldText: () => SignatureRequestResponseCustomFieldText,
   SignatureRequestResponseCustomFieldTypeEnum: () => SignatureRequestResponseCustomFieldTypeEnum,
-  SignatureRequestResponseData: () => SignatureRequestResponseData,
+  SignatureRequestResponseDataBase: () => SignatureRequestResponseDataBase,
   SignatureRequestResponseDataTypeEnum: () => SignatureRequestResponseDataTypeEnum,
   SignatureRequestResponseDataValueCheckbox: () => SignatureRequestResponseDataValueCheckbox,
   SignatureRequestResponseDataValueCheckboxMerge: () => SignatureRequestResponseDataValueCheckboxMerge,
@@ -19154,7 +19154,7 @@ BulkSendJobGetResponseSignatureRequests.attributeTypeMap = [
   {
     name: "responseData",
     baseName: "response_data",
-    type: "Array<SignatureRequestResponseData>"
+    type: "Array<SignatureRequestResponseDataBase>"
   },
   {
     name: "signatures",
@@ -20412,7 +20412,7 @@ SignatureRequestResponse.attributeTypeMap = [
   {
     name: "responseData",
     baseName: "response_data",
-    type: "Array<SignatureRequestResponseData>"
+    type: "Array<SignatureRequestResponseDataBase>"
   },
   {
     name: "signatures",
@@ -20567,10 +20567,10 @@ var SignatureRequestResponseCustomFieldTypeEnum = /* @__PURE__ */ ((SignatureReq
   return SignatureRequestResponseCustomFieldTypeEnum2;
 })(SignatureRequestResponseCustomFieldTypeEnum || {});
 
-// model/signatureRequestResponseData.ts
-var _SignatureRequestResponseData = class {
+// model/signatureRequestResponseDataBase.ts
+var _SignatureRequestResponseDataBase = class {
   static getAttributeTypeMap() {
-    return _SignatureRequestResponseData.attributeTypeMap;
+    return _SignatureRequestResponseDataBase.attributeTypeMap;
   }
   static discriminatorClassName(value) {
     if (value === void 0 || value === null) {
@@ -20606,9 +20606,9 @@ var _SignatureRequestResponseData = class {
     return null;
   }
 };
-var SignatureRequestResponseData = _SignatureRequestResponseData;
-SignatureRequestResponseData.discriminator = "type";
-SignatureRequestResponseData.attributeTypeMap = [
+var SignatureRequestResponseDataBase = _SignatureRequestResponseDataBase;
+SignatureRequestResponseDataBase.discriminator = "type";
+SignatureRequestResponseDataBase.attributeTypeMap = [
   {
     name: "apiId",
     baseName: "api_id",
@@ -20651,7 +20651,7 @@ var SignatureRequestResponseDataTypeEnum = /* @__PURE__ */ ((SignatureRequestRes
 })(SignatureRequestResponseDataTypeEnum || {});
 
 // model/signatureRequestResponseDataValueCheckbox.ts
-var _SignatureRequestResponseDataValueCheckbox = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueCheckbox = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "checkbox";
@@ -20676,7 +20676,7 @@ SignatureRequestResponseDataValueCheckbox.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueCheckboxMerge.ts
-var _SignatureRequestResponseDataValueCheckboxMerge = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueCheckboxMerge = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "checkbox-merge";
@@ -20701,7 +20701,7 @@ SignatureRequestResponseDataValueCheckboxMerge.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueDateSigned.ts
-var _SignatureRequestResponseDataValueDateSigned = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueDateSigned = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "date_signed";
@@ -20726,7 +20726,7 @@ SignatureRequestResponseDataValueDateSigned.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueDropdown.ts
-var _SignatureRequestResponseDataValueDropdown = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueDropdown = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "dropdown";
@@ -20751,7 +20751,7 @@ SignatureRequestResponseDataValueDropdown.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueInitials.ts
-var _SignatureRequestResponseDataValueInitials = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueInitials = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "initials";
@@ -20776,7 +20776,7 @@ SignatureRequestResponseDataValueInitials.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueRadio.ts
-var _SignatureRequestResponseDataValueRadio = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueRadio = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "radio";
@@ -20801,7 +20801,7 @@ SignatureRequestResponseDataValueRadio.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueSignature.ts
-var _SignatureRequestResponseDataValueSignature = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueSignature = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "signature";
@@ -20826,7 +20826,7 @@ SignatureRequestResponseDataValueSignature.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueText.ts
-var _SignatureRequestResponseDataValueText = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueText = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "text";
@@ -20851,7 +20851,7 @@ SignatureRequestResponseDataValueText.attributeTypeMap = [
 ];
 
 // model/signatureRequestResponseDataValueTextMerge.ts
-var _SignatureRequestResponseDataValueTextMerge = class extends SignatureRequestResponseData {
+var _SignatureRequestResponseDataValueTextMerge = class extends SignatureRequestResponseDataBase {
   constructor() {
     super(...arguments);
     this["type"] = "text-merge";
@@ -24527,7 +24527,7 @@ var typeMap = {
   SignatureRequestResponseCustomFieldBase,
   SignatureRequestResponseCustomFieldCheckbox,
   SignatureRequestResponseCustomFieldText,
-  SignatureRequestResponseData,
+  SignatureRequestResponseDataBase,
   SignatureRequestResponseDataValueCheckbox,
   SignatureRequestResponseDataValueCheckboxMerge,
   SignatureRequestResponseDataValueDateSigned,
@@ -31037,6 +31037,10 @@ var generateFormData = (obj, typemap, instantiateFiles, rootFilePath) => {
       data[paramInfo.baseName] = obj[paramInfo.name];
       return;
     }
+    if (paramInfo.type.indexOf("boolean") !== -1) {
+      data[paramInfo.baseName] = JSON.stringify(obj[paramInfo.name]);
+      return;
+    }
     const serialized = ObjectSerializer.serialize(
       obj[paramInfo.name],
       paramInfo.type
@@ -31136,7 +31140,7 @@ var shouldJsonify = (val) => val === Object(val);
   SignatureRequestResponseCustomFieldCheckbox,
   SignatureRequestResponseCustomFieldText,
   SignatureRequestResponseCustomFieldTypeEnum,
-  SignatureRequestResponseData,
+  SignatureRequestResponseDataBase,
   SignatureRequestResponseDataTypeEnum,
   SignatureRequestResponseDataValueCheckbox,
   SignatureRequestResponseDataValueCheckboxMerge,

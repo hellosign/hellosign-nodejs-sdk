@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueDropdown extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueDropdown extends SignatureRequestResponseDataBase {
   /**
    * An input field for dropdowns
    */

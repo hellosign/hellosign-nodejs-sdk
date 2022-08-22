@@ -13,7 +13,7 @@
 import { RequestFile, AttributeTypeMap } from "./models";
 import { SignatureRequestResponseAttachment } from "./signatureRequestResponseAttachment";
 import { SignatureRequestResponseCustomFieldBase } from "./signatureRequestResponseCustomFieldBase";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
 
 /**
@@ -103,7 +103,7 @@ export class SignatureRequestResponse {
   /**
    * An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
    */
-  "responseData"?: Array<SignatureRequestResponseData> | null;
+  "responseData"?: Array<SignatureRequestResponseDataBase> | null;
   /**
    * An array of signature objects, 1 for each signer.
    */
@@ -215,7 +215,7 @@ export class SignatureRequestResponse {
     {
       name: "responseData",
       baseName: "response_data",
-      type: "Array<SignatureRequestResponseData>",
+      type: "Array<SignatureRequestResponseDataBase>",
     },
     {
       name: "signatures",

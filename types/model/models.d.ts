@@ -57,7 +57,7 @@ export * from "./signatureRequestResponseCustomFieldBase";
 export * from "./signatureRequestResponseCustomFieldCheckbox";
 export * from "./signatureRequestResponseCustomFieldText";
 export * from "./signatureRequestResponseCustomFieldTypeEnum";
-export * from "./signatureRequestResponseData";
+export * from "./signatureRequestResponseDataBase";
 export * from "./signatureRequestResponseDataTypeEnum";
 export * from "./signatureRequestResponseDataValueCheckbox";
 export * from "./signatureRequestResponseDataValueCheckboxMerge";

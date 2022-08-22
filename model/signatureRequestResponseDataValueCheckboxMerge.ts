@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueCheckboxMerge extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueCheckboxMerge extends SignatureRequestResponseDataBase {
   /**
    * A checkbox field that has default value set by the api
    */
