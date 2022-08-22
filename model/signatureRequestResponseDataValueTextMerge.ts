@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueTextMerge extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueTextMerge extends SignatureRequestResponseDataBase {
   /**
    * A text field that has default text set by the api
    */

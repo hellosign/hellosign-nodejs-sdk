@@ -11,9 +11,9 @@
  */
 
 import { RequestFile, AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 
-export class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponseData {
+export class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponseDataBase {
   /**
    * A yes/no checkbox
    */

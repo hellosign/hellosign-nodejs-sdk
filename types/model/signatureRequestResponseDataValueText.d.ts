@@ -1,6 +1,6 @@
 import { AttributeTypeMap } from "./models";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
-export declare class SignatureRequestResponseDataValueText extends SignatureRequestResponseData {
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
+export declare class SignatureRequestResponseDataValueText extends SignatureRequestResponseDataBase {
     "type"?: string;
     "value"?: string;
     static discriminator: string | undefined;

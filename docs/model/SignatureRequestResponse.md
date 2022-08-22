@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 | `templateIds` | ```Array<string>``` |  Templates IDs used in this SignatureRequest (if any).  |  |
 | `customFields` | [```Array<SignatureRequestResponseCustomFieldBase>```](SignatureRequestResponseCustomFieldBase.md) |  An array of Custom Field objects containing the name and type of each custom field.<br><br>* Text Field uses `SignatureRequestResponseCustomFieldText`<br>* Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`  |  |
 | `attachments` | [```Array<SignatureRequestResponseAttachment>```](SignatureRequestResponseAttachment.md) |  Signer attachments.  |  |
-| `responseData` | [```Array<SignatureRequestResponseData>```](SignatureRequestResponseData.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  |  |
+| `responseData` | [```Array<SignatureRequestResponseDataBase>```](SignatureRequestResponseDataBase.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  |  |
 | `signatures` | [```Array<SignatureRequestResponseSignatures>```](SignatureRequestResponseSignatures.md) |  An array of signature objects, 1 for each signer.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,7 +1,7 @@
 import { AttributeTypeMap } from "./models";
 import { SignatureRequestResponseAttachment } from "./signatureRequestResponseAttachment";
 import { SignatureRequestResponseCustomFieldBase } from "./signatureRequestResponseCustomFieldBase";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 import { SignatureRequestResponseSignatures } from "./signatureRequestResponseSignatures";
 export declare class BulkSendJobGetResponseSignatureRequests {
     "testMode"?: boolean | null;
@@ -24,7 +24,7 @@ export declare class BulkSendJobGetResponseSignatureRequests {
     "templateIds"?: Array<string> | null;
     "customFields"?: Array<SignatureRequestResponseCustomFieldBase> | null;
     "attachments"?: Array<SignatureRequestResponseAttachment> | null;
-    "responseData"?: Array<SignatureRequestResponseData> | null;
+    "responseData"?: Array<SignatureRequestResponseDataBase> | null;
     "signatures"?: Array<SignatureRequestResponseSignatures>;
     "bulkSendJobId"?: string;
     static discriminator: string | undefined;

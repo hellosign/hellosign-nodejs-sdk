@@ -137,6 +137,12 @@ export const generateFormData = (
       return;
     }
 
+    // Convert boolean value into string when using FormData, to prevent "data should be a string, Buffer or Uint8Array" error
+    if (paramInfo.type.indexOf("boolean") !== -1) {
+        data[paramInfo.baseName] = JSON.stringify(obj[paramInfo.name]);
+        return;
+    }
+
     /**
      * Everything else that is not binary data (file uploads) can be
      * serialized to JSON and sent over. This helps reduce complexity

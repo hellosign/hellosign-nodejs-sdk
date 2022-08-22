@@ -57,7 +57,7 @@ export * from "./signatureRequestResponseCustomFieldBase";
 export * from "./signatureRequestResponseCustomFieldCheckbox";
 export * from "./signatureRequestResponseCustomFieldText";
 export * from "./signatureRequestResponseCustomFieldTypeEnum";
-export * from "./signatureRequestResponseData";
+export * from "./signatureRequestResponseDataBase";
 export * from "./signatureRequestResponseDataTypeEnum";
 export * from "./signatureRequestResponseDataValueCheckbox";
 export * from "./signatureRequestResponseDataValueCheckboxMerge";
@@ -228,7 +228,7 @@ import { SignatureRequestResponseCustomFieldBase } from "./signatureRequestRespo
 import { SignatureRequestResponseCustomFieldCheckbox } from "./signatureRequestResponseCustomFieldCheckbox";
 import { SignatureRequestResponseCustomFieldText } from "./signatureRequestResponseCustomFieldText";
 import { SignatureRequestResponseCustomFieldTypeEnum } from "./signatureRequestResponseCustomFieldTypeEnum";
-import { SignatureRequestResponseData } from "./signatureRequestResponseData";
+import { SignatureRequestResponseDataBase } from "./signatureRequestResponseDataBase";
 import { SignatureRequestResponseDataTypeEnum } from "./signatureRequestResponseDataTypeEnum";
 import { SignatureRequestResponseDataValueCheckbox } from "./signatureRequestResponseDataValueCheckbox";
 import { SignatureRequestResponseDataValueCheckboxMerge } from "./signatureRequestResponseDataValueCheckboxMerge";
@@ -431,7 +431,7 @@ let typeMap: { [index: string]: any } = {
     SignatureRequestResponseCustomFieldCheckbox,
   SignatureRequestResponseCustomFieldText:
     SignatureRequestResponseCustomFieldText,
-  SignatureRequestResponseData: SignatureRequestResponseData,
+  SignatureRequestResponseDataBase: SignatureRequestResponseDataBase,
   SignatureRequestResponseDataValueCheckbox:
     SignatureRequestResponseDataValueCheckbox,
   SignatureRequestResponseDataValueCheckboxMerge:
