@@ -31030,7 +31030,7 @@ var generateFormData = (obj, typemap, instantiateFiles, rootFilePath) => {
             data[key] = import_fs.default.createReadStream(filepath);
             return;
           }
-          data[paramInfo.baseName] = childObject;
+          data[key] = childObject;
         });
         return;
       }
