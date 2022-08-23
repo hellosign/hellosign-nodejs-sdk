@@ -147,7 +147,7 @@ export const generateFormData = (
             return;
           }
 
-          data[paramInfo.baseName] = childObject;
+          data[key] = childObject;
         });
 
         return;
