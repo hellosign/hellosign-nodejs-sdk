@@ -1,8 +1,12 @@
 {
     "name": "hellosign-sdk",
-    "version": "6.0.0",
+    "version": "6.0.0-beta",
     "description": "NodeJS client for hellosign-sdk",
-    "repository": "GIT_USER_ID/GIT_REPO_ID",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloFax/hellosign-nodejs-sdk"
+    },
+    "bugs:": "apisupport@hellosign.com",
     "main": "dist/api.js",
     "types": "types/api.d.ts",
     "scripts": {
@@ -12,8 +16,7 @@
         "test": "jest",
         "prettier": "prettier --write ./api/ ./model/"
     },
-    "author": "OpenAPI-Generator Contributors",
-    "license": "Unlicense",
+    "author": "HelloSign",
     "dependencies": {
         "axios": "^0.24.0",
         "bluebird": "^3.5.0",

@@ -36,6 +36,7 @@ export declare class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
     "subject"?: string;
     "testMode"?: boolean;
     "title"?: string;
+    "populateAutoFillFields"?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;
     static getAttributeTypeMap(): AttributeTypeMap;

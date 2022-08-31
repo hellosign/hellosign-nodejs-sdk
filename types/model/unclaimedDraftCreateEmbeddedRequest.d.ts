@@ -45,6 +45,7 @@ export declare class UnclaimedDraftCreateEmbeddedRequest {
     "type"?: UnclaimedDraftCreateEmbeddedRequest.TypeEnum;
     "usePreexistingFields"?: boolean;
     "useTextTags"?: boolean;
+    "populateAutoFillFields"?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;
     static getAttributeTypeMap(): AttributeTypeMap;

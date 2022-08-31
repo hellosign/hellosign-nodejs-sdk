@@ -21,6 +21,10 @@ export class TeamAddMemberRequest {
    * `account_id` or `email_address` is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team.
    */
   "emailAddress"?: string;
+  /**
+   * A role member will take in a new Team.  **Note**: This parameter is used only if `team_id` is provided.
+   */
+  "role"?: TeamAddMemberRequest.RoleEnum;
 
   static discriminator: string | undefined = undefined;
 
@@ -35,9 +39,23 @@ export class TeamAddMemberRequest {
       baseName: "email_address",
       type: "string",
     },
+    {
+      name: "role",
+      baseName: "role",
+      type: "TeamAddMemberRequest.RoleEnum",
+    },
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
     return TeamAddMemberRequest.attributeTypeMap;
+  }
+}
+
+export namespace TeamAddMemberRequest {
+  export enum RoleEnum {
+    Member = "Member",
+    Developer = "Developer",
+    TeamManager = "Team Manager",
+    Admin = "Admin",
   }
 }

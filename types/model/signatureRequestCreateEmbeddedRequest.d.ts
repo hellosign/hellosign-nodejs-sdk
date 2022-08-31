@@ -31,6 +31,7 @@ export declare class SignatureRequestCreateEmbeddedRequest {
     "testMode"?: boolean;
     "title"?: string;
     "useTextTags"?: boolean;
+    "populateAutoFillFields"?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;
     static getAttributeTypeMap(): AttributeTypeMap;
