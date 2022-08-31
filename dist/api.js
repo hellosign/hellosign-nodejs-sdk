@@ -20029,6 +20029,7 @@ var _SignatureRequestCreateEmbeddedRequest = class {
     this["hideTextTags"] = false;
     this["testMode"] = false;
     this["useTextTags"] = false;
+    this["populateAutoFillFields"] = false;
   }
   static getAttributeTypeMap() {
     return _SignatureRequestCreateEmbeddedRequest.attributeTypeMap;
@@ -20141,6 +20142,11 @@ SignatureRequestCreateEmbeddedRequest.attributeTypeMap = [
     name: "useTextTags",
     baseName: "use_text_tags",
     type: "boolean"
+  },
+  {
+    name: "populateAutoFillFields",
+    baseName: "populate_auto_fill_fields",
+    type: "boolean"
   }
 ];
 
@@ -20149,6 +20155,7 @@ var _SignatureRequestCreateEmbeddedWithTemplateRequest = class {
   constructor() {
     this["allowDecline"] = false;
     this["testMode"] = false;
+    this["populateAutoFillFields"] = false;
   }
   static getAttributeTypeMap() {
     return _SignatureRequestCreateEmbeddedWithTemplateRequest.attributeTypeMap;
@@ -20226,6 +20233,11 @@ SignatureRequestCreateEmbeddedWithTemplateRequest.attributeTypeMap = [
     name: "title",
     baseName: "title",
     type: "string"
+  },
+  {
+    name: "populateAutoFillFields",
+    baseName: "populate_auto_fill_fields",
+    type: "boolean"
   }
 ];
 
@@ -22405,8 +22417,22 @@ TeamAddMemberRequest.attributeTypeMap = [
     name: "emailAddress",
     baseName: "email_address",
     type: "string"
+  },
+  {
+    name: "role",
+    baseName: "role",
+    type: "TeamAddMemberRequest.RoleEnum"
   }
 ];
+((TeamAddMemberRequest2) => {
+  let RoleEnum;
+  ((RoleEnum2) => {
+    RoleEnum2["Member"] = "Member";
+    RoleEnum2["Developer"] = "Developer";
+    RoleEnum2["TeamManager"] = "Team Manager";
+    RoleEnum2["Admin"] = "Admin";
+  })(RoleEnum = TeamAddMemberRequest2.RoleEnum || (TeamAddMemberRequest2.RoleEnum = {}));
+})(TeamAddMemberRequest || (TeamAddMemberRequest = {}));
 
 // model/teamCreateRequest.ts
 var _TeamCreateRequest = class {
@@ -23798,6 +23824,7 @@ var _UnclaimedDraftCreateEmbeddedRequest = class {
     this["type"] = _UnclaimedDraftCreateEmbeddedRequest.TypeEnum.RequestSignature;
     this["usePreexistingFields"] = false;
     this["useTextTags"] = false;
+    this["populateAutoFillFields"] = false;
   }
   static getAttributeTypeMap() {
     return _UnclaimedDraftCreateEmbeddedRequest.attributeTypeMap;
@@ -23975,6 +24002,11 @@ UnclaimedDraftCreateEmbeddedRequest.attributeTypeMap = [
     name: "useTextTags",
     baseName: "use_text_tags",
     type: "boolean"
+  },
+  {
+    name: "populateAutoFillFields",
+    baseName: "populate_auto_fill_fields",
+    type: "boolean"
   }
 ];
 ((UnclaimedDraftCreateEmbeddedRequest2) => {
@@ -23999,6 +24031,7 @@ var _UnclaimedDraftCreateEmbeddedWithTemplateRequest = class {
     this["showProgressStepper"] = true;
     this["skipMeNow"] = false;
     this["testMode"] = false;
+    this["populateAutoFillFields"] = false;
   }
   static getAttributeTypeMap() {
     return _UnclaimedDraftCreateEmbeddedWithTemplateRequest.attributeTypeMap;
@@ -24146,6 +24179,11 @@ UnclaimedDraftCreateEmbeddedWithTemplateRequest.attributeTypeMap = [
     name: "title",
     baseName: "title",
     type: "string"
+  },
+  {
+    name: "populateAutoFillFields",
+    baseName: "populate_auto_fill_fields",
+    type: "boolean"
   }
 ];
 
@@ -24463,6 +24501,7 @@ var enumsMap = {
   "SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum": SubSignatureRequestTemplateSigner.SmsPhoneNumberTypeEnum,
   "SubSigningOptions.DefaultTypeEnum": SubSigningOptions.DefaultTypeEnum,
   "SubWhiteLabelingOptions.LegalVersionEnum": SubWhiteLabelingOptions.LegalVersionEnum,
+  "TeamAddMemberRequest.RoleEnum": TeamAddMemberRequest.RoleEnum,
   "TeamRemoveMemberRequest.NewRoleEnum": TeamRemoveMemberRequest.NewRoleEnum,
   "TemplateResponseCustomField.TypeEnum": TemplateResponseCustomField.TypeEnum,
   "TemplateResponseDocumentCustomField.TypeEnum": TemplateResponseDocumentCustomField.TypeEnum,

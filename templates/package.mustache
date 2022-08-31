@@ -2,7 +2,11 @@
     "name": "{{npmName}}",
     "version": "{{npmVersion}}",
     "description": "NodeJS client for {{npmName}}",
-    "repository": "{{gitUserId}}/{{gitRepoId}}",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloFax/hellosign-nodejs-sdk"
+    },
+    "bugs:": "apisupport@hellosign.com",
     "main": "dist/api.js",
     "types": "types/api.d.ts",
     "scripts": {
@@ -12,8 +16,7 @@
         "test": "jest",
         "prettier": "prettier --write ./api/ ./model/"
     },
-    "author": "OpenAPI-Generator Contributors",
-    "license": "Unlicense",
+    "author": "HelloSign",
     "dependencies": {
         "axios": "^0.24.0",
         "bluebird": "^3.5.0",

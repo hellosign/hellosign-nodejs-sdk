@@ -2,7 +2,9 @@ generatorName: typescript-node
 typeMappings: {}
 additionalProperties:
   npmName: "hellosign-sdk"
-  npmVersion: "6.0.0"
+  npmVersion: "6.0.0-beta"
+  gitUserId: HelloFax
+  gitRepoId: hellosign-nodejs-sdk
   supportsES6: true
   apiDocPath: ./docs/api
   modelDocPath: ./docs/model

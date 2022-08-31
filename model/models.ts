@@ -356,6 +356,7 @@ let enumsMap: { [index: string]: any } = {
   "SubSigningOptions.DefaultTypeEnum": SubSigningOptions.DefaultTypeEnum,
   "SubWhiteLabelingOptions.LegalVersionEnum":
     SubWhiteLabelingOptions.LegalVersionEnum,
+  "TeamAddMemberRequest.RoleEnum": TeamAddMemberRequest.RoleEnum,
   "TeamRemoveMemberRequest.NewRoleEnum": TeamRemoveMemberRequest.NewRoleEnum,
   "TemplateResponseCustomField.TypeEnum": TemplateResponseCustomField.TypeEnum,
   "TemplateResponseDocumentCustomField.TypeEnum":
