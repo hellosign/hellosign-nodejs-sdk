@@ -5,11 +5,12 @@ typings
 .openapi-generator-ignore
 .openapi-generator
 bin
-dist
 examples
 node_modules
 nonversioned
 oas
+run-build
 templates
 tests
 test.*
+types
