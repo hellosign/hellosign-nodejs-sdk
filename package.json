@@ -22,8 +22,7 @@
         "bluebird": "^3.5.0",
         "crypto-js": "^4.1.1",
         "form-data": "^4.0.0",
-        "qs": "^6.10.3",
-        "rewire": "^3.0.2"
+        "qs": "^6.10.3"
     },
     "devDependencies": {
         "@types/bluebird": "3.5.33",
