@@ -5,7 +5,10 @@ typings
 .openapi-generator-ignore
 .openapi-generator
 bin
+docs
+.editorconfig
 examples
+.gitattributes
 node_modules
 nonversioned
 oas
@@ -13,4 +16,5 @@ run-build
 templates
 tests
 test.*
+tsconfig.json
 types
