@@ -17,7 +17,7 @@ guaranteed nor implied!
 ### From NPM Package
 
 ```
-npm install hellosign-sdk@github:HelloFax/hellosign-nodejs-sdk#openapi
+npm install hellosign-sdk@6.0.0-beta
 ```
 
 ### From Repo
