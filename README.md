@@ -24,10 +24,10 @@ npm install hellosign-sdk@6.0.0-beta
 
 * Clone this repo locally
 * Run `npm pack`
-* The generated file will be named similar to `hellosign-sdk-6.0.0.tgz`
+* The generated file will be named similar to `hellosign-sdk-6.0.0-beta.tgz`
 * Move this file to your project directory
 * Add the following to your project's `package.json` under `dependencies`:
-* `"hellosign-sdk": "file:hellosign-sdk-6.0.0.tgz"`
+* `"hellosign-sdk": "hellosign-sdk-6.0.0-beta.tgz"`
 * Run `npm install`
 
 ## Getting Started
