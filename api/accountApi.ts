@@ -305,11 +305,13 @@ export class AccountApi {
   /**
    * Returns the properties and settings of your Account.
    * @summary Get Account
-   * @param accountId The ID of the Account
+   * @param accountId &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account.
+   * @param emailAddress &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account.
    * @param options
    */
   public async accountGet(
     accountId?: string,
+    emailAddress?: string,
     options: optionsI = { headers: {} }
   ): Promise<returnTypeT<AccountGetResponse>> {
     const localVarPath = this.basePath + "/account";
@@ -331,6 +333,13 @@ export class AccountApi {
     if (accountId !== undefined) {
       localVarQueryParameters["account_id"] = ObjectSerializer.serialize(
         accountId,
+        "string"
+      );
+    }
+
+    if (emailAddress !== undefined) {
+      localVarQueryParameters["email_address"] = ObjectSerializer.serialize(
+        emailAddress,
         "string"
       );
     }

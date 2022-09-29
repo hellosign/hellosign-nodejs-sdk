@@ -18275,6 +18275,7 @@ __export(api_exports, {
   EventCallbackRequestEvent: () => EventCallbackRequestEvent,
   EventCallbackRequestEventMetadata: () => EventCallbackRequestEventMetadata,
   FileResponse: () => FileResponse,
+  FileResponseDataUri: () => FileResponseDataUri,
   HttpBasicAuth: () => HttpBasicAuth,
   HttpBearerAuth: () => HttpBearerAuth,
   HttpError: () => HttpError,
@@ -18582,6 +18583,11 @@ AccountResponse.attributeTypeMap = [
   {
     name: "roleCode",
     baseName: "role_code",
+    type: "string"
+  },
+  {
+    name: "teamId",
+    baseName: "team_id",
     type: "string"
   },
   {
@@ -19636,6 +19642,22 @@ FileResponse.attributeTypeMap = [
     name: "expiresAt",
     baseName: "expires_at",
     type: "number"
+  }
+];
+
+// model/fileResponseDataUri.ts
+var _FileResponseDataUri = class {
+  static getAttributeTypeMap() {
+    return _FileResponseDataUri.attributeTypeMap;
+  }
+};
+var FileResponseDataUri = _FileResponseDataUri;
+FileResponseDataUri.discriminator = void 0;
+FileResponseDataUri.attributeTypeMap = [
+  {
+    name: "dataUri",
+    baseName: "data_uri",
+    type: "string"
   }
 ];
 
@@ -24547,6 +24569,7 @@ var typeMap = {
   EventCallbackRequestEvent,
   EventCallbackRequestEventMetadata,
   FileResponse,
+  FileResponseDataUri,
   ListInfoResponse,
   OAuthTokenGenerateRequest,
   OAuthTokenRefreshRequest,
@@ -25011,8 +25034,8 @@ var AccountApi = class {
       });
     });
   }
-  accountGet(_0) {
-    return __async(this, arguments, function* (accountId, options = { headers: {} }) {
+  accountGet(_0, _1) {
+    return __async(this, arguments, function* (accountId, emailAddress, options = { headers: {} }) {
       const localVarPath = this.basePath + "/account";
       let localVarQueryParameters = {};
       let localVarHeaderParams = Object.assign(
@@ -25030,6 +25053,12 @@ var AccountApi = class {
       if (accountId !== void 0) {
         localVarQueryParameters["account_id"] = ObjectSerializer.serialize(
           accountId,
+          "string"
+        );
+      }
+      if (emailAddress !== void 0) {
+        localVarQueryParameters["email_address"] = ObjectSerializer.serialize(
+          emailAddress,
           "string"
         );
       }
@@ -27499,8 +27528,8 @@ var SignatureRequestApi = class {
       });
     });
   }
-  signatureRequestFiles(_0, _1, _2, _3) {
-    return __async(this, arguments, function* (signatureRequestId, fileType, getUrl, getDataUri, options = { headers: {} }) {
+  signatureRequestFiles(_0, _1) {
+    return __async(this, arguments, function* (signatureRequestId, fileType, options = { headers: {} }) {
       const localVarPath = this.basePath + "/signature_request/files/{signature_request_id}".replace(
         "{signature_request_id}",
         encodeURIComponent(String(signatureRequestId))
@@ -27510,7 +27539,7 @@ var SignatureRequestApi = class {
         {},
         this._defaultHeaders
       );
-      const produces = ["application/json"];
+      const produces = ["application/pdf", "application/zip", "application/json"];
       if (produces.indexOf("application/json") >= 0) {
         localVarHeaderParams["content-type"] = "application/json";
       } else {
@@ -27529,16 +27558,200 @@ var SignatureRequestApi = class {
           "'pdf' | 'zip'"
         );
       }
-      if (getUrl !== void 0) {
-        localVarQueryParameters["get_url"] = ObjectSerializer.serialize(
-          getUrl,
-          "boolean"
+      Object.assign(localVarHeaderParams, options.headers);
+      let localVarUseFormData = false;
+      let localVarRequestOptions = {
+        method: "GET",
+        params: localVarQueryParameters,
+        headers: localVarHeaderParams,
+        url: localVarPath,
+        paramsSerializer: this._useQuerystring ? queryParamsSerializer : void 0,
+        responseType: "arraybuffer"
+      };
+      let authenticationPromise = Promise.resolve();
+      if (this.authentications.api_key.username) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.api_key.applyToRequest(localVarRequestOptions)
         );
       }
-      if (getDataUri !== void 0) {
-        localVarQueryParameters["get_data_uri"] = ObjectSerializer.serialize(
-          getDataUri,
-          "boolean"
+      if (this.authentications.oauth2.accessToken) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+        );
+      }
+      authenticationPromise = authenticationPromise.then(
+        () => this.authentications.default.applyToRequest(localVarRequestOptions)
+      );
+      let interceptorPromise = authenticationPromise;
+      for (const interceptor of this.interceptors) {
+        interceptorPromise = interceptorPromise.then(
+          () => interceptor(localVarRequestOptions)
+        );
+      }
+      return interceptorPromise.then(() => {
+        return new Promise((resolve, reject) => {
+          import_axios7.default.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+              if (response.status && response.status >= 200 && response.status <= 299) {
+                body = ObjectSerializer.deserialize(body, "Buffer");
+                resolve({ response, body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+              const response = error.response;
+              let body;
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(response.data, "RequestFile");
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        });
+      });
+    });
+  }
+  signatureRequestFilesAsEncodedString(_0) {
+    return __async(this, arguments, function* (signatureRequestId, options = { headers: {} }) {
+      const localVarPath = this.basePath + "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf".replace(
+        "{signature_request_id}",
+        encodeURIComponent(String(signatureRequestId))
+      );
+      let localVarQueryParameters = {};
+      let localVarHeaderParams = Object.assign(
+        {},
+        this._defaultHeaders
+      );
+      const produces = ["application/json"];
+      if (produces.indexOf("application/json") >= 0) {
+        localVarHeaderParams["content-type"] = "application/json";
+      } else {
+        localVarHeaderParams["content-type"] = produces.join(",");
+      }
+      let localVarFormParams = {};
+      let localVarBodyParams = void 0;
+      if (signatureRequestId === null || signatureRequestId === void 0) {
+        throw new Error(
+          "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsEncodedString."
+        );
+      }
+      Object.assign(localVarHeaderParams, options.headers);
+      let localVarUseFormData = false;
+      let localVarRequestOptions = {
+        method: "GET",
+        params: localVarQueryParameters,
+        headers: localVarHeaderParams,
+        url: localVarPath,
+        paramsSerializer: this._useQuerystring ? queryParamsSerializer : void 0,
+        responseType: "json"
+      };
+      let authenticationPromise = Promise.resolve();
+      if (this.authentications.api_key.username) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.api_key.applyToRequest(localVarRequestOptions)
+        );
+      }
+      if (this.authentications.oauth2.accessToken) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+        );
+      }
+      authenticationPromise = authenticationPromise.then(
+        () => this.authentications.default.applyToRequest(localVarRequestOptions)
+      );
+      let interceptorPromise = authenticationPromise;
+      for (const interceptor of this.interceptors) {
+        interceptorPromise = interceptorPromise.then(
+          () => interceptor(localVarRequestOptions)
+        );
+      }
+      return interceptorPromise.then(() => {
+        return new Promise(
+          (resolve, reject) => {
+            import_axios7.default.request(localVarRequestOptions).then(
+              (response) => {
+                let body = response.data;
+                if (response.status && response.status >= 200 && response.status <= 299) {
+                  body = ObjectSerializer.deserialize(
+                    body,
+                    "FileResponseDataUri"
+                  );
+                  resolve({ response, body });
+                } else {
+                  reject(new HttpError(response, body, response.status));
+                }
+              },
+              (error) => {
+                if (error.response == null) {
+                  reject(error);
+                  return;
+                }
+                const response = error.response;
+                let body;
+                if (response.status === 200) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "FileResponseDataUri"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+                let rangeCodeLeft = Number("4XX"[0] + "00");
+                let rangeCodeRight = Number("4XX"[0] + "99");
+                if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "ErrorResponse"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+              }
+            );
+          }
+        );
+      });
+    });
+  }
+  signatureRequestFilesAsFileUrl(_0) {
+    return __async(this, arguments, function* (signatureRequestId, options = { headers: {} }) {
+      const localVarPath = this.basePath + "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf".replace(
+        "{signature_request_id}",
+        encodeURIComponent(String(signatureRequestId))
+      );
+      let localVarQueryParameters = {};
+      let localVarHeaderParams = Object.assign(
+        {},
+        this._defaultHeaders
+      );
+      const produces = ["application/json"];
+      if (produces.indexOf("application/json") >= 0) {
+        localVarHeaderParams["content-type"] = "application/json";
+      } else {
+        localVarHeaderParams["content-type"] = produces.join(",");
+      }
+      let localVarFormParams = {};
+      let localVarBodyParams = void 0;
+      if (signatureRequestId === null || signatureRequestId === void 0) {
+        throw new Error(
+          "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsFileUrl."
         );
       }
       Object.assign(localVarHeaderParams, options.headers);
@@ -29882,8 +30095,8 @@ var TemplateApi = class {
       });
     });
   }
-  templateFiles(_0, _1, _2, _3) {
-    return __async(this, arguments, function* (templateId, fileType, getUrl, getDataUri, options = { headers: {} }) {
+  templateFiles(_0, _1) {
+    return __async(this, arguments, function* (templateId, fileType, options = { headers: {} }) {
       const localVarPath = this.basePath + "/template/files/{template_id}".replace(
         "{template_id}",
         encodeURIComponent(String(templateId))
@@ -29893,7 +30106,7 @@ var TemplateApi = class {
         {},
         this._defaultHeaders
       );
-      const produces = ["application/json"];
+      const produces = ["application/pdf", "application/zip", "application/json"];
       if (produces.indexOf("application/json") >= 0) {
         localVarHeaderParams["content-type"] = "application/json";
       } else {
@@ -29912,16 +30125,200 @@ var TemplateApi = class {
           "'pdf' | 'zip'"
         );
       }
-      if (getUrl !== void 0) {
-        localVarQueryParameters["get_url"] = ObjectSerializer.serialize(
-          getUrl,
-          "boolean"
+      Object.assign(localVarHeaderParams, options.headers);
+      let localVarUseFormData = false;
+      let localVarRequestOptions = {
+        method: "GET",
+        params: localVarQueryParameters,
+        headers: localVarHeaderParams,
+        url: localVarPath,
+        paramsSerializer: this._useQuerystring ? queryParamsSerializer : void 0,
+        responseType: "arraybuffer"
+      };
+      let authenticationPromise = Promise.resolve();
+      if (this.authentications.api_key.username) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.api_key.applyToRequest(localVarRequestOptions)
         );
       }
-      if (getDataUri !== void 0) {
-        localVarQueryParameters["get_data_uri"] = ObjectSerializer.serialize(
-          getDataUri,
-          "boolean"
+      if (this.authentications.oauth2.accessToken) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+        );
+      }
+      authenticationPromise = authenticationPromise.then(
+        () => this.authentications.default.applyToRequest(localVarRequestOptions)
+      );
+      let interceptorPromise = authenticationPromise;
+      for (const interceptor of this.interceptors) {
+        interceptorPromise = interceptorPromise.then(
+          () => interceptor(localVarRequestOptions)
+        );
+      }
+      return interceptorPromise.then(() => {
+        return new Promise((resolve, reject) => {
+          import_axios9.default.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+              if (response.status && response.status >= 200 && response.status <= 299) {
+                body = ObjectSerializer.deserialize(body, "Buffer");
+                resolve({ response, body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+              const response = error.response;
+              let body;
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(response.data, "RequestFile");
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        });
+      });
+    });
+  }
+  templateFilesAsEncodedString(_0) {
+    return __async(this, arguments, function* (templateId, options = { headers: {} }) {
+      const localVarPath = this.basePath + "/template/files/{template_id}?get_data_uri=1&file_type=pdf".replace(
+        "{template_id}",
+        encodeURIComponent(String(templateId))
+      );
+      let localVarQueryParameters = {};
+      let localVarHeaderParams = Object.assign(
+        {},
+        this._defaultHeaders
+      );
+      const produces = ["application/json"];
+      if (produces.indexOf("application/json") >= 0) {
+        localVarHeaderParams["content-type"] = "application/json";
+      } else {
+        localVarHeaderParams["content-type"] = produces.join(",");
+      }
+      let localVarFormParams = {};
+      let localVarBodyParams = void 0;
+      if (templateId === null || templateId === void 0) {
+        throw new Error(
+          "Required parameter templateId was null or undefined when calling templateFilesAsEncodedString."
+        );
+      }
+      Object.assign(localVarHeaderParams, options.headers);
+      let localVarUseFormData = false;
+      let localVarRequestOptions = {
+        method: "GET",
+        params: localVarQueryParameters,
+        headers: localVarHeaderParams,
+        url: localVarPath,
+        paramsSerializer: this._useQuerystring ? queryParamsSerializer : void 0,
+        responseType: "json"
+      };
+      let authenticationPromise = Promise.resolve();
+      if (this.authentications.api_key.username) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.api_key.applyToRequest(localVarRequestOptions)
+        );
+      }
+      if (this.authentications.oauth2.accessToken) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+        );
+      }
+      authenticationPromise = authenticationPromise.then(
+        () => this.authentications.default.applyToRequest(localVarRequestOptions)
+      );
+      let interceptorPromise = authenticationPromise;
+      for (const interceptor of this.interceptors) {
+        interceptorPromise = interceptorPromise.then(
+          () => interceptor(localVarRequestOptions)
+        );
+      }
+      return interceptorPromise.then(() => {
+        return new Promise(
+          (resolve, reject) => {
+            import_axios9.default.request(localVarRequestOptions).then(
+              (response) => {
+                let body = response.data;
+                if (response.status && response.status >= 200 && response.status <= 299) {
+                  body = ObjectSerializer.deserialize(
+                    body,
+                    "FileResponseDataUri"
+                  );
+                  resolve({ response, body });
+                } else {
+                  reject(new HttpError(response, body, response.status));
+                }
+              },
+              (error) => {
+                if (error.response == null) {
+                  reject(error);
+                  return;
+                }
+                const response = error.response;
+                let body;
+                if (response.status === 200) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "FileResponseDataUri"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+                let rangeCodeLeft = Number("4XX"[0] + "00");
+                let rangeCodeRight = Number("4XX"[0] + "99");
+                if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "ErrorResponse"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+              }
+            );
+          }
+        );
+      });
+    });
+  }
+  templateFilesAsFileUrl(_0) {
+    return __async(this, arguments, function* (templateId, options = { headers: {} }) {
+      const localVarPath = this.basePath + "/template/files/{template_id}?get_url=1&file_type=pdf".replace(
+        "{template_id}",
+        encodeURIComponent(String(templateId))
+      );
+      let localVarQueryParameters = {};
+      let localVarHeaderParams = Object.assign(
+        {},
+        this._defaultHeaders
+      );
+      const produces = ["application/json"];
+      if (produces.indexOf("application/json") >= 0) {
+        localVarHeaderParams["content-type"] = "application/json";
+      } else {
+        localVarHeaderParams["content-type"] = produces.join(",");
+      }
+      let localVarFormParams = {};
+      let localVarBodyParams = void 0;
+      if (templateId === null || templateId === void 0) {
+        throw new Error(
+          "Required parameter templateId was null or undefined when calling templateFilesAsFileUrl."
         );
       }
       Object.assign(localVarHeaderParams, options.headers);
@@ -31148,6 +31545,7 @@ var shouldJsonify = (val) => val === Object(val);
   EventCallbackRequestEvent,
   EventCallbackRequestEventMetadata,
   FileResponse,
+  FileResponseDataUri,
   HttpBasicAuth,
   HttpBearerAuth,
   HttpError,

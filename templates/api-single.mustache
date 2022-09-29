@@ -240,7 +240,7 @@ export class {{classname}} {
             responseType: "json",
 {{/isResponseFile}}
 {{#isResponseFile}}
-            responseEncoding: "binary",
+            responseType: "arraybuffer",
 {{/isResponseFile}}
 {{#bodyParam}}
             data,

@@ -85,7 +85,7 @@ describe('TemplateApiTest', () => {
 
     setExpectedResponse(mock, responseData, 200);
 
-    api.templateFiles(templateId, fileType, getUrl, getDataUri).then(response => {
+    api.templateFilesAsFileUrl(templateId).then(response => {
       const diff = diffJson(
         response.body,
         toObj<typeof response.body>(responseData, responseClass),

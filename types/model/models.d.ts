@@ -37,6 +37,7 @@ export * from "./eventCallbackApiAppRequestPayload";
 export * from "./eventCallbackRequestEvent";
 export * from "./eventCallbackRequestEventMetadata";
 export * from "./fileResponse";
+export * from "./fileResponseDataUri";
 export * from "./listInfoResponse";
 export * from "./oAuthTokenGenerateRequest";
 export * from "./oAuthTokenRefreshRequest";

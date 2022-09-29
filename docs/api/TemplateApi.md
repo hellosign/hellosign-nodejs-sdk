@@ -7,7 +7,9 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**templateAddUser()**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | [**templateCreateEmbeddedDraft()**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | [**templateDelete()**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template |
-| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files |
+| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File |
+| [**templateFilesAsEncodedString()**](TemplateApi.md#templateFilesAsEncodedString) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String |
+| [**templateFilesAsFileUrl()**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url |
 | [**templateGet()**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template |
 | [**templateList()**](TemplateApi.md#templateList) | **GET** /template/list | List Templates |
 | [**templateRemoveUser()**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -357,12 +359,12 @@ void (empty response body)
 ## `templateFiles()`
 
 ```typescript
-templateFiles(templateId: string, fileType: 'pdf' | 'zip', getUrl: boolean, getDataUri: boolean): FileResponse
+templateFiles(templateId: string, fileType: 'pdf' | 'zip'): Buffer
 ```
 
-Get Template Files
+Get Template File
 
-Obtain a copy of the current documents specified by the `template_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### TypeScript Example
 
@@ -420,8 +422,172 @@ result.then(response => {
 | ------------- | ------------- | ------------- | ------------- |
 | **templateId** | **string**| The id of the template files to retrieve. | |
 | **fileType** | **'pdf' | 'zip'**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] |
-| **getUrl** | **boolean**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
-| **getDataUri** | **boolean**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
+
+### Return type
+
+**Buffer**
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/pdf`, `application/zip`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `templateFilesAsEncodedString()`
+
+```typescript
+templateFilesAsEncodedString(templateId: string): FileResponseDataUri
+```
+
+Get Template File as Encoded String
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TemplateApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+const result = api.templateFilesAsEncodedString(templateId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TemplateApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+const result = api.templateFilesAsEncodedString(templateId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **templateId** | **string**| The id of the template files to retrieve. | |
+
+### Return type
+
+[**FileResponseDataUri**](../model/FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `templateFilesAsFileUrl()`
+
+```typescript
+templateFilesAsFileUrl(templateId: string): FileResponse
+```
+
+Get Template File as File Url
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TemplateApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+const result = api.templateFilesAsFileUrl(templateId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TemplateApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+const result = api.templateFilesAsFileUrl(templateId);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **templateId** | **string**| The id of the template files to retrieve. | |
 
 ### Return type
 

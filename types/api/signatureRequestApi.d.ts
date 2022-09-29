@@ -1,5 +1,7 @@
+/// <reference types="node" />
 import { BulkSendJobSendResponse } from "../model/bulkSendJobSendResponse";
 import { FileResponse } from "../model/fileResponse";
+import { FileResponseDataUri } from "../model/fileResponseDataUri";
 import { SignatureRequestBulkCreateEmbeddedWithTemplateRequest } from "../model/signatureRequestBulkCreateEmbeddedWithTemplateRequest";
 import { SignatureRequestBulkSendWithTemplateRequest } from "../model/signatureRequestBulkSendWithTemplateRequest";
 import { SignatureRequestCreateEmbeddedRequest } from "../model/signatureRequestCreateEmbeddedRequest";
@@ -46,7 +48,9 @@ export declare class SignatureRequestApi {
     signatureRequestCancel(signatureRequestId: string, options?: optionsI): Promise<returnTypeI>;
     signatureRequestCreateEmbedded(signatureRequestCreateEmbeddedRequest: SignatureRequestCreateEmbeddedRequest, options?: optionsI): Promise<returnTypeT<SignatureRequestGetResponse>>;
     signatureRequestCreateEmbeddedWithTemplate(signatureRequestCreateEmbeddedWithTemplateRequest: SignatureRequestCreateEmbeddedWithTemplateRequest, options?: optionsI): Promise<returnTypeT<SignatureRequestGetResponse>>;
-    signatureRequestFiles(signatureRequestId: string, fileType?: "pdf" | "zip", getUrl?: boolean, getDataUri?: boolean, options?: optionsI): Promise<returnTypeT<FileResponse>>;
+    signatureRequestFiles(signatureRequestId: string, fileType?: "pdf" | "zip", options?: optionsI): Promise<returnTypeT<Buffer>>;
+    signatureRequestFilesAsEncodedString(signatureRequestId: string, options?: optionsI): Promise<returnTypeT<FileResponseDataUri>>;
+    signatureRequestFilesAsFileUrl(signatureRequestId: string, options?: optionsI): Promise<returnTypeT<FileResponse>>;
     signatureRequestGet(signatureRequestId: string, options?: optionsI): Promise<returnTypeT<SignatureRequestGetResponse>>;
     signatureRequestList(accountId?: string, page?: number, pageSize?: number, query?: string, options?: optionsI): Promise<returnTypeT<SignatureRequestListResponse>>;
     signatureRequestReleaseHold(signatureRequestId: string, options?: optionsI): Promise<returnTypeT<SignatureRequestGetResponse>>;

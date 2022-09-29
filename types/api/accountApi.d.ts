@@ -36,7 +36,7 @@ export declare class AccountApi {
     set instantiateFiles(flag: boolean);
     set rootFilePath(path: string | undefined);
     accountCreate(accountCreateRequest: AccountCreateRequest, options?: optionsI): Promise<returnTypeT<AccountCreateResponse>>;
-    accountGet(accountId?: string, options?: optionsI): Promise<returnTypeT<AccountGetResponse>>;
+    accountGet(accountId?: string, emailAddress?: string, options?: optionsI): Promise<returnTypeT<AccountGetResponse>>;
     accountUpdate(accountUpdateRequest: AccountUpdateRequest, options?: optionsI): Promise<returnTypeT<AccountGetResponse>>;
     accountVerify(accountVerifyRequest: AccountVerifyRequest, options?: optionsI): Promise<returnTypeT<AccountVerifyResponse>>;
 }
