@@ -1,4 +1,6 @@
+/// <reference types="node" />
 import { FileResponse } from "../model/fileResponse";
+import { FileResponseDataUri } from "../model/fileResponseDataUri";
 import { TemplateAddUserRequest } from "../model/templateAddUserRequest";
 import { TemplateCreateEmbeddedDraftRequest } from "../model/templateCreateEmbeddedDraftRequest";
 import { TemplateCreateEmbeddedDraftResponse } from "../model/templateCreateEmbeddedDraftResponse";
@@ -41,7 +43,9 @@ export declare class TemplateApi {
     templateAddUser(templateId: string, templateAddUserRequest: TemplateAddUserRequest, options?: optionsI): Promise<returnTypeT<TemplateGetResponse>>;
     templateCreateEmbeddedDraft(templateCreateEmbeddedDraftRequest: TemplateCreateEmbeddedDraftRequest, options?: optionsI): Promise<returnTypeT<TemplateCreateEmbeddedDraftResponse>>;
     templateDelete(templateId: string, options?: optionsI): Promise<returnTypeI>;
-    templateFiles(templateId: string, fileType?: "pdf" | "zip", getUrl?: boolean, getDataUri?: boolean, options?: optionsI): Promise<returnTypeT<FileResponse>>;
+    templateFiles(templateId: string, fileType?: "pdf" | "zip", options?: optionsI): Promise<returnTypeT<Buffer>>;
+    templateFilesAsEncodedString(templateId: string, options?: optionsI): Promise<returnTypeT<FileResponseDataUri>>;
+    templateFilesAsFileUrl(templateId: string, options?: optionsI): Promise<returnTypeT<FileResponse>>;
     templateGet(templateId: string, options?: optionsI): Promise<returnTypeT<TemplateGetResponse>>;
     templateList(accountId?: string, page?: number, pageSize?: number, query?: string, options?: optionsI): Promise<returnTypeT<TemplateListResponse>>;
     templateRemoveUser(templateId: string, templateRemoveUserRequest: TemplateRemoveUserRequest, options?: optionsI): Promise<returnTypeT<TemplateGetResponse>>;

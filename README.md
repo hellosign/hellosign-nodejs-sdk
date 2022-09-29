@@ -119,7 +119,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *SignatureRequestApi* | [**signatureRequestCancel**](./docs/api/SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](./docs/api/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](./docs/api/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| *SignatureRequestApi* | [**signatureRequestFiles**](./docs/api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| *SignatureRequestApi* | [**signatureRequestFiles**](./docs/api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
+| *SignatureRequestApi* | [**signatureRequestFilesAsEncodedString**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasencodedstring) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String |
+| *SignatureRequestApi* | [**signatureRequestFilesAsFileUrl**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url |
 | *SignatureRequestApi* | [**signatureRequestGet**](./docs/api/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | *SignatureRequestApi* | [**signatureRequestList**](./docs/api/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
 | *SignatureRequestApi* | [**signatureRequestReleaseHold**](./docs/api/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -140,7 +142,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *TemplateApi* | [**templateAddUser**](./docs/api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | *TemplateApi* | [**templateCreateEmbeddedDraft**](./docs/api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | *TemplateApi* | [**templateDelete**](./docs/api/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template |
-| *TemplateApi* | [**templateFiles**](./docs/api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template Files |
+| *TemplateApi* | [**templateFiles**](./docs/api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template File |
+| *TemplateApi* | [**templateFilesAsEncodedString**](./docs/api/TemplateApi.md#templatefilesasencodedstring) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String |
+| *TemplateApi* | [**templateFilesAsFileUrl**](./docs/api/TemplateApi.md#templatefilesasfileurl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url |
 | *TemplateApi* | [**templateGet**](./docs/api/TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template |
 | *TemplateApi* | [**templateList**](./docs/api/TemplateApi.md#templatelist) | **GET** /template/list | List Templates |
 | *TemplateApi* | [**templateRemoveUser**](./docs/api/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -189,6 +193,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [EventCallbackRequestEvent](./docs/model/EventCallbackRequestEvent.md)
 - [EventCallbackRequestEventMetadata](./docs/model/EventCallbackRequestEventMetadata.md)
 - [FileResponse](./docs/model/FileResponse.md)
+- [FileResponseDataUri](./docs/model/FileResponseDataUri.md)
 - [ListInfoResponse](./docs/model/ListInfoResponse.md)
 - [OAuthTokenGenerateRequest](./docs/model/OAuthTokenGenerateRequest.md)
 - [OAuthTokenRefreshRequest](./docs/model/OAuthTokenRefreshRequest.md)

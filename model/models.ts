@@ -37,6 +37,7 @@ export * from "./eventCallbackApiAppRequestPayload";
 export * from "./eventCallbackRequestEvent";
 export * from "./eventCallbackRequestEventMetadata";
 export * from "./fileResponse";
+export * from "./fileResponseDataUri";
 export * from "./listInfoResponse";
 export * from "./oAuthTokenGenerateRequest";
 export * from "./oAuthTokenRefreshRequest";
@@ -208,6 +209,7 @@ import { EventCallbackApiAppRequestPayload } from "./eventCallbackApiAppRequestP
 import { EventCallbackRequestEvent } from "./eventCallbackRequestEvent";
 import { EventCallbackRequestEventMetadata } from "./eventCallbackRequestEventMetadata";
 import { FileResponse } from "./fileResponse";
+import { FileResponseDataUri } from "./fileResponseDataUri";
 import { ListInfoResponse } from "./listInfoResponse";
 import { OAuthTokenGenerateRequest } from "./oAuthTokenGenerateRequest";
 import { OAuthTokenRefreshRequest } from "./oAuthTokenRefreshRequest";
@@ -407,6 +409,7 @@ let typeMap: { [index: string]: any } = {
   EventCallbackRequestEvent: EventCallbackRequestEvent,
   EventCallbackRequestEventMetadata: EventCallbackRequestEventMetadata,
   FileResponse: FileResponse,
+  FileResponseDataUri: FileResponseDataUri,
   ListInfoResponse: ListInfoResponse,
   OAuthTokenGenerateRequest: OAuthTokenGenerateRequest,
   OAuthTokenRefreshRequest: OAuthTokenRefreshRequest,

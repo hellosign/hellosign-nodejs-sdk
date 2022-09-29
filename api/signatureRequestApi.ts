@@ -28,6 +28,7 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { BulkSendJobSendResponse } from "../model/bulkSendJobSendResponse";
 import { ErrorResponse } from "../model/errorResponse";
 import { FileResponse } from "../model/fileResponse";
+import { FileResponseDataUri } from "../model/fileResponseDataUri";
 import { SignatureRequestBulkCreateEmbeddedWithTemplateRequest } from "../model/signatureRequestBulkCreateEmbeddedWithTemplateRequest";
 import { SignatureRequestBulkSendWithTemplateRequest } from "../model/signatureRequestBulkSendWithTemplateRequest";
 import { SignatureRequestCreateEmbeddedRequest } from "../model/signatureRequestCreateEmbeddedRequest";
@@ -889,21 +890,17 @@ export class SignatureRequestApi {
     });
   }
   /**
-   * Obtain a copy of the current documents specified by the `signature_request_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead.
-   * @summary Download Files
+   * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
+   * @summary Download File
    * @param signatureRequestId The id of the SignatureRequest to retrieve.
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents.
-   * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days.
-   * @param getDataUri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs.
    * @param options
    */
   public async signatureRequestFiles(
     signatureRequestId: string,
     fileType?: "pdf" | "zip",
-    getUrl?: boolean,
-    getDataUri?: boolean,
     options: optionsI = { headers: {} }
-  ): Promise<returnTypeT<FileResponse>> {
+  ): Promise<returnTypeT<Buffer>> {
     const localVarPath =
       this.basePath +
       "/signature_request/files/{signature_request_id}".replace(
@@ -915,7 +912,7 @@ export class SignatureRequestApi {
       {},
       this._defaultHeaders
     );
-    const produces = ["application/json"];
+    const produces = ["application/pdf", "application/zip", "application/json"];
     // give precedence to 'application/json'
     if (produces.indexOf("application/json") >= 0) {
       localVarHeaderParams["content-type"] = "application/json";
@@ -939,17 +936,267 @@ export class SignatureRequestApi {
       );
     }
 
-    if (getUrl !== undefined) {
-      localVarQueryParameters["get_url"] = ObjectSerializer.serialize(
-        getUrl,
-        "boolean"
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "arraybuffer",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
       );
     }
 
-    if (getDataUri !== undefined) {
-      localVarQueryParameters["get_data_uri"] = ObjectSerializer.serialize(
-        getDataUri,
-        "boolean"
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<Buffer>>((resolve, reject) => {
+        axios.request(localVarRequestOptions).then(
+          (response) => {
+            let body = response.data;
+
+            if (
+              response.status &&
+              response.status >= 200 &&
+              response.status <= 299
+            ) {
+              body = ObjectSerializer.deserialize(body, "Buffer");
+              resolve({ response: response, body: body });
+            } else {
+              reject(new HttpError(response, body, response.status));
+            }
+          },
+          (error: AxiosError) => {
+            if (error.response == null) {
+              reject(error);
+              return;
+            }
+
+            const response = error.response;
+
+            let body;
+
+            if (response.status === 200) {
+              body = ObjectSerializer.deserialize(response.data, "RequestFile");
+
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
+
+            let rangeCodeLeft = Number("4XX"[0] + "00");
+            let rangeCodeRight = Number("4XX"[0] + "99");
+            if (
+              response.status >= rangeCodeLeft &&
+              response.status <= rangeCodeRight
+            ) {
+              body = ObjectSerializer.deserialize(
+                response.data,
+                "ErrorResponse"
+              );
+
+              reject(new HttpError(response, body, response.status));
+              return;
+            }
+          }
+        );
+      });
+    });
+  }
+  /**
+   * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+   * @summary Download File as Encoded String
+   * @param signatureRequestId The id of the SignatureRequest to retrieve.
+   * @param options
+   */
+  public async signatureRequestFilesAsEncodedString(
+    signatureRequestId: string,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<FileResponseDataUri>> {
+    const localVarPath =
+      this.basePath +
+      "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf".replace(
+        "{" + "signature_request_id" + "}",
+        encodeURIComponent(String(signatureRequestId))
+      );
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    // verify required parameter 'signatureRequestId' is not null or undefined
+    if (signatureRequestId === null || signatureRequestId === undefined) {
+      throw new Error(
+        "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsEncodedString."
+      );
+    }
+
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "json",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
+      );
+    }
+
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<FileResponseDataUri>>(
+        (resolve, reject) => {
+          axios.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+
+              if (
+                response.status &&
+                response.status >= 200 &&
+                response.status <= 299
+              ) {
+                body = ObjectSerializer.deserialize(
+                  body,
+                  "FileResponseDataUri"
+                );
+                resolve({ response: response, body: body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error: AxiosError) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+
+              const response = error.response;
+
+              let body;
+
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "FileResponseDataUri"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        }
+      );
+    });
+  }
+  /**
+   * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+   * @summary Download File as File Url
+   * @param signatureRequestId The id of the SignatureRequest to retrieve.
+   * @param options
+   */
+  public async signatureRequestFilesAsFileUrl(
+    signatureRequestId: string,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<FileResponse>> {
+    const localVarPath =
+      this.basePath +
+      "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf".replace(
+        "{" + "signature_request_id" + "}",
+        encodeURIComponent(String(signatureRequestId))
+      );
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    // verify required parameter 'signatureRequestId' is not null or undefined
+    if (signatureRequestId === null || signatureRequestId === undefined) {
+      throw new Error(
+        "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsFileUrl."
       );
     }
 

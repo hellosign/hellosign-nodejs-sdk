@@ -56,6 +56,10 @@ export class AccountResponse {
    */
   "roleCode"?: string | null;
   /**
+   * The id of the team account belongs to.
+   */
+  "teamId"?: string | null;
+  /**
    * The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
    */
   "locale"?: string | null;
@@ -101,6 +105,11 @@ export class AccountResponse {
     {
       name: "roleCode",
       baseName: "role_code",
+      type: "string",
+    },
+    {
+      name: "teamId",
+      baseName: "team_id",
       type: "string",
     },
     {
