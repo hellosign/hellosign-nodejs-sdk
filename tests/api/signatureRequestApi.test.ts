@@ -132,8 +132,11 @@ describe('SignatureRequestApiTest', () => {
 
     setExpectedResponse(mock, responseData, 200);
 
-    api.signatureRequestFilesAsFileUrl(
-      signatureRequestId
+    api.signatureRequestFiles(
+      signatureRequestId,
+      fileType,
+      getUrl,
+      getDataUri
     ).then(response => {
       const diff = diffJson(
         response.body,
