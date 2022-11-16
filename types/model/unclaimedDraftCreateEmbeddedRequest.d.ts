@@ -46,6 +46,7 @@ export declare class UnclaimedDraftCreateEmbeddedRequest {
     "usePreexistingFields"?: boolean;
     "useTextTags"?: boolean;
     "populateAutoFillFields"?: boolean;
+    "expiresAt"?: number | null;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;
     static getAttributeTypeMap(): AttributeTypeMap;

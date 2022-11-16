@@ -39,7 +39,7 @@ export class AccountResponse {
    */
   "isLocked"?: boolean;
   /**
-   * Returns `true` if the user has a paid HelloSign account.
+   * Returns `true` if the user has a paid Dropbox Sign account.
    */
   "isPaidHs"?: boolean;
   /**
@@ -48,7 +48,7 @@ export class AccountResponse {
   "isPaidHf"?: boolean;
   "quotas"?: AccountResponseQuotas;
   /**
-   * The URL that HelloSign events will `POST` to.
+   * The URL that Dropbox Sign events will `POST` to.
    */
   "callbackUrl"?: string | null;
   /**

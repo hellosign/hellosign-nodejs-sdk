@@ -15,11 +15,12 @@ Name | Type | Description | Notes
 | `message` | ```string``` |  The custom message in the email that was initially sent to the signers.  |  |
 | `metadata` | ```object``` |  The metadata attached to the signature request.  |  |
 | `createdAt` | ```number``` |  Time the signature request was created.  |  |
+| `expiresAt` | ```number``` |  The time when the signature request will expire pending signatures.  |  |
 | `isComplete` | ```boolean``` |  Whether or not the SignatureRequest has been fully executed by all signers.  |  |
 | `isDeclined` | ```boolean``` |  Whether or not the SignatureRequest has been declined by a signer.  |  |
 | `hasError` | ```boolean``` |  Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).  |  |
 | `filesUrl` | ```string``` |  The URL where a copy of the request&#39;s documents can be downloaded.  |  |
-| `signingUrl` | ```string``` |  The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.  |  |
+| `signingUrl` | ```string``` |  The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.  |  |
 | `detailsUrl` | ```string``` |  The URL where the requester and the signers can view the current status of the SignatureRequest.  |  |
 | `ccEmailAddresses` | ```Array<string>``` |  A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.  |  |
 | `signingRedirectUrl` | ```string``` |  The URL you want the signer redirected to after they successfully sign.  |  |

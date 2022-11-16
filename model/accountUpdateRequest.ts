@@ -30,7 +30,7 @@ export class AccountUpdateRequest {
    */
   "accountId"?: string | null;
   /**
-   * The URL that HelloSign should POST events to.
+   * The URL that Dropbox Sign should POST events to.
    */
   "callbackUrl"?: string;
   /**

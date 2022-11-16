@@ -20,7 +20,7 @@ describe('OAuthApiTest', () => {
   });
 
   const api = new OAuthApi();
-  api.rootFilePath = __dirname + '/../../oas/test_fixtures';
+  api.rootFilePath = __dirname + '/../../test_fixtures';
   api.instantiateFiles = true;
 
   it('testTokenGenerate', () => {

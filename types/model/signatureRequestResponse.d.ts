@@ -13,6 +13,7 @@ export declare class SignatureRequestResponse {
     "message"?: string | null;
     "metadata"?: object;
     "createdAt"?: number;
+    "expiresAt"?: number;
     "isComplete"?: boolean;
     "isDeclined"?: boolean;
     "hasError"?: boolean;

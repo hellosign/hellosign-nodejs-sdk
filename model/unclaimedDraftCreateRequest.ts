@@ -42,7 +42,7 @@ export class UnclaimedDraftCreateRequest {
    */
   "file"?: Array<RequestFile>;
   /**
-   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+   * Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
@@ -62,7 +62,7 @@ export class UnclaimedDraftCreateRequest {
    */
   "clientId"?: string;
   /**
-   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
+   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
    */
   "customFields"?: Array<SubCustomField>;
   "fieldOptions"?: SubFieldOptions;
@@ -119,6 +119,10 @@ export class UnclaimedDraftCreateRequest {
    * Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.
    */
   "useTextTags"?: boolean = false;
+  /**
+   * When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.  **Note** This does not correspond to the **expires_at** returned in the response.
+   */
+  "expiresAt"?: number | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -237,6 +241,11 @@ export class UnclaimedDraftCreateRequest {
       name: "useTextTags",
       baseName: "use_text_tags",
       type: "boolean",
+    },
+    {
+      name: "expiresAt",
+      baseName: "expires_at",
+      type: "number",
     },
   ];
 

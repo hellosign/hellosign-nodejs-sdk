@@ -9,6 +9,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team |
 | [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Get Team |
 | [**teamInfo()**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info |
+| [**teamInvites()**](TeamApi.md#teamInvites) | **GET** /team/invites | List Team Invites |
 | [**teamMembers()**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team |
 | [**teamSubTeams()**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
@@ -23,7 +24,7 @@ teamAddMember(teamAddMemberRequest: TeamAddMemberRequest, teamId: string): TeamG
 
 Add User to Team
 
-Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
+Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
 
 ### TypeScript Example
 
@@ -409,6 +410,89 @@ result.then(response => {
 ### Return type
 
 [**TeamGetInfoResponse**](../model/TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamInvites()`
+
+```typescript
+teamInvites(emailAddress: string): TeamInvitesResponse
+```
+
+List Team Invites
+
+Provides a list of team invites (and their roles).
+
+### TypeScript Example
+
+```typescript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const emailAddress = "user@hellosign.com";
+
+const result = api.teamInvites(emailAddress);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### JavaScript Example
+
+```javascript
+import * as HelloSignSDK from "hellosign-sdk";
+
+const api = new HelloSignSDK.TeamApi();
+
+// Configure HTTP basic authorization: api_key
+api.username = "YOUR_API_KEY";
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+const emailAddress = "user@hellosign.com";
+
+const result = api.teamInvites(emailAddress);
+result.then(response => {
+  console.log(response.body);
+}).catch(error => {
+  console.log("Exception when calling HelloSign API:");
+  console.log(error.body);
+});
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **emailAddress** | **string**| The email address for which to display the team invites. | [optional] |
+
+### Return type
+
+[**TeamInvitesResponse**](../model/TeamInvitesResponse.md)
 
 ### Authorization
 

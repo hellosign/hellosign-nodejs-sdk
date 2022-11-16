@@ -588,7 +588,7 @@ export class TemplateApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
-   * @summary Get Template File
+   * @summary Get Template Files
    * @param templateId The id of the template files to retrieve.
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents.
    * @param options
@@ -725,17 +725,17 @@ export class TemplateApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
-   * @summary Get Template File as Encoded String
+   * @summary Get Template Files as Data Uri
    * @param templateId The id of the template files to retrieve.
    * @param options
    */
-  public async templateFilesAsEncodedString(
+  public async templateFilesAsDataUri(
     templateId: string,
     options: optionsI = { headers: {} }
   ): Promise<returnTypeT<FileResponseDataUri>> {
     const localVarPath =
       this.basePath +
-      "/template/files/{template_id}?get_data_uri=1&file_type=pdf".replace(
+      "/template/files_as_data_uri/{template_id}".replace(
         "{" + "template_id" + "}",
         encodeURIComponent(String(templateId))
       );
@@ -757,7 +757,7 @@ export class TemplateApi {
     // verify required parameter 'templateId' is not null or undefined
     if (templateId === null || templateId === undefined) {
       throw new Error(
-        "Required parameter templateId was null or undefined when calling templateFilesAsEncodedString."
+        "Required parameter templateId was null or undefined when calling templateFilesAsDataUri."
       );
     }
 
@@ -861,7 +861,7 @@ export class TemplateApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
-   * @summary Get Template File as File Url
+   * @summary Get Template Files as File Url
    * @param templateId The id of the template files to retrieve.
    * @param options
    */
@@ -871,7 +871,7 @@ export class TemplateApi {
   ): Promise<returnTypeT<FileResponse>> {
     const localVarPath =
       this.basePath +
-      "/template/files/{template_id}?get_url=1&file_type=pdf".replace(
+      "/template/files_as_file_url/{template_id}".replace(
         "{" + "template_id" + "}",
         encodeURIComponent(String(templateId))
       );

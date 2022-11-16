@@ -93,6 +93,10 @@ export class SignatureRequestResponseSignatures {
    */
   "reassignmentReason"?: string | null;
   /**
+   * Previous signature identifier.
+   */
+  "reassignedFrom"?: string | null;
+  /**
    * Error message pertaining to this signer, or null.
    */
   "error"?: string | null;
@@ -178,6 +182,11 @@ export class SignatureRequestResponseSignatures {
     {
       name: "reassignmentReason",
       baseName: "reassignment_reason",
+      type: "string",
+    },
+    {
+      name: "reassignedFrom",
+      baseName: "reassigned_from",
       type: "string",
     },
     {

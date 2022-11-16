@@ -69,6 +69,10 @@ export class SignatureRequestResponse {
    */
   "createdAt"?: number;
   /**
+   * The time when the signature request will expire pending signatures.
+   */
+  "expiresAt"?: number;
+  /**
    * Whether or not the SignatureRequest has been fully executed by all signers.
    */
   "isComplete"?: boolean;
@@ -85,7 +89,7 @@ export class SignatureRequestResponse {
    */
   "filesUrl"?: string;
   /**
-   * The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.
+   * The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
    */
   "signingUrl"?: string | null;
   /**
@@ -167,6 +171,11 @@ export class SignatureRequestResponse {
     {
       name: "createdAt",
       baseName: "created_at",
+      type: "number",
+    },
+    {
+      name: "expiresAt",
+      baseName: "expires_at",
       type: "number",
     },
     {

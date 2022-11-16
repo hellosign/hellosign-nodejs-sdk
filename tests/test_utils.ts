@@ -4,7 +4,7 @@ import jsonDiff from 'json-diff';
 import MockAdapter from 'axios-mock-adapter';
 
 export const getFixtureData = (file: string): Object => {
-  return require(`../oas/test_fixtures/${file}.json`);
+  return require(`../test_fixtures/${file}.json`);
 };
 
 export const setExpectedResponse = (

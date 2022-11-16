@@ -2,6 +2,7 @@ import { TeamAddMemberRequest } from "../model/teamAddMemberRequest";
 import { TeamCreateRequest } from "../model/teamCreateRequest";
 import { TeamGetInfoResponse } from "../model/teamGetInfoResponse";
 import { TeamGetResponse } from "../model/teamGetResponse";
+import { TeamInvitesResponse } from "../model/teamInvitesResponse";
 import { TeamMembersResponse } from "../model/teamMembersResponse";
 import { TeamRemoveMemberRequest } from "../model/teamRemoveMemberRequest";
 import { TeamSubTeamsResponse } from "../model/teamSubTeamsResponse";
@@ -42,6 +43,7 @@ export declare class TeamApi {
     teamDelete(options?: optionsI): Promise<returnTypeI>;
     teamGet(options?: optionsI): Promise<returnTypeT<TeamGetResponse>>;
     teamInfo(teamId?: string, options?: optionsI): Promise<returnTypeT<TeamGetInfoResponse>>;
+    teamInvites(emailAddress?: string, options?: optionsI): Promise<returnTypeT<TeamInvitesResponse>>;
     teamMembers(teamId: string, page?: number, pageSize?: number, options?: optionsI): Promise<returnTypeT<TeamMembersResponse>>;
     teamRemoveMember(teamRemoveMemberRequest: TeamRemoveMemberRequest, options?: optionsI): Promise<returnTypeT<TeamGetResponse>>;
     teamSubTeams(teamId: string, page?: number, pageSize?: number, options?: optionsI): Promise<returnTypeT<TeamSubTeamsResponse>>;

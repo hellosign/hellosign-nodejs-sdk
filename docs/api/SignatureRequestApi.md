@@ -9,9 +9,9 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**signatureRequestCancel()**](SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | [**signatureRequestCreateEmbedded()**](SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | [**signatureRequestCreateEmbeddedWithTemplate()**](SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| [**signatureRequestFiles()**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
-| [**signatureRequestFilesAsEncodedString()**](SignatureRequestApi.md#signatureRequestFilesAsEncodedString) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String |
-| [**signatureRequestFilesAsFileUrl()**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url |
+| [**signatureRequestFiles()**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| [**signatureRequestFilesAsDataUri()**](SignatureRequestApi.md#signatureRequestFilesAsDataUri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri |
+| [**signatureRequestFilesAsFileUrl()**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url |
 | [**signatureRequestGet()**](SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | [**signatureRequestList()**](SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | List Signature Requests |
 | [**signatureRequestReleaseHold()**](SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -30,7 +30,7 @@ signatureRequestBulkCreateEmbeddedWithTemplate(signatureRequestBulkCreateEmbedde
 
 Embedded Bulk Send with Template
 
-Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
 
 ### TypeScript Example
 
@@ -459,7 +459,7 @@ signatureRequestCreateEmbedded(signatureRequestCreateEmbeddedRequest: SignatureR
 
 Create Embedded Signature Request
 
-Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### TypeScript Example
 
@@ -608,7 +608,7 @@ signatureRequestCreateEmbeddedWithTemplate(signatureRequestCreateEmbeddedWithTem
 
 Create Embedded Signature Request with Template
 
-Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### TypeScript Example
 
@@ -733,7 +733,7 @@ result.then(response => {
 signatureRequestFiles(signatureRequestId: string, fileType: 'pdf' | 'zip'): Buffer
 ```
 
-Download File
+Download Files
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
 
@@ -811,13 +811,13 @@ result.then(response => {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `signatureRequestFilesAsEncodedString()`
+## `signatureRequestFilesAsDataUri()`
 
 ```typescript
-signatureRequestFilesAsEncodedString(signatureRequestId: string): FileResponseDataUri
+signatureRequestFilesAsDataUri(signatureRequestId: string): FileResponseDataUri
 ```
 
-Download File as Encoded String
+Download Files as Data Uri
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
 
@@ -836,7 +836,7 @@ api.username = "YOUR_API_KEY";
 
 const signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
-const result = api.signatureRequestFilesAsEncodedString(signatureRequestId);
+const result = api.signatureRequestFilesAsDataUri(signatureRequestId);
 result.then(response => {
   console.log(response.body);
 }).catch(error => {
@@ -861,7 +861,7 @@ api.username = "YOUR_API_KEY";
 
 const signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
-const result = api.signatureRequestFilesAsEncodedString(signatureRequestId);
+const result = api.signatureRequestFilesAsDataUri(signatureRequestId);
 result.then(response => {
   console.log(response.body);
 }).catch(error => {
@@ -900,7 +900,7 @@ result.then(response => {
 signatureRequestFilesAsFileUrl(signatureRequestId: string): FileResponse
 ```
 
-Download File as File Url
+Download Files as File Url
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
 

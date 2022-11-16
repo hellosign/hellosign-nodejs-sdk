@@ -33,6 +33,7 @@ export declare class SignatureRequestSendRequest {
     "testMode"?: boolean;
     "title"?: string;
     "useTextTags"?: boolean;
+    "expiresAt"?: number | null;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;
     static getAttributeTypeMap(): AttributeTypeMap;

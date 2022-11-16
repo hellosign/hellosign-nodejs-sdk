@@ -7,9 +7,9 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**templateAddUser()**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | [**templateCreateEmbeddedDraft()**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | [**templateDelete()**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template |
-| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File |
-| [**templateFilesAsEncodedString()**](TemplateApi.md#templateFilesAsEncodedString) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String |
-| [**templateFilesAsFileUrl()**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url |
+| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files |
+| [**templateFilesAsDataUri()**](TemplateApi.md#templateFilesAsDataUri) | **GET** /template/files_as_data_uri/{template_id} | Get Template Files as Data Uri |
+| [**templateFilesAsFileUrl()**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files_as_file_url/{template_id} | Get Template Files as File Url |
 | [**templateGet()**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template |
 | [**templateList()**](TemplateApi.md#templateList) | **GET** /template/list | List Templates |
 | [**templateRemoveUser()**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -362,7 +362,7 @@ void (empty response body)
 templateFiles(templateId: string, fileType: 'pdf' | 'zip'): Buffer
 ```
 
-Get Template File
+Get Template Files
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
@@ -440,13 +440,13 @@ result.then(response => {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `templateFilesAsEncodedString()`
+## `templateFilesAsDataUri()`
 
 ```typescript
-templateFilesAsEncodedString(templateId: string): FileResponseDataUri
+templateFilesAsDataUri(templateId: string): FileResponseDataUri
 ```
 
-Get Template File as Encoded String
+Get Template Files as Data Uri
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
@@ -465,7 +465,7 @@ api.username = "YOUR_API_KEY";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
-const result = api.templateFilesAsEncodedString(templateId);
+const result = api.templateFilesAsDataUri(templateId);
 result.then(response => {
   console.log(response.body);
 }).catch(error => {
@@ -490,7 +490,7 @@ api.username = "YOUR_API_KEY";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
-const result = api.templateFilesAsEncodedString(templateId);
+const result = api.templateFilesAsDataUri(templateId);
 result.then(response => {
   console.log(response.body);
 }).catch(error => {
@@ -529,7 +529,7 @@ result.then(response => {
 templateFilesAsFileUrl(templateId: string): FileResponse
 ```
 
-Get Template File as File Url
+Get Template Files as File Url
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 

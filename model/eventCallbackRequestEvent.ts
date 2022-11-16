@@ -93,6 +93,7 @@ export namespace EventCallbackRequestEvent {
     SignatureRequestReassigned = "signature_request_reassigned",
     SignatureRequestInvalid = "signature_request_invalid",
     SignatureRequestPrepared = "signature_request_prepared",
+    SignatureRequestExpired = "signature_request_expired",
     TemplateCreated = "template_created",
     TemplateError = "template_error",
   }

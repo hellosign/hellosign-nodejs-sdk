@@ -34,7 +34,7 @@ export class TemplateUpdateFilesRequest {
    */
   "file"?: Array<RequestFile>;
   /**
-   * Use `file_url[]` to have HelloSign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
+   * Use `file_url[]` to have Dropbox Sign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
