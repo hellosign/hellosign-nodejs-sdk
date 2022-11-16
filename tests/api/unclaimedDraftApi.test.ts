@@ -20,7 +20,7 @@ describe('UnclaimedDraftApiTest', () => {
   });
 
   const api = new UnclaimedDraftApi();
-  api.rootFilePath = __dirname + '/../../oas/test_fixtures';
+  api.rootFilePath = __dirname + '/../../test_fixtures';
   api.instantiateFiles = true;
 
   it('testUnclaimedDraftCreate', () => {

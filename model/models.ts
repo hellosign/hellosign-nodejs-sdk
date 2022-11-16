@@ -112,6 +112,8 @@ export * from "./teamCreateRequest";
 export * from "./teamGetInfoResponse";
 export * from "./teamGetResponse";
 export * from "./teamInfoResponse";
+export * from "./teamInviteResponse";
+export * from "./teamInvitesResponse";
 export * from "./teamMemberResponse";
 export * from "./teamMembersResponse";
 export * from "./teamParentResponse";
@@ -284,6 +286,8 @@ import { TeamCreateRequest } from "./teamCreateRequest";
 import { TeamGetInfoResponse } from "./teamGetInfoResponse";
 import { TeamGetResponse } from "./teamGetResponse";
 import { TeamInfoResponse } from "./teamInfoResponse";
+import { TeamInviteResponse } from "./teamInviteResponse";
+import { TeamInvitesResponse } from "./teamInvitesResponse";
 import { TeamMemberResponse } from "./teamMemberResponse";
 import { TeamMembersResponse } from "./teamMembersResponse";
 import { TeamParentResponse } from "./teamParentResponse";
@@ -496,6 +500,8 @@ let typeMap: { [index: string]: any } = {
   TeamGetInfoResponse: TeamGetInfoResponse,
   TeamGetResponse: TeamGetResponse,
   TeamInfoResponse: TeamInfoResponse,
+  TeamInviteResponse: TeamInviteResponse,
+  TeamInvitesResponse: TeamInvitesResponse,
   TeamMemberResponse: TeamMemberResponse,
   TeamMembersResponse: TeamMembersResponse,
   TeamParentResponse: TeamParentResponse,

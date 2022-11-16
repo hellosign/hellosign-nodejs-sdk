@@ -18363,6 +18363,8 @@ __export(api_exports, {
   TeamGetInfoResponse: () => TeamGetInfoResponse,
   TeamGetResponse: () => TeamGetResponse,
   TeamInfoResponse: () => TeamInfoResponse,
+  TeamInviteResponse: () => TeamInviteResponse,
+  TeamInvitesResponse: () => TeamInvitesResponse,
   TeamMemberResponse: () => TeamMemberResponse,
   TeamMembersResponse: () => TeamMembersResponse,
   TeamParentResponse: () => TeamParentResponse,
@@ -19103,6 +19105,11 @@ BulkSendJobGetResponseSignatureRequests.attributeTypeMap = [
     type: "number"
   },
   {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
+  },
+  {
     name: "isComplete",
     baseName: "is_complete",
     type: "boolean"
@@ -19588,6 +19595,7 @@ EventCallbackRequestEvent.attributeTypeMap = [
     EventTypeEnum2["SignatureRequestReassigned"] = "signature_request_reassigned";
     EventTypeEnum2["SignatureRequestInvalid"] = "signature_request_invalid";
     EventTypeEnum2["SignatureRequestPrepared"] = "signature_request_prepared";
+    EventTypeEnum2["SignatureRequestExpired"] = "signature_request_expired";
     EventTypeEnum2["TemplateCreated"] = "template_created";
     EventTypeEnum2["TemplateError"] = "template_error";
   })(EventTypeEnum = EventCallbackRequestEvent2.EventTypeEnum || (EventCallbackRequestEvent2.EventTypeEnum = {}));
@@ -20169,6 +20177,11 @@ SignatureRequestCreateEmbeddedRequest.attributeTypeMap = [
     name: "populateAutoFillFields",
     baseName: "populate_auto_fill_fields",
     type: "boolean"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
   }
 ];
 
@@ -20386,6 +20399,11 @@ SignatureRequestResponse.attributeTypeMap = [
   {
     name: "createdAt",
     baseName: "created_at",
+    type: "number"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
     type: "number"
   },
   {
@@ -20999,6 +21017,11 @@ SignatureRequestResponseSignatures.attributeTypeMap = [
     type: "string"
   },
   {
+    name: "reassignedFrom",
+    baseName: "reassigned_from",
+    type: "string"
+  },
+  {
     name: "error",
     baseName: "error",
     type: "string"
@@ -21136,6 +21159,11 @@ SignatureRequestSendRequest.attributeTypeMap = [
     name: "useTextTags",
     baseName: "use_text_tags",
     type: "boolean"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
   }
 ];
 
@@ -21258,6 +21286,11 @@ SignatureRequestUpdateRequest.attributeTypeMap = [
     name: "name",
     baseName: "name",
     type: "string"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
   }
 ];
 
@@ -22550,6 +22583,68 @@ TeamInfoResponse.attributeTypeMap = [
     name: "numSubTeams",
     baseName: "num_sub_teams",
     type: "number"
+  }
+];
+
+// model/teamInviteResponse.ts
+var _TeamInviteResponse = class {
+  static getAttributeTypeMap() {
+    return _TeamInviteResponse.attributeTypeMap;
+  }
+};
+var TeamInviteResponse = _TeamInviteResponse;
+TeamInviteResponse.discriminator = void 0;
+TeamInviteResponse.attributeTypeMap = [
+  {
+    name: "emailAddress",
+    baseName: "email_address",
+    type: "string"
+  },
+  {
+    name: "teamId",
+    baseName: "team_id",
+    type: "string"
+  },
+  {
+    name: "role",
+    baseName: "role",
+    type: "string"
+  },
+  {
+    name: "sentAt",
+    baseName: "sent_at",
+    type: "number"
+  },
+  {
+    name: "redeemedAt",
+    baseName: "redeemed_at",
+    type: "number"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
+  }
+];
+
+// model/teamInvitesResponse.ts
+var _TeamInvitesResponse = class {
+  static getAttributeTypeMap() {
+    return _TeamInvitesResponse.attributeTypeMap;
+  }
+};
+var TeamInvitesResponse = _TeamInvitesResponse;
+TeamInvitesResponse.discriminator = void 0;
+TeamInvitesResponse.attributeTypeMap = [
+  {
+    name: "teamInvites",
+    baseName: "team_invites",
+    type: "Array<TeamInviteResponse>"
+  },
+  {
+    name: "warnings",
+    baseName: "warnings",
+    type: "Array<WarningResponse>"
   }
 ];
 
@@ -24029,6 +24124,11 @@ UnclaimedDraftCreateEmbeddedRequest.attributeTypeMap = [
     name: "populateAutoFillFields",
     baseName: "populate_auto_fill_fields",
     type: "boolean"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
   }
 ];
 ((UnclaimedDraftCreateEmbeddedRequest2) => {
@@ -24340,6 +24440,11 @@ UnclaimedDraftCreateRequest.attributeTypeMap = [
     name: "useTextTags",
     baseName: "use_text_tags",
     type: "boolean"
+  },
+  {
+    name: "expiresAt",
+    baseName: "expires_at",
+    type: "number"
   }
 ];
 ((UnclaimedDraftCreateRequest2) => {
@@ -24641,6 +24746,8 @@ var typeMap = {
   TeamGetInfoResponse,
   TeamGetResponse,
   TeamInfoResponse,
+  TeamInviteResponse,
+  TeamInvitesResponse,
   TeamMemberResponse,
   TeamMembersResponse,
   TeamParentResponse,
@@ -27628,9 +27735,9 @@ var SignatureRequestApi = class {
       });
     });
   }
-  signatureRequestFilesAsEncodedString(_0) {
+  signatureRequestFilesAsDataUri(_0) {
     return __async(this, arguments, function* (signatureRequestId, options = { headers: {} }) {
-      const localVarPath = this.basePath + "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf".replace(
+      const localVarPath = this.basePath + "/signature_request/files_as_data_uri/{signature_request_id}".replace(
         "{signature_request_id}",
         encodeURIComponent(String(signatureRequestId))
       );
@@ -27649,7 +27756,7 @@ var SignatureRequestApi = class {
       let localVarBodyParams = void 0;
       if (signatureRequestId === null || signatureRequestId === void 0) {
         throw new Error(
-          "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsEncodedString."
+          "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsDataUri."
         );
       }
       Object.assign(localVarHeaderParams, options.headers);
@@ -27732,7 +27839,7 @@ var SignatureRequestApi = class {
   }
   signatureRequestFilesAsFileUrl(_0) {
     return __async(this, arguments, function* (signatureRequestId, options = { headers: {} }) {
-      const localVarPath = this.basePath + "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf".replace(
+      const localVarPath = this.basePath + "/signature_request/files_as_file_url/{signature_request_id}".replace(
         "{signature_request_id}",
         encodeURIComponent(String(signatureRequestId))
       );
@@ -29260,6 +29367,106 @@ var TeamApi = class {
       });
     });
   }
+  teamInvites(_0) {
+    return __async(this, arguments, function* (emailAddress, options = { headers: {} }) {
+      const localVarPath = this.basePath + "/team/invites";
+      let localVarQueryParameters = {};
+      let localVarHeaderParams = Object.assign(
+        {},
+        this._defaultHeaders
+      );
+      const produces = ["application/json"];
+      if (produces.indexOf("application/json") >= 0) {
+        localVarHeaderParams["content-type"] = "application/json";
+      } else {
+        localVarHeaderParams["content-type"] = produces.join(",");
+      }
+      let localVarFormParams = {};
+      let localVarBodyParams = void 0;
+      if (emailAddress !== void 0) {
+        localVarQueryParameters["email_address"] = ObjectSerializer.serialize(
+          emailAddress,
+          "string"
+        );
+      }
+      Object.assign(localVarHeaderParams, options.headers);
+      let localVarUseFormData = false;
+      let localVarRequestOptions = {
+        method: "GET",
+        params: localVarQueryParameters,
+        headers: localVarHeaderParams,
+        url: localVarPath,
+        paramsSerializer: this._useQuerystring ? queryParamsSerializer : void 0,
+        responseType: "json"
+      };
+      let authenticationPromise = Promise.resolve();
+      if (this.authentications.api_key.username) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.api_key.applyToRequest(localVarRequestOptions)
+        );
+      }
+      if (this.authentications.oauth2.accessToken) {
+        authenticationPromise = authenticationPromise.then(
+          () => this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+        );
+      }
+      authenticationPromise = authenticationPromise.then(
+        () => this.authentications.default.applyToRequest(localVarRequestOptions)
+      );
+      let interceptorPromise = authenticationPromise;
+      for (const interceptor of this.interceptors) {
+        interceptorPromise = interceptorPromise.then(
+          () => interceptor(localVarRequestOptions)
+        );
+      }
+      return interceptorPromise.then(() => {
+        return new Promise(
+          (resolve, reject) => {
+            import_axios8.default.request(localVarRequestOptions).then(
+              (response) => {
+                let body = response.data;
+                if (response.status && response.status >= 200 && response.status <= 299) {
+                  body = ObjectSerializer.deserialize(
+                    body,
+                    "TeamInvitesResponse"
+                  );
+                  resolve({ response, body });
+                } else {
+                  reject(new HttpError(response, body, response.status));
+                }
+              },
+              (error) => {
+                if (error.response == null) {
+                  reject(error);
+                  return;
+                }
+                const response = error.response;
+                let body;
+                if (response.status === 200) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "TeamInvitesResponse"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+                let rangeCodeLeft = Number("4XX"[0] + "00");
+                let rangeCodeRight = Number("4XX"[0] + "99");
+                if (response.status >= rangeCodeLeft && response.status <= rangeCodeRight) {
+                  body = ObjectSerializer.deserialize(
+                    response.data,
+                    "ErrorResponse"
+                  );
+                  reject(new HttpError(response, body, response.status));
+                  return;
+                }
+              }
+            );
+          }
+        );
+      });
+    });
+  }
   teamMembers(_0, _1, _2) {
     return __async(this, arguments, function* (teamId, page, pageSize, options = { headers: {} }) {
       const localVarPath = this.basePath + "/team/members/{team_id}".replace(
@@ -30195,9 +30402,9 @@ var TemplateApi = class {
       });
     });
   }
-  templateFilesAsEncodedString(_0) {
+  templateFilesAsDataUri(_0) {
     return __async(this, arguments, function* (templateId, options = { headers: {} }) {
-      const localVarPath = this.basePath + "/template/files/{template_id}?get_data_uri=1&file_type=pdf".replace(
+      const localVarPath = this.basePath + "/template/files_as_data_uri/{template_id}".replace(
         "{template_id}",
         encodeURIComponent(String(templateId))
       );
@@ -30216,7 +30423,7 @@ var TemplateApi = class {
       let localVarBodyParams = void 0;
       if (templateId === null || templateId === void 0) {
         throw new Error(
-          "Required parameter templateId was null or undefined when calling templateFilesAsEncodedString."
+          "Required parameter templateId was null or undefined when calling templateFilesAsDataUri."
         );
       }
       Object.assign(localVarHeaderParams, options.headers);
@@ -30299,7 +30506,7 @@ var TemplateApi = class {
   }
   templateFilesAsFileUrl(_0) {
     return __async(this, arguments, function* (templateId, options = { headers: {} }) {
-      const localVarPath = this.basePath + "/template/files/{template_id}?get_url=1&file_type=pdf".replace(
+      const localVarPath = this.basePath + "/template/files_as_file_url/{template_id}".replace(
         "{template_id}",
         encodeURIComponent(String(templateId))
       );
@@ -31633,6 +31840,8 @@ var shouldJsonify = (val) => val === Object(val);
   TeamGetInfoResponse,
   TeamGetResponse,
   TeamInfoResponse,
+  TeamInviteResponse,
+  TeamInvitesResponse,
   TeamMemberResponse,
   TeamMembersResponse,
   TeamParentResponse,

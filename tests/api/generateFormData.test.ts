@@ -7,7 +7,7 @@ import * as m from '../../model/models';
 import { toObj } from '../test_utils';
 
 describe('GenerateformDataTest', () => {
-  const rootFilePath = __dirname + '/../../oas/test_fixtures';
+  const rootFilePath = __dirname + '/../../test_fixtures';
 
   it('testSingleFileInstantiated', () => {
     const instantiateFiles = true;

@@ -16,6 +16,7 @@ export declare class SignatureRequestResponseSignatures {
     "smsPhoneNumber"?: string | null;
     "reassignedBy"?: string | null;
     "reassignmentReason"?: string | null;
+    "reassignedFrom"?: string | null;
     "error"?: string | null;
     static discriminator: string | undefined;
     static attributeTypeMap: AttributeTypeMap;

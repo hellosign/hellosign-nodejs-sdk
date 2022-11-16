@@ -47,7 +47,7 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "file"?: Array<RequestFile>;
   /**
-   * Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+   * Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    */
   "fileUrl"?: Array<string>;
   /**
@@ -71,7 +71,7 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "ccEmailAddresses"?: Array<string>;
   /**
-   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
+   * When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
    */
   "customFields"?: Array<SubCustomField>;
   "editorOptions"?: SubEditorOptions;
@@ -163,9 +163,13 @@ export class UnclaimedDraftCreateEmbeddedRequest {
    */
   "useTextTags"?: boolean = false;
   /**
-   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer\'s information during signing.    ⚠️ **Note** ⚠️: Keep your signer\'s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer\'s information during signing.  ⚠️ **Note** ⚠️: Keep your signer\'s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
    */
   "populateAutoFillFields"?: boolean = false;
+  /**
+   * When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.  **Note** This does not correspond to the **expires_at** returned in the response.
+   */
+  "expiresAt"?: number | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -344,6 +348,11 @@ export class UnclaimedDraftCreateEmbeddedRequest {
       name: "populateAutoFillFields",
       baseName: "populate_auto_fill_fields",
       type: "boolean",
+    },
+    {
+      name: "expiresAt",
+      baseName: "expires_at",
+      type: "number",
     },
   ];
 

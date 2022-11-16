@@ -155,7 +155,7 @@ export class SignatureRequestApi {
   }
 
   /**
-   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
    * @summary Embedded Bulk Send with Template
    * @param signatureRequestBulkCreateEmbeddedWithTemplateRequest
    * @param options
@@ -573,7 +573,7 @@ export class SignatureRequestApi {
     });
   }
   /**
-   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @summary Create Embedded Signature Request
    * @param signatureRequestCreateEmbeddedRequest
    * @param options
@@ -731,7 +731,7 @@ export class SignatureRequestApi {
     });
   }
   /**
-   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @summary Create Embedded Signature Request with Template
    * @param signatureRequestCreateEmbeddedWithTemplateRequest
    * @param options
@@ -891,7 +891,7 @@ export class SignatureRequestApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
-   * @summary Download File
+   * @summary Download Files
    * @param signatureRequestId The id of the SignatureRequest to retrieve.
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents.
    * @param options
@@ -1028,17 +1028,17 @@ export class SignatureRequestApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
-   * @summary Download File as Encoded String
+   * @summary Download Files as Data Uri
    * @param signatureRequestId The id of the SignatureRequest to retrieve.
    * @param options
    */
-  public async signatureRequestFilesAsEncodedString(
+  public async signatureRequestFilesAsDataUri(
     signatureRequestId: string,
     options: optionsI = { headers: {} }
   ): Promise<returnTypeT<FileResponseDataUri>> {
     const localVarPath =
       this.basePath +
-      "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf".replace(
+      "/signature_request/files_as_data_uri/{signature_request_id}".replace(
         "{" + "signature_request_id" + "}",
         encodeURIComponent(String(signatureRequestId))
       );
@@ -1060,7 +1060,7 @@ export class SignatureRequestApi {
     // verify required parameter 'signatureRequestId' is not null or undefined
     if (signatureRequestId === null || signatureRequestId === undefined) {
       throw new Error(
-        "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsEncodedString."
+        "Required parameter signatureRequestId was null or undefined when calling signatureRequestFilesAsDataUri."
       );
     }
 
@@ -1164,7 +1164,7 @@ export class SignatureRequestApi {
   }
   /**
    * Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
-   * @summary Download File as File Url
+   * @summary Download Files as File Url
    * @param signatureRequestId The id of the SignatureRequest to retrieve.
    * @param options
    */
@@ -1174,7 +1174,7 @@ export class SignatureRequestApi {
   ): Promise<returnTypeT<FileResponse>> {
     const localVarPath =
       this.basePath +
-      "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf".replace(
+      "/signature_request/files_as_file_url/{signature_request_id}".replace(
         "{" + "signature_request_id" + "}",
         encodeURIComponent(String(signatureRequestId))
       );

@@ -30,6 +30,7 @@ import { TeamAddMemberRequest } from "../model/teamAddMemberRequest";
 import { TeamCreateRequest } from "../model/teamCreateRequest";
 import { TeamGetInfoResponse } from "../model/teamGetInfoResponse";
 import { TeamGetResponse } from "../model/teamGetResponse";
+import { TeamInvitesResponse } from "../model/teamInvitesResponse";
 import { TeamMembersResponse } from "../model/teamMembersResponse";
 import { TeamRemoveMemberRequest } from "../model/teamRemoveMemberRequest";
 import { TeamSubTeamsResponse } from "../model/teamSubTeamsResponse";
@@ -150,7 +151,7 @@ export class TeamApi {
   }
 
   /**
-   * Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
+   * Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
    * @summary Add User to Team
    * @param teamAddMemberRequest
    * @param teamId The id of the team.
@@ -768,6 +769,137 @@ export class TeamApi {
                 body = ObjectSerializer.deserialize(
                   response.data,
                   "TeamGetInfoResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+
+              let rangeCodeLeft = Number("4XX"[0] + "00");
+              let rangeCodeRight = Number("4XX"[0] + "99");
+              if (
+                response.status >= rangeCodeLeft &&
+                response.status <= rangeCodeRight
+              ) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "ErrorResponse"
+                );
+
+                reject(new HttpError(response, body, response.status));
+                return;
+              }
+            }
+          );
+        }
+      );
+    });
+  }
+  /**
+   * Provides a list of team invites (and their roles).
+   * @summary List Team Invites
+   * @param emailAddress The email address for which to display the team invites.
+   * @param options
+   */
+  public async teamInvites(
+    emailAddress?: string,
+    options: optionsI = { headers: {} }
+  ): Promise<returnTypeT<TeamInvitesResponse>> {
+    const localVarPath = this.basePath + "/team/invites";
+    let localVarQueryParameters: any = {};
+    let localVarHeaderParams: any = (<any>Object).assign(
+      {},
+      this._defaultHeaders
+    );
+    const produces = ["application/json"];
+    // give precedence to 'application/json'
+    if (produces.indexOf("application/json") >= 0) {
+      localVarHeaderParams["content-type"] = "application/json";
+    } else {
+      localVarHeaderParams["content-type"] = produces.join(",");
+    }
+    let localVarFormParams: any = {};
+    let localVarBodyParams: any = undefined;
+
+    if (emailAddress !== undefined) {
+      localVarQueryParameters["email_address"] = ObjectSerializer.serialize(
+        emailAddress,
+        "string"
+      );
+    }
+
+    (<any>Object).assign(localVarHeaderParams, options.headers);
+
+    let localVarUseFormData = false;
+
+    let localVarRequestOptions: AxiosRequestConfig = {
+      method: "GET",
+      params: localVarQueryParameters,
+      headers: localVarHeaderParams,
+      url: localVarPath,
+      paramsSerializer: this._useQuerystring
+        ? queryParamsSerializer
+        : undefined,
+      responseType: "json",
+    };
+
+    let authenticationPromise = Promise.resolve();
+    if (this.authentications.api_key.username) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.api_key.applyToRequest(localVarRequestOptions)
+      );
+    }
+    if (this.authentications.oauth2.accessToken) {
+      authenticationPromise = authenticationPromise.then(() =>
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions)
+      );
+    }
+    authenticationPromise = authenticationPromise.then(() =>
+      this.authentications.default.applyToRequest(localVarRequestOptions)
+    );
+
+    let interceptorPromise = authenticationPromise;
+    for (const interceptor of this.interceptors) {
+      interceptorPromise = interceptorPromise.then(() =>
+        interceptor(localVarRequestOptions)
+      );
+    }
+
+    return interceptorPromise.then(() => {
+      return new Promise<returnTypeT<TeamInvitesResponse>>(
+        (resolve, reject) => {
+          axios.request(localVarRequestOptions).then(
+            (response) => {
+              let body = response.data;
+
+              if (
+                response.status &&
+                response.status >= 200 &&
+                response.status <= 299
+              ) {
+                body = ObjectSerializer.deserialize(
+                  body,
+                  "TeamInvitesResponse"
+                );
+                resolve({ response: response, body: body });
+              } else {
+                reject(new HttpError(response, body, response.status));
+              }
+            },
+            (error: AxiosError) => {
+              if (error.response == null) {
+                reject(error);
+                return;
+              }
+
+              const response = error.response;
+
+              let body;
+
+              if (response.status === 200) {
+                body = ObjectSerializer.deserialize(
+                  response.data,
+                  "TeamInvitesResponse"
                 );
 
                 reject(new HttpError(response, body, response.status));

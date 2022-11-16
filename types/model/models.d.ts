@@ -112,6 +112,8 @@ export * from "./teamCreateRequest";
 export * from "./teamGetInfoResponse";
 export * from "./teamGetResponse";
 export * from "./teamInfoResponse";
+export * from "./teamInviteResponse";
+export * from "./teamInvitesResponse";
 export * from "./teamMemberResponse";
 export * from "./teamMembersResponse";
 export * from "./teamParentResponse";

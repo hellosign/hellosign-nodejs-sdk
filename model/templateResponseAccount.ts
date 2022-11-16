@@ -39,7 +39,7 @@ export class TemplateResponseAccount {
    */
   "isLocked"?: boolean;
   /**
-   * Returns `true` if the user has a paid HelloSign account.
+   * Returns `true` if the user has a paid Dropbox Sign account.
    */
   "isPaidHs"?: boolean;
   /**

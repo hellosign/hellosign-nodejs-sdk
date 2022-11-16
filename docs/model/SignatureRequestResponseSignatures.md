@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 | `smsPhoneNumber` | ```string``` |  The SMS phone number used for authentication or signature request delivery.  |  |
 | `reassignedBy` | ```string``` |  Email address of original signer who reassigned to this signer.  |  |
 | `reassignmentReason` | ```string``` |  Reason provided by original signer who reassigned to this signer.  |  |
+| `reassignedFrom` | ```string``` |  Previous signature identifier.  |  |
 | `error` | ```string``` |  Error message pertaining to this signer, or null.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

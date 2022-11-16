@@ -1,6 +1,6 @@
 # 
 
-HelloSign v3 API
+Dropbox Sign v3 API
 
 
 ## ⚠ This package is not yet ready for production use ⚠
@@ -11,6 +11,17 @@ You should think twice before using package on anything critical.
 
 The interfaces may change without warning. Backwards compatibility is not yet
 guaranteed nor implied!
+
+## Contributing
+
+This repo is no longer accepting new issues or Pull Requests. All issues or
+Pull Requests *must* be opened against the
+[hellosign/hellosign-openapi](https://github.com/hellosign/hellosign-openapi) repo!
+
+### Changes to the SDK code
+
+You must make SDK code changes in the mustache file within the `templates`
+directory that corresponds to the file you want updated.
 
 ## Installation & Usage
 
@@ -119,9 +130,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *SignatureRequestApi* | [**signatureRequestCancel**](./docs/api/SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](./docs/api/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](./docs/api/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| *SignatureRequestApi* | [**signatureRequestFiles**](./docs/api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
-| *SignatureRequestApi* | [**signatureRequestFilesAsEncodedString**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasencodedstring) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String |
-| *SignatureRequestApi* | [**signatureRequestFilesAsFileUrl**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url |
+| *SignatureRequestApi* | [**signatureRequestFiles**](./docs/api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| *SignatureRequestApi* | [**signatureRequestFilesAsDataUri**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasdatauri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri |
+| *SignatureRequestApi* | [**signatureRequestFilesAsFileUrl**](./docs/api/SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url |
 | *SignatureRequestApi* | [**signatureRequestGet**](./docs/api/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | *SignatureRequestApi* | [**signatureRequestList**](./docs/api/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
 | *SignatureRequestApi* | [**signatureRequestReleaseHold**](./docs/api/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -135,6 +146,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *TeamApi* | [**teamDelete**](./docs/api/TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team |
 | *TeamApi* | [**teamGet**](./docs/api/TeamApi.md#teamget) | **GET** /team | Get Team |
 | *TeamApi* | [**teamInfo**](./docs/api/TeamApi.md#teaminfo) | **GET** /team/info | Get Team Info |
+| *TeamApi* | [**teamInvites**](./docs/api/TeamApi.md#teaminvites) | **GET** /team/invites | List Team Invites |
 | *TeamApi* | [**teamMembers**](./docs/api/TeamApi.md#teammembers) | **GET** /team/members/{team_id} | List Team Members |
 | *TeamApi* | [**teamRemoveMember**](./docs/api/TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team |
 | *TeamApi* | [**teamSubTeams**](./docs/api/TeamApi.md#teamsubteams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
@@ -142,9 +154,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *TemplateApi* | [**templateAddUser**](./docs/api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | *TemplateApi* | [**templateCreateEmbeddedDraft**](./docs/api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | *TemplateApi* | [**templateDelete**](./docs/api/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template |
-| *TemplateApi* | [**templateFiles**](./docs/api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template File |
-| *TemplateApi* | [**templateFilesAsEncodedString**](./docs/api/TemplateApi.md#templatefilesasencodedstring) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String |
-| *TemplateApi* | [**templateFilesAsFileUrl**](./docs/api/TemplateApi.md#templatefilesasfileurl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url |
+| *TemplateApi* | [**templateFiles**](./docs/api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template Files |
+| *TemplateApi* | [**templateFilesAsDataUri**](./docs/api/TemplateApi.md#templatefilesasdatauri) | **GET** /template/files_as_data_uri/{template_id} | Get Template Files as Data Uri |
+| *TemplateApi* | [**templateFilesAsFileUrl**](./docs/api/TemplateApi.md#templatefilesasfileurl) | **GET** /template/files_as_file_url/{template_id} | Get Template Files as File Url |
 | *TemplateApi* | [**templateGet**](./docs/api/TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template |
 | *TemplateApi* | [**templateList**](./docs/api/TemplateApi.md#templatelist) | **GET** /template/list | List Templates |
 | *TemplateApi* | [**templateRemoveUser**](./docs/api/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -268,6 +280,8 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [TeamGetInfoResponse](./docs/model/TeamGetInfoResponse.md)
 - [TeamGetResponse](./docs/model/TeamGetResponse.md)
 - [TeamInfoResponse](./docs/model/TeamInfoResponse.md)
+- [TeamInviteResponse](./docs/model/TeamInviteResponse.md)
+- [TeamInvitesResponse](./docs/model/TeamInvitesResponse.md)
 - [TeamMemberResponse](./docs/model/TeamMemberResponse.md)
 - [TeamMembersResponse](./docs/model/TeamMembersResponse.md)
 - [TeamParentResponse](./docs/model/TeamParentResponse.md)

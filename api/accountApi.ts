@@ -148,7 +148,7 @@ export class AccountApi {
   }
 
   /**
-   * Creates a new HelloSign Account that is associated with the specified `email_address`.
+   * Creates a new Dropbox Sign Account that is associated with the specified `email_address`.
    * @summary Create Account
    * @param accountCreateRequest
    * @param options
@@ -588,7 +588,7 @@ export class AccountApi {
     });
   }
   /**
-   * Verifies whether an HelloSign Account exists for the given email address.
+   * Verifies whether an Dropbox Sign Account exists for the given email address.
    * @summary Verify Account
    * @param accountVerifyRequest
    * @param options

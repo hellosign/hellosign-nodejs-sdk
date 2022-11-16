@@ -37,6 +37,10 @@ export class SignatureRequestUpdateRequest {
    * The new name for the recipient.  **NOTE**: Optional if `email_address` is provided.
    */
   "name"?: string;
+  /**
+   * The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.
+   */
+  "expiresAt"?: number | null;
 
   static discriminator: string | undefined = undefined;
 
@@ -55,6 +59,11 @@ export class SignatureRequestUpdateRequest {
       name: "name",
       baseName: "name",
       type: "string",
+    },
+    {
+      name: "expiresAt",
+      baseName: "expires_at",
+      type: "number",
     },
   ];
 

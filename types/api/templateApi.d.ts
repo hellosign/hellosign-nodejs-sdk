@@ -44,7 +44,7 @@ export declare class TemplateApi {
     templateCreateEmbeddedDraft(templateCreateEmbeddedDraftRequest: TemplateCreateEmbeddedDraftRequest, options?: optionsI): Promise<returnTypeT<TemplateCreateEmbeddedDraftResponse>>;
     templateDelete(templateId: string, options?: optionsI): Promise<returnTypeI>;
     templateFiles(templateId: string, fileType?: "pdf" | "zip", options?: optionsI): Promise<returnTypeT<Buffer>>;
-    templateFilesAsEncodedString(templateId: string, options?: optionsI): Promise<returnTypeT<FileResponseDataUri>>;
+    templateFilesAsDataUri(templateId: string, options?: optionsI): Promise<returnTypeT<FileResponseDataUri>>;
     templateFilesAsFileUrl(templateId: string, options?: optionsI): Promise<returnTypeT<FileResponse>>;
     templateGet(templateId: string, options?: optionsI): Promise<returnTypeT<TemplateGetResponse>>;
     templateList(accountId?: string, page?: number, pageSize?: number, query?: string, options?: optionsI): Promise<returnTypeT<TemplateListResponse>>;
