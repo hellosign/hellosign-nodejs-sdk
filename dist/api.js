@@ -18619,6 +18619,11 @@ AccountResponseQuotas.attributeTypeMap = [
     type: "number"
   },
   {
+    name: "totalTemplates",
+    baseName: "total_templates",
+    type: "number"
+  },
+  {
     name: "templatesLeft",
     baseName: "templates_left",
     type: "number"
