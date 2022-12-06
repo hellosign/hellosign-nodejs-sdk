@@ -59,7 +59,7 @@ export class ApiAppResponse {
   "oauth"?: ApiAppResponseOAuth | null;
   "options"?: ApiAppResponseOptions | null;
   "ownerAccount"?: ApiAppResponseOwnerAccount;
-  "whiteLabelingOptions"?: ApiAppResponseWhiteLabelingOptions;
+  "whiteLabelingOptions"?: ApiAppResponseWhiteLabelingOptions | null;
 
   static discriminator: string | undefined = undefined;
 

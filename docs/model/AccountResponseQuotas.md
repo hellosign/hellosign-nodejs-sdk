@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 | `apiSignatureRequestsLeft` | ```number``` |  API signature requests remaining.  |  |
 | `documentsLeft` | ```number``` |  Signature requests remaining.  |  |
+| `totalTemplates` | ```number``` |  Total API templates allowed.  |  |
 | `templatesLeft` | ```number``` |  API templates remaining.  |  |
 | `smsVerificationsLeft` | ```number``` |  SMS verifications  remaining.  |  |
 
