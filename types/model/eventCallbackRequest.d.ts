@@ -3,7 +3,7 @@ import { AccountResponse } from "./accountResponse";
 import { EventCallbackRequestEvent } from "./eventCallbackRequestEvent";
 import { SignatureRequestResponse } from "./signatureRequestResponse";
 import { TemplateResponse } from "./templateResponse";
-export declare class EventCallbackApiAppRequestPayload {
+export declare class EventCallbackRequest {
     "event": EventCallbackRequestEvent;
     "account"?: AccountResponse;
     "signatureRequest"?: SignatureRequestResponse;

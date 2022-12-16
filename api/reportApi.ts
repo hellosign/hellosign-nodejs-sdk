@@ -65,18 +65,6 @@ export class ReportApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -135,14 +123,6 @@ export class ReportApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Request the creation of one or more report(s).  When the report(s) have been generated, you will receive an email (one per requested report type) containing a link to download the report as a CSV file. The requested date range may be up to 12 months in duration, and `start_date` must not be more than 10 years in the past.
    * @summary Create Report
@@ -182,9 +162,7 @@ export class ReportApi {
 
     const result = generateFormData(
       reportCreateRequest,
-      ReportCreateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      ReportCreateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

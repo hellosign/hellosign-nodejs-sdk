@@ -26,6 +26,8 @@ Creates a new API App.
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.ApiAppApi();
 
 // Configure HTTP basic authorization: api_key
@@ -50,7 +52,7 @@ const whiteLabelingOptions: HelloSignSDK.SubWhiteLabelingOptions = {
 const data: HelloSignSDK.ApiAppCreateRequest = {
   name: "My Production App",
   domains: ["example.com"],
-  customLogoFile: "./CustomLogoFile.png",
+  customLogoFile: fs.createReadStream("CustomLogoFile.png"),
   oauth,
   whiteLabelingOptions,
 };
@@ -69,6 +71,8 @@ result.then(response => {
 
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
+
+const fs = require('fs');
 
 const api = new HelloSignSDK.ApiAppApi();
 
@@ -94,7 +98,7 @@ const whiteLabelingOptions = {
 const data = {
   name: "My Production App",
   domains: ["example.com"],
-  customLogoFile: "./CustomLogoFile.png",
+  customLogoFile: fs.createReadStream("CustomLogoFile.png"),
   oauth,
   whiteLabelingOptions,
 };
@@ -399,6 +403,8 @@ Updates an existing API App. Can only be invoked for apps you own. Only the fiel
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.ApiAppApi();
 
 // Configure HTTP basic authorization: api_key
@@ -415,7 +421,7 @@ const whiteLabelingOptions: HelloSignSDK.SubWhiteLabelingOptions = {
 const data: HelloSignSDK.ApiAppUpdateRequest = {
   name: "New Name",
   callbackUrl: "http://example.com/hellosign",
-  customLogoFile: "./CustomLogoFile.png",
+  customLogoFile: fs.createReadStream("CustomLogoFile.png"),
   whiteLabelingOptions,
 };
 
@@ -436,6 +442,8 @@ result.then(response => {
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.ApiAppApi();
 
 // Configure HTTP basic authorization: api_key
@@ -452,7 +460,7 @@ const whiteLabelingOptions = {
 const data = {
   name: "New Name",
   callbackUrl: "http://example.com/hellosign",
-  customLogoFile: "./CustomLogoFile.png",
+  customLogoFile: fs.createReadStream("CustomLogoFile.png"),
   whiteLabelingOptions,
 };
 

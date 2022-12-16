@@ -10,6 +10,7 @@ import {
 } from '../test_utils';
 
 const axios = require('axios');
+const fs = require('fs');
 const MockAdapter = require('axios-mock-adapter');
 
 describe('TemplateApiTest', () => {
@@ -20,8 +21,7 @@ describe('TemplateApiTest', () => {
   });
 
   const api = new TemplateApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
+  const rootFilePath = __dirname + '/../../test_fixtures';
 
   it('testTemplateAddUser', () => {
     const templateId = 'f57db65d3f933b5316d398057a36176831451a35';
@@ -58,6 +58,7 @@ describe('TemplateApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.TemplateCreateEmbeddedDraftRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.templateCreateEmbeddedDraft(obj).then(response => {
       const diff = diffJson(
@@ -178,6 +179,7 @@ describe('TemplateApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.TemplateUpdateFilesRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.templateUpdateFiles(templateId, obj).then(response => {
       const diff = diffJson(

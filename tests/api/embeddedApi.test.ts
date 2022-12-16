@@ -20,8 +20,6 @@ describe('EmbeddedApiTest', () => {
   });
 
   const api = new EmbeddedApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testEmbeddedEditUrl', () => {
     const templateId = '5de8179668f2033afac48da1868d0093bf133266';

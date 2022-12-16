@@ -37,7 +37,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TemplateAddUserRequest = {
   emailAddress: "george@hellosign.com",
@@ -66,7 +66,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   emailAddress: "george@hellosign.com",
@@ -123,13 +123,15 @@ The first step in an embedded template workflow. Creates a draft template that c
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.TemplateApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const role1: HelloSignSDK.SubTemplateRole = {
   name: "Client",
@@ -157,7 +159,7 @@ const fieldOptions: HelloSignSDK.SubFieldOptions = {
 
 const data: HelloSignSDK.TemplateCreateEmbeddedDraftRequest = {
   clientId: "37dee8d8440c66d54cfa05d92c160882",
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   title: "Test Template",
   subject: "Please sign this document",
   message: "For your approval",
@@ -189,13 +191,15 @@ result.then(response => {
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.TemplateApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const role1 = {
   name: "Client",
@@ -223,7 +227,7 @@ const fieldOptions = {
 
 const data = {
   clientId: "37dee8d8440c66d54cfa05d92c160882",
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   title: "Test Template",
   subject: "Please sign this document",
   message: "For your approval",
@@ -294,7 +298,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -319,7 +323,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -370,6 +374,7 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
+import * as fs from 'fs';
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -377,13 +382,14 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+const fileType = "pdf";
 
-const result = api.templateFiles(templateId);
+const result = api.templateFiles(templateId, fileType);
 result.then(response => {
-  console.log(response.body);
+  fs.createWriteStream('file_response.pdf').write(response.body);
 }).catch(error => {
   console.log("Exception when calling HelloSign API:");
   console.log(error.body);
@@ -395,6 +401,7 @@ result.then(response => {
 
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
+import * as fs from 'fs';
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -402,13 +409,14 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+const fileType = "pdf";
 
-const result = api.templateFiles(templateId);
+const result = api.templateFiles(templateId, fileType);
 result.then(response => {
-  console.log(response.body);
+  fs.createWriteStream('file_response.pdf').write(response.body);
 }).catch(error => {
   console.log("Exception when calling HelloSign API:");
   console.log(error.body);
@@ -448,7 +456,7 @@ templateFilesAsDataUri(templateId: string): FileResponseDataUri
 
 Get Template Files as Data Uri
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### TypeScript Example
 
@@ -461,7 +469,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -486,7 +494,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -531,7 +539,7 @@ templateFilesAsFileUrl(templateId: string): FileResponse
 
 Get Template Files as File Url
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### TypeScript Example
 
@@ -544,7 +552,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -569,7 +577,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
@@ -627,7 +635,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
@@ -652,7 +660,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
@@ -710,7 +718,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const accountId = "f57db65d3f933b5316d398057a36176831451a35";
 
@@ -735,7 +743,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const accountId = "f57db65d3f933b5316d398057a36176831451a35";
 
@@ -796,7 +804,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TemplateRemoveUserRequest = {
   emailAddress: "george@hellosign.com",
@@ -825,7 +833,7 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   emailAddress: "george@hellosign.com",
@@ -882,16 +890,18 @@ Overlays a new file with the overlay of an existing template. The new file(s) mu
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.TemplateApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TemplateUpdateFilesRequest = {
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
 };
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
@@ -911,16 +921,18 @@ result.then(response => {
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.TemplateApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
 };
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";

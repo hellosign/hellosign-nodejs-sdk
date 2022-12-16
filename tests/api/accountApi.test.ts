@@ -20,8 +20,6 @@ describe('AccountApiTest', () => {
   });
 
   const api = new AccountApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testHttpCodeRange', () => {
     const requestClass = 'AccountVerifyRequest';
@@ -72,7 +70,7 @@ describe('AccountApiTest', () => {
 
     setExpectedResponse(mock, responseData, 200);
 
-    api.accountGet().then(response => {
+    api.accountGet(undefined, "jack@example.com").then(response => {
       const diff = diffJson(
         response.body,
         toObj<typeof response.body>(responseData, responseClass),

@@ -20,7 +20,6 @@ export * from "./unclaimedDraftApi";
 import { UnclaimedDraftApi } from "./unclaimedDraftApi";
 import { AttributeTypeMap, ObjectSerializer } from "../model/models";
 import * as http from "http";
-import fs from "fs";
 import { AxiosResponse } from "axios";
 import formData from "form-data";
 import Qs from "qs";
@@ -70,21 +69,16 @@ export const APIS = [
 ];
 
 /**
- * Generates an object containing binary (file) data and other form data.
+ * Generates an object containing form data.
  *
- * Binary data is left as-is and added to root-level data
- * Non-binary data is converted to JSON and added to data.body
+ * Data is converted to JSON and added to data.body
  *
  * @param obj
  * @param typemap
- * @param instantiateFiles
- * @param rootFilePath
  */
 export const generateFormData = (
   obj: any,
-  typemap: AttributeTypeMap,
-  instantiateFiles: boolean,
-  rootFilePath?: string
+  typemap: AttributeTypeMap
 ): { localVarUseFormData: boolean; data: object } => {
   const data = {};
   let localVarUseFormData = false;
@@ -109,19 +103,6 @@ export const generateFormData = (
       localVarUseFormData = true;
 
       /**
-       * User is able to pass the path to a file they want to upload.
-       * Here we can instantiate the object for them,
-       * ony if instantiateFiles is true
-       */
-      if (instantiateFiles && typeof obj[paramInfo.name] === "string") {
-        const filepath = rootFilePath
-          ? `${rootFilePath}/${obj[paramInfo.name]}`
-          : obj[paramInfo.name];
-        data[paramInfo.baseName] = fs.createReadStream(filepath);
-        return;
-      }
-
-      /**
        * Some parameters can be arrays of files
        */
       if (Array.isArray(obj[paramInfo.name])) {
@@ -138,14 +119,6 @@ export const generateFormData = (
            * form["file[1]"] = ...
            */
           const key = `${paramInfo.baseName}[${i}]`;
-
-          if (instantiateFiles && typeof childObject === "string") {
-            const filepath = rootFilePath
-              ? `${rootFilePath}/${childObject}`
-              : childObject;
-            data[key] = fs.createReadStream(filepath);
-            return;
-          }
 
           data[key] = childObject;
         });

@@ -1,4 +1,5 @@
 import * as HelloSignSDK from "hellosign-sdk";
+import * as fs from 'fs';
 
 const api = new HelloSignSDK.TemplateApi();
 
@@ -6,13 +7,14 @@ const api = new HelloSignSDK.TemplateApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const templateId = "5de8179668f2033afac48da1868d0093bf133266";
+const fileType = "pdf";
 
-const result = api.templateFiles(templateId);
+const result = api.templateFiles(templateId, fileType);
 result.then(response => {
-  console.log(response.body);
+  fs.createWriteStream('file_response.pdf').write(response.body);
 }).catch(error => {
   console.log("Exception when calling HelloSign API:");
   console.log(error.body);

@@ -39,18 +39,6 @@ export class {{classname}} {
     protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
-    /**
-     * Allows instantiating files when using ObjectSerializer::deserialize()
-     * @param bool
-     */
-    protected _instantiateFiles = false;
-
-    /**
-     * Define the base location to look for file uploads
-     * @param path
-     */
-    protected _rootFilePath?: string;
-
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
 {{#hasAuthMethods}}
@@ -137,14 +125,6 @@ export class {{classname}} {
         this.interceptors.push(interceptor);
     }
 
-    set instantiateFiles(flag: boolean) {
-      this._instantiateFiles = flag;
-    }
-
-    set rootFilePath(path: string | undefined) {
-      this._rootFilePath = path;
-    }
-
 {{#operation}}
     /**
      * {{&notes}}
@@ -211,7 +191,7 @@ export class {{classname}} {
 {{/formParams}}
 
         {{#bodyParam}}
-        const result = generateFormData({{{paramName}}}, {{{dataType}}}.attributeTypeMap, this._instantiateFiles, this._rootFilePath,);
+        const result = generateFormData({{{paramName}}}, {{{dataType}}}.attributeTypeMap);
         localVarUseFormData = result.localVarUseFormData;
 
         let data = {};

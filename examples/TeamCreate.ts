@@ -6,7 +6,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TeamCreateRequest = {
   name: "New Team Name"

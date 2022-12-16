@@ -73,18 +73,6 @@ export class TemplateApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -143,14 +131,6 @@ export class TemplateApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.
    * @summary Add User to Template
@@ -207,9 +187,7 @@ export class TemplateApi {
 
     const result = generateFormData(
       templateAddUserRequest,
-      TemplateAddUserRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TemplateAddUserRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -365,9 +343,7 @@ export class TemplateApi {
 
     const result = generateFormData(
       templateCreateEmbeddedDraftRequest,
-      TemplateCreateEmbeddedDraftRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TemplateCreateEmbeddedDraftRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -724,7 +700,7 @@ export class TemplateApi {
     });
   }
   /**
-   * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+   * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
    * @summary Get Template Files as Data Uri
    * @param templateId The id of the template files to retrieve.
    * @param options
@@ -860,7 +836,7 @@ export class TemplateApi {
     });
   }
   /**
-   * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+   * Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
    * @summary Get Template Files as File Url
    * @param templateId The id of the template files to retrieve.
    * @param options
@@ -1340,9 +1316,7 @@ export class TemplateApi {
 
     const result = generateFormData(
       templateRemoveUserRequest,
-      TemplateRemoveUserRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TemplateRemoveUserRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -1512,9 +1486,7 @@ export class TemplateApi {
 
     const result = generateFormData(
       templateUpdateFilesRequest,
-      TemplateUpdateFilesRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TemplateUpdateFilesRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

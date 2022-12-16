@@ -1,8 +1,6 @@
 import 'jest';
-import {
-  eventCallbackIsValid,
-  EventCallbackApiAppRequest,
-} from '../../model/models';
+import { EventCallbackRequest, EventCallbackHelper } from '../../model/models';
+
 import { getFixtureData, toObj } from '../test_utils';
 
 describe('eventCallbackHelper', () => {
@@ -12,13 +10,10 @@ describe('eventCallbackHelper', () => {
 
   for (const [key, data] of Object.entries(fixtureData)) {
     it(`event callback for type ${key} is valid`, () => {
-      const obj = toObj<EventCallbackApiAppRequest>(
-        { json: data },
-        'EventCallbackApiAppRequest'
-      );
+      const obj = toObj<EventCallbackRequest>(data, EventCallbackRequest.name);
 
-      expect(eventCallbackIsValid(apiKey, obj.json.event)).toBeTruthy();
-      expect(eventCallbackIsValid(apiKeyRev, obj.json.event)).toBeFalsy();
+      expect(EventCallbackHelper.isValid(apiKey, obj)).toBeTruthy();
+      expect(EventCallbackHelper.isValid(apiKeyRev, obj)).toBeFalsy();
     });
   }
 });

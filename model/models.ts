@@ -30,10 +30,7 @@ export * from "./embeddedSignUrlResponse";
 export * from "./embeddedSignUrlResponseEmbedded";
 export * from "./errorResponse";
 export * from "./errorResponseError";
-export * from "./eventCallbackAccountRequest";
-export * from "./eventCallbackAccountRequestPayload";
-export * from "./eventCallbackApiAppRequest";
-export * from "./eventCallbackApiAppRequestPayload";
+export * from "./eventCallbackRequest";
 export * from "./eventCallbackRequestEvent";
 export * from "./eventCallbackRequestEventMetadata";
 export * from "./fileResponse";
@@ -204,10 +201,7 @@ import { EmbeddedSignUrlResponse } from "./embeddedSignUrlResponse";
 import { EmbeddedSignUrlResponseEmbedded } from "./embeddedSignUrlResponseEmbedded";
 import { ErrorResponse } from "./errorResponse";
 import { ErrorResponseError } from "./errorResponseError";
-import { EventCallbackAccountRequest } from "./eventCallbackAccountRequest";
-import { EventCallbackAccountRequestPayload } from "./eventCallbackAccountRequestPayload";
-import { EventCallbackApiAppRequest } from "./eventCallbackApiAppRequest";
-import { EventCallbackApiAppRequestPayload } from "./eventCallbackApiAppRequestPayload";
+import { EventCallbackRequest } from "./eventCallbackRequest";
 import { EventCallbackRequestEvent } from "./eventCallbackRequestEvent";
 import { EventCallbackRequestEventMetadata } from "./eventCallbackRequestEventMetadata";
 import { FileResponse } from "./fileResponse";
@@ -406,10 +400,7 @@ let typeMap: { [index: string]: any } = {
   EmbeddedSignUrlResponseEmbedded: EmbeddedSignUrlResponseEmbedded,
   ErrorResponse: ErrorResponse,
   ErrorResponseError: ErrorResponseError,
-  EventCallbackAccountRequest: EventCallbackAccountRequest,
-  EventCallbackAccountRequestPayload: EventCallbackAccountRequestPayload,
-  EventCallbackApiAppRequest: EventCallbackApiAppRequest,
-  EventCallbackApiAppRequestPayload: EventCallbackApiAppRequestPayload,
+  EventCallbackRequest: EventCallbackRequest,
   EventCallbackRequestEvent: EventCallbackRequestEvent,
   EventCallbackRequestEventMetadata: EventCallbackRequestEventMetadata,
   FileResponse: FileResponse,

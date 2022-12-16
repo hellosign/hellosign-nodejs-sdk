@@ -72,18 +72,6 @@ export class TeamApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -142,14 +130,6 @@ export class TeamApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
    * @summary Add User to Team
@@ -198,9 +178,7 @@ export class TeamApi {
 
     const result = generateFormData(
       teamAddMemberRequest,
-      TeamAddMemberRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TeamAddMemberRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -348,9 +326,7 @@ export class TeamApi {
 
     const result = generateFormData(
       teamCreateRequest,
-      TeamCreateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TeamCreateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -1122,9 +1098,7 @@ export class TeamApi {
 
     const result = generateFormData(
       teamRemoveMemberRequest,
-      TeamRemoveMemberRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TeamRemoveMemberRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -1426,9 +1400,7 @@ export class TeamApi {
 
     const result = generateFormData(
       teamUpdateRequest,
-      TeamUpdateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      TeamUpdateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

@@ -10,6 +10,7 @@ import {
 } from '../test_utils';
 
 const axios = require('axios');
+const fs = require('fs');
 const MockAdapter = require('axios-mock-adapter');
 
 describe('UnclaimedDraftApiTest', () => {
@@ -20,8 +21,7 @@ describe('UnclaimedDraftApiTest', () => {
   });
 
   const api = new UnclaimedDraftApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
+  const rootFilePath = __dirname + '/../../test_fixtures';
 
   it('testUnclaimedDraftCreate', () => {
     const requestClass = 'UnclaimedDraftCreateRequest';
@@ -33,6 +33,7 @@ describe('UnclaimedDraftApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.UnclaimedDraftCreateRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.unclaimedDraftCreate(obj).then(response => {
       const diff = diffJson(
@@ -57,6 +58,7 @@ describe('UnclaimedDraftApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.UnclaimedDraftCreateEmbeddedRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.unclaimedDraftCreateEmbedded(obj).then(response => {
       const diff = diffJson(

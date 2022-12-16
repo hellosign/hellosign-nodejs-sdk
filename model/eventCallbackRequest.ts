@@ -28,7 +28,7 @@ import { EventCallbackRequestEvent } from "./eventCallbackRequestEvent";
 import { SignatureRequestResponse } from "./signatureRequestResponse";
 import { TemplateResponse } from "./templateResponse";
 
-export class EventCallbackApiAppRequestPayload {
+export class EventCallbackRequest {
   "event": EventCallbackRequestEvent;
   "account"?: AccountResponse;
   "signatureRequest"?: SignatureRequestResponse;
@@ -60,6 +60,6 @@ export class EventCallbackApiAppRequestPayload {
   ];
 
   static getAttributeTypeMap(): AttributeTypeMap {
-    return EventCallbackApiAppRequestPayload.attributeTypeMap;
+    return EventCallbackRequest.attributeTypeMap;
   }
 }

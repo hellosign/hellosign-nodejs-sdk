@@ -66,18 +66,6 @@ export class EmbeddedApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -136,14 +124,6 @@ export class EmbeddedApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Retrieves an embedded object containing a template url that can be opened in an iFrame. Note that only templates created via the embedded template process are available to be edited with this endpoint.
    * @summary Get Embedded Template Edit URL
@@ -200,9 +180,7 @@ export class EmbeddedApi {
 
     const result = generateFormData(
       embeddedEditUrlRequest,
-      EmbeddedEditUrlRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      EmbeddedEditUrlRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

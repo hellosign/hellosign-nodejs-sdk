@@ -18,8 +18,6 @@ export declare class TemplateApi {
     protected _basePath: string;
     protected _defaultHeaders: any;
     protected _useQuerystring: boolean;
-    protected _instantiateFiles: boolean;
-    protected _rootFilePath?: string;
     protected authentications: {
         default: Authentication;
         api_key: HttpBasicAuth;
@@ -38,8 +36,6 @@ export declare class TemplateApi {
     set password(password: string);
     set accessToken(accessToken: string | (() => string));
     addInterceptor(interceptor: Interceptor): void;
-    set instantiateFiles(flag: boolean);
-    set rootFilePath(path: string | undefined);
     templateAddUser(templateId: string, templateAddUserRequest: TemplateAddUserRequest, options?: optionsI): Promise<returnTypeT<TemplateGetResponse>>;
     templateCreateEmbeddedDraft(templateCreateEmbeddedDraftRequest: TemplateCreateEmbeddedDraftRequest, options?: optionsI): Promise<returnTypeT<TemplateCreateEmbeddedDraftResponse>>;
     templateDelete(templateId: string, options?: optionsI): Promise<returnTypeI>;

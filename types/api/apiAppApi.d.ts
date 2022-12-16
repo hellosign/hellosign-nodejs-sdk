@@ -11,8 +11,6 @@ export declare class ApiAppApi {
     protected _basePath: string;
     protected _defaultHeaders: any;
     protected _useQuerystring: boolean;
-    protected _instantiateFiles: boolean;
-    protected _rootFilePath?: string;
     protected authentications: {
         default: Authentication;
         api_key: HttpBasicAuth;
@@ -31,8 +29,6 @@ export declare class ApiAppApi {
     set password(password: string);
     set accessToken(accessToken: string | (() => string));
     addInterceptor(interceptor: Interceptor): void;
-    set instantiateFiles(flag: boolean);
-    set rootFilePath(path: string | undefined);
     apiAppCreate(apiAppCreateRequest: ApiAppCreateRequest, options?: optionsI): Promise<returnTypeT<ApiAppGetResponse>>;
     apiAppDelete(clientId: string, options?: optionsI): Promise<returnTypeI>;
     apiAppGet(clientId: string, options?: optionsI): Promise<returnTypeT<ApiAppGetResponse>>;

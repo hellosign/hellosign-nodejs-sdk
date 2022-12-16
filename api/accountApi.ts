@@ -69,18 +69,6 @@ export class AccountApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -139,14 +127,6 @@ export class AccountApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Creates a new Dropbox Sign Account that is associated with the specified `email_address`.
    * @summary Create Account
@@ -186,9 +166,7 @@ export class AccountApi {
 
     const result = generateFormData(
       accountCreateRequest,
-      AccountCreateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      AccountCreateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -305,8 +283,8 @@ export class AccountApi {
   /**
    * Returns the properties and settings of your Account.
    * @summary Get Account
-   * @param accountId &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account.
-   * @param emailAddress &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account.
+   * @param accountId &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account.
+   * @param emailAddress &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account.
    * @param options
    */
   public async accountGet(
@@ -476,9 +454,7 @@ export class AccountApi {
 
     const result = generateFormData(
       accountUpdateRequest,
-      AccountUpdateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      AccountUpdateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -626,9 +602,7 @@ export class AccountApi {
 
     const result = generateFormData(
       accountVerifyRequest,
-      AccountVerifyRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      AccountVerifyRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
