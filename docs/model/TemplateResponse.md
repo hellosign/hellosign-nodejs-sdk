@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 | `isEmbedded` | ```boolean``` |  `true` if this template was created using an embedded flow, `false` if it was created on our website.  |  |
 | `isCreator` | ```boolean``` |  `true` if you are the owner of this template, `false` if it&#39;s been shared with you by a team member.  |  |
 | `canEdit` | ```boolean``` |  Indicates whether edit rights have been granted to you by the owner (always `true` if that&#39;s you).  |  |
-| `isLocked` | ```boolean``` |  Indicates whether the template is locked.  If `true`, then the template was created outside your quota and can only be used in `test_mode`.  If `false`, then the template is within your quota and can be used to create signature requests.  |  |
+| `isLocked` | ```boolean``` |  Indicates whether the template is locked. If `true`, then the template was created outside your quota and can only be used in `test_mode`. If `false`, then the template is within your quota and can be used to create signature requests.  |  |
 | `metadata` | ```object``` |  The metadata attached to the template.  |  |
 | `signerRoles` | [```Array<TemplateResponseSignerRole>```](TemplateResponseSignerRole.md) |  An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.  |  |
 | `ccRoles` | [```Array<TemplateResponseCCRole>```](TemplateResponseCCRole.md) |  An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.  |  |

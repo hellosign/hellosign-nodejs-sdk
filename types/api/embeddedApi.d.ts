@@ -10,8 +10,6 @@ export declare class EmbeddedApi {
     protected _basePath: string;
     protected _defaultHeaders: any;
     protected _useQuerystring: boolean;
-    protected _instantiateFiles: boolean;
-    protected _rootFilePath?: string;
     protected authentications: {
         default: Authentication;
         api_key: HttpBasicAuth;
@@ -30,8 +28,6 @@ export declare class EmbeddedApi {
     set password(password: string);
     set accessToken(accessToken: string | (() => string));
     addInterceptor(interceptor: Interceptor): void;
-    set instantiateFiles(flag: boolean);
-    set rootFilePath(path: string | undefined);
     embeddedEditUrl(templateId: string, embeddedEditUrlRequest: EmbeddedEditUrlRequest, options?: optionsI): Promise<returnTypeT<EmbeddedEditUrlResponse>>;
     embeddedSignUrl(signatureId: string, options?: optionsI): Promise<returnTypeT<EmbeddedSignUrlResponse>>;
 }

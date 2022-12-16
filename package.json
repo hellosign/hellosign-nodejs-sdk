@@ -1,6 +1,6 @@
 {
     "name": "hellosign-sdk",
-    "version": "6.0.0-beta22.23",
+    "version": "6.0.0-beta22.24",
     "description": "NodeJS client for hellosign-sdk",
     "repository": {
     "type": "git",

@@ -20,8 +20,6 @@ describe('OAuthApiTest', () => {
   });
 
   const api = new OAuthApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testTokenGenerate', () => {
     const requestClass = 'OAuthTokenGenerateRequest';

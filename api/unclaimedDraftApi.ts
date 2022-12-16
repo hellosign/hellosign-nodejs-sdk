@@ -68,18 +68,6 @@ export class UnclaimedDraftApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -138,14 +126,6 @@ export class UnclaimedDraftApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \"Sign and send\" or the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a 404.
    * @summary Create Unclaimed Draft
@@ -188,9 +168,7 @@ export class UnclaimedDraftApi {
 
     const result = generateFormData(
       unclaimedDraftCreateRequest,
-      UnclaimedDraftCreateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      UnclaimedDraftCreateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -346,9 +324,7 @@ export class UnclaimedDraftApi {
 
     const result = generateFormData(
       unclaimedDraftCreateEmbeddedRequest,
-      UnclaimedDraftCreateEmbeddedRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      UnclaimedDraftCreateEmbeddedRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -505,9 +481,7 @@ export class UnclaimedDraftApi {
 
     const result = generateFormData(
       unclaimedDraftCreateEmbeddedWithTemplateRequest,
-      UnclaimedDraftCreateEmbeddedWithTemplateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      UnclaimedDraftCreateEmbeddedWithTemplateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -677,9 +651,7 @@ export class UnclaimedDraftApi {
 
     const result = generateFormData(
       unclaimedDraftEditAndResendRequest,
-      UnclaimedDraftEditAndResendRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      UnclaimedDraftEditAndResendRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

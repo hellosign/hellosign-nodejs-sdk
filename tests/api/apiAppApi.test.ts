@@ -10,6 +10,7 @@ import {
 } from '../test_utils';
 
 const axios = require('axios');
+const fs = require('fs');
 const MockAdapter = require('axios-mock-adapter');
 
 describe('ApiAppApiTest', () => {
@@ -20,8 +21,7 @@ describe('ApiAppApiTest', () => {
   });
 
   const api = new ApiAppApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
+  const rootFilePath = __dirname + '/../../test_fixtures';
 
   it('testApiAppCreate', () => {
     const requestClass = 'ApiAppCreateRequest';
@@ -33,6 +33,7 @@ describe('ApiAppApiTest', () => {
     setExpectedResponse(mock, responseData, 200, 'multipart/form-data');
 
     const obj = toObj<m.ApiAppCreateRequest>(requestData, requestClass);
+    obj.customLogoFile = fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`);
 
     api.apiAppCreate(obj).then(response => {
       const diff = diffJson(
@@ -80,6 +81,7 @@ describe('ApiAppApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.ApiAppUpdateRequest>(requestData, requestClass);
+    obj.customLogoFile = fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`);
 
     api.apiAppUpdate(clientId, obj).then(response => {
       const diff = diffJson(

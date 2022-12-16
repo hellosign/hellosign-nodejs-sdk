@@ -25,13 +25,15 @@ Creates a new Draft that can be claimed using the claim URL. The first authentic
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.UnclaimedDraftApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const signer1: HelloSignSDK.SubUnclaimedDraftSigner = {
   emailAddress: "jack@example.com",
@@ -69,7 +71,7 @@ const data: HelloSignSDK.UnclaimedDraftCreateRequest = {
     "lawyer@hellosign.com",
     "lawyer@example.com",
   ],
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   metadata: {
     "custom_id": 1234,
     "custom_text": "NDA #9",
@@ -94,13 +96,15 @@ result.then(response => {
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.UnclaimedDraftApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const signer1 = {
   emailAddress: "jack@example.com",
@@ -138,7 +142,7 @@ const data = {
     "lawyer@hellosign.com",
     "lawyer@example.com",
   ],
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   metadata: {
     "custom_id": 1234,
     "custom_text": "NDA #9",
@@ -196,17 +200,19 @@ Creates a new Draft that can be claimed and used in an embedded iFrame. The firs
 ```typescript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.UnclaimedDraftApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.UnclaimedDraftCreateEmbeddedRequest = {
   clientId: "ec64a202072370a737edf4a0eb7f4437",
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   requesterEmailAddress: "jack@hellosign.com",
   testMode: true,
 };
@@ -226,17 +232,19 @@ result.then(response => {
 ```javascript
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.UnclaimedDraftApi();
 
 // Configure HTTP basic authorization: api_key
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   clientId: "ec64a202072370a737edf4a0eb7f4437",
-  fileUrl: ["https://app.hellosign.com/docs/example_signature_request.pdf"],
+  file: [fs.createReadStream("example_signature_request.pdf")],
   requesterEmailAddress: "jack@hellosign.com",
   testMode: true,
 };
@@ -295,7 +303,7 @@ const api = new HelloSignSDK.UnclaimedDraftApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const signer1: HelloSignSDK.SubUnclaimedDraftTemplateSigner = {
   role: "Client",
@@ -338,7 +346,7 @@ const api = new HelloSignSDK.UnclaimedDraftApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const signer1 = {
   role: "Client",
@@ -414,7 +422,7 @@ const api = new HelloSignSDK.UnclaimedDraftApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.UnclaimedDraftEditAndResendRequest = {
   clientId: "ec64a202072370a737edf4a0eb7f4437",
@@ -444,7 +452,7 @@ const api = new HelloSignSDK.UnclaimedDraftApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   clientId: "ec64a202072370a737edf4a0eb7f4437",

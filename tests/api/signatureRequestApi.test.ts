@@ -10,6 +10,7 @@ import {
 } from '../test_utils';
 
 const axios = require('axios');
+const fs = require('fs');
 const MockAdapter = require('axios-mock-adapter');
 
 describe('SignatureRequestApiTest', () => {
@@ -20,8 +21,7 @@ describe('SignatureRequestApiTest', () => {
   });
 
   const api = new SignatureRequestApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
+  const rootFilePath = __dirname + '/../../test_fixtures';
 
   it('testSignatureRequestBulkCreateEmbeddedWithTemplate', () => {
     const requestClass = 'SignatureRequestBulkCreateEmbeddedWithTemplateRequest';
@@ -33,6 +33,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.SignatureRequestBulkCreateEmbeddedWithTemplateRequest>(requestData, requestClass);
+    obj.signerFile = fs.createReadStream(`${rootFilePath}/bulk-send-sample.csv`);
 
     api.signatureRequestBulkCreateEmbeddedWithTemplate(obj).then(response => {
       const diff = diffJson(
@@ -57,6 +58,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.SignatureRequestBulkSendWithTemplateRequest>(requestData, requestClass);
+    obj.signerFile = fs.createReadStream(`${rootFilePath}/bulk-send-sample.csv`);
 
     api.signatureRequestBulkSendWithTemplate(obj).then(response => {
       const diff = diffJson(
@@ -83,6 +85,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.SignatureRequestCreateEmbeddedRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.signatureRequestCreateEmbedded(obj).then(response => {
       const diff = diffJson(
@@ -107,6 +110,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.SignatureRequestCreateEmbeddedWithTemplateRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.signatureRequestCreateEmbeddedWithTemplate(obj).then(response => {
       const diff = diffJson(
@@ -248,6 +252,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200);
 
     const obj = toObj<m.SignatureRequestSendRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.signatureRequestSend(obj).then(response => {
       const diff = diffJson(
@@ -264,7 +269,7 @@ describe('SignatureRequestApiTest', () => {
 
   it('testSignatureRequestSendFileForcesMultipartFormData', () => {
     const requestClass = 'SignatureRequestSendRequest';
-    const requestData = getFixtureData(requestClass)['with_file'];
+    const requestData = getFixtureData(requestClass)['default'];
 
     const responseClass = 'SignatureRequestGetResponse';
     const responseData = getFixtureData(responseClass)['default'];
@@ -272,6 +277,7 @@ describe('SignatureRequestApiTest', () => {
     setExpectedResponse(mock, responseData, 200, 'multipart/form-data');
 
     const obj = toObj<m.SignatureRequestSendRequest>(requestData, requestClass);
+    obj.file = [fs.createReadStream(`${rootFilePath}/pdf-sample.pdf`)];
 
     api.signatureRequestSend(obj).then(response => {
       const diff = diffJson(
@@ -288,7 +294,7 @@ describe('SignatureRequestApiTest', () => {
 
   it('testSignatureRequestSendNoFileForcesApplicationJson', () => {
     const requestClass = 'SignatureRequestSendRequest';
-    const requestData = getFixtureData(requestClass)['with_file_url'];
+    const requestData = getFixtureData(requestClass)['default'];
 
     const responseClass = 'SignatureRequestGetResponse';
     const responseData = getFixtureData(responseClass)['default'];

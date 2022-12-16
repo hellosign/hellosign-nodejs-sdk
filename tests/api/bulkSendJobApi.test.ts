@@ -19,8 +19,6 @@ describe('BulkSendJobApiTest', () => {
   });
 
   const api = new BulkSendJobApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testBulkSendJobGet', () => {
     const id = '6e683bc0369ba3d5b6f43c2c22a8031dbf6bd174';

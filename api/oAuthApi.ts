@@ -65,18 +65,6 @@ export class OAuthApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -135,14 +123,6 @@ export class OAuthApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Once you have retrieved the code from the user callback, you will need to exchange it for an access token via a backend call.
    * @summary OAuth Token Generate
@@ -185,9 +165,7 @@ export class OAuthApi {
 
     const result = generateFormData(
       oAuthTokenGenerateRequest,
-      OAuthTokenGenerateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      OAuthTokenGenerateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -313,9 +291,7 @@ export class OAuthApi {
 
     const result = generateFormData(
       oAuthTokenRefreshRequest,
-      OAuthTokenRefreshRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      OAuthTokenRefreshRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

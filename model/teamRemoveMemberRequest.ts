@@ -26,11 +26,11 @@ import { RequestFile, AttributeTypeMap } from "./models";
 
 export class TeamRemoveMemberRequest {
   /**
-   * **account_id** or **email_address** is required. If both are provided, the account id prevails.   Account id to remove from your Team.
+   * **account_id** or **email_address** is required. If both are provided, the account id prevails.  Account id to remove from your Team.
    */
   "accountId"?: string;
   /**
-   * **account_id** or **email_address** is required. If both are provided, the account id prevails.   Email address of the Account to remove from your Team.
+   * **account_id** or **email_address** is required. If both are provided, the account id prevails.  Email address of the Account to remove from your Team.
    */
   "emailAddress"?: string;
   /**

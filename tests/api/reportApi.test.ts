@@ -20,8 +20,6 @@ describe('ReportApiTest', () => {
   });
 
   const api = new ReportApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testReportCreate', () => {
     const requestClass = 'ReportCreateRequest';

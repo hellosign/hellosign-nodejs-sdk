@@ -8,7 +8,7 @@ api.username = "YOUR_API_KEY";
 // or, configure Bearer (JWT) authorization: oauth2
 // api.accessToken = "YOUR_ACCESS_TOKEN";
 
-const result = api.accountGet();
+const result = api.accountGet(undefined, "jack@example.com");
 result.then(response => {
   console.log(response.body);
 }).catch(error => {

@@ -20,8 +20,6 @@ describe('TeamApiTest', () => {
   });
 
   const api = new TeamApi();
-  api.rootFilePath = __dirname + '/../../test_fixtures';
-  api.instantiateFiles = true;
 
   it('testTeamAddMember', () => {
     const requestClass = 'TeamAddMemberRequest';

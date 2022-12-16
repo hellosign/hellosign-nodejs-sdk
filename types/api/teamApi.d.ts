@@ -16,8 +16,6 @@ export declare class TeamApi {
     protected _basePath: string;
     protected _defaultHeaders: any;
     protected _useQuerystring: boolean;
-    protected _instantiateFiles: boolean;
-    protected _rootFilePath?: string;
     protected authentications: {
         default: Authentication;
         api_key: HttpBasicAuth;
@@ -36,8 +34,6 @@ export declare class TeamApi {
     set password(password: string);
     set accessToken(accessToken: string | (() => string));
     addInterceptor(interceptor: Interceptor): void;
-    set instantiateFiles(flag: boolean);
-    set rootFilePath(path: string | undefined);
     teamAddMember(teamAddMemberRequest: TeamAddMemberRequest, teamId?: string, options?: optionsI): Promise<returnTypeT<TeamGetResponse>>;
     teamCreate(teamCreateRequest: TeamCreateRequest, options?: optionsI): Promise<returnTypeT<TeamGetResponse>>;
     teamDelete(options?: optionsI): Promise<returnTypeI>;

@@ -37,7 +37,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TeamAddMemberRequest = {
   emailAddress: "george@example.com",
@@ -64,7 +64,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   emailAddress: "george@example.com",
@@ -125,7 +125,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TeamCreateRequest = {
   name: "New Team Name"
@@ -152,7 +152,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   name: "New Team Name"
@@ -212,7 +212,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamDelete();
 result.then(response => {
@@ -235,7 +235,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamDelete();
 result.then(response => {
@@ -289,7 +289,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamGet();
 result.then(response => {
@@ -312,7 +312,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamGet();
 result.then(response => {
@@ -366,7 +366,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamInfo();
 result.then(response => {
@@ -389,7 +389,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const result = api.teamInfo();
 result.then(response => {
@@ -445,7 +445,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const emailAddress = "user@hellosign.com";
 
@@ -470,7 +470,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const emailAddress = "user@hellosign.com";
 
@@ -528,7 +528,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
@@ -553,7 +553,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
@@ -613,7 +613,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TeamRemoveMemberRequest = {
   emailAddress: "teammate@hellosign.com",
@@ -641,7 +641,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   emailAddress: "teammate@hellosign.com",
@@ -702,7 +702,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
@@ -727,7 +727,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
@@ -787,7 +787,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data: HelloSignSDK.TeamUpdateRequest = {
   name: "New Team Name",
@@ -814,7 +814,7 @@ const api = new HelloSignSDK.TeamApi();
 api.username = "YOUR_API_KEY";
 
 // or, configure Bearer (JWT) authorization: oauth2
-// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+// api.accessToken = "YOUR_ACCESS_TOKEN";
 
 const data = {
   name: "New Team Name",

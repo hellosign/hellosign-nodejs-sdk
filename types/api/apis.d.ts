@@ -43,7 +43,7 @@ export interface returnTypeI {
 export declare const queryParamsSerializer: (params: any) => any;
 export { RequestFile } from "../model/models";
 export declare const APIS: (typeof AccountApi | typeof ApiAppApi | typeof BulkSendJobApi | typeof EmbeddedApi | typeof OAuthApi | typeof ReportApi | typeof SignatureRequestApi | typeof TeamApi | typeof TemplateApi | typeof UnclaimedDraftApi)[];
-export declare const generateFormData: (obj: any, typemap: AttributeTypeMap, instantiateFiles: boolean, rootFilePath?: string | undefined) => {
+export declare const generateFormData: (obj: any, typemap: AttributeTypeMap) => {
     localVarUseFormData: boolean;
     data: object;
 };

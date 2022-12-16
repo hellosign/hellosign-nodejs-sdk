@@ -21,8 +21,6 @@ export declare class SignatureRequestApi {
     protected _basePath: string;
     protected _defaultHeaders: any;
     protected _useQuerystring: boolean;
-    protected _instantiateFiles: boolean;
-    protected _rootFilePath?: string;
     protected authentications: {
         default: Authentication;
         api_key: HttpBasicAuth;
@@ -41,8 +39,6 @@ export declare class SignatureRequestApi {
     set password(password: string);
     set accessToken(accessToken: string | (() => string));
     addInterceptor(interceptor: Interceptor): void;
-    set instantiateFiles(flag: boolean);
-    set rootFilePath(path: string | undefined);
     signatureRequestBulkCreateEmbeddedWithTemplate(signatureRequestBulkCreateEmbeddedWithTemplateRequest: SignatureRequestBulkCreateEmbeddedWithTemplateRequest, options?: optionsI): Promise<returnTypeT<BulkSendJobSendResponse>>;
     signatureRequestBulkSendWithTemplate(signatureRequestBulkSendWithTemplateRequest: SignatureRequestBulkSendWithTemplateRequest, options?: optionsI): Promise<returnTypeT<BulkSendJobSendResponse>>;
     signatureRequestCancel(signatureRequestId: string, options?: optionsI): Promise<returnTypeI>;

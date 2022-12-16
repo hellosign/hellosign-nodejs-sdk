@@ -67,18 +67,6 @@ export class ApiAppApi {
   protected _defaultHeaders: any = {};
   protected _useQuerystring: boolean = false;
 
-  /**
-   * Allows instantiating files when using ObjectSerializer::deserialize()
-   * @param bool
-   */
-  protected _instantiateFiles = false;
-
-  /**
-   * Define the base location to look for file uploads
-   * @param path
-   */
-  protected _rootFilePath?: string;
-
   protected authentications = {
     default: <Authentication>new VoidAuth(),
     api_key: new HttpBasicAuth(),
@@ -137,14 +125,6 @@ export class ApiAppApi {
     this.interceptors.push(interceptor);
   }
 
-  set instantiateFiles(flag: boolean) {
-    this._instantiateFiles = flag;
-  }
-
-  set rootFilePath(path: string | undefined) {
-    this._rootFilePath = path;
-  }
-
   /**
    * Creates a new API App.
    * @summary Create API App
@@ -184,9 +164,7 @@ export class ApiAppApi {
 
     const result = generateFormData(
       apiAppCreateRequest,
-      ApiAppCreateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      ApiAppCreateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 
@@ -719,9 +697,7 @@ export class ApiAppApi {
 
     const result = generateFormData(
       apiAppUpdateRequest,
-      ApiAppUpdateRequest.attributeTypeMap,
-      this._instantiateFiles,
-      this._rootFilePath
+      ApiAppUpdateRequest.attributeTypeMap
     );
     localVarUseFormData = result.localVarUseFormData;
 

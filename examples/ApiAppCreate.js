@@ -1,5 +1,7 @@
 import * as HelloSignSDK from "hellosign-sdk";
 
+const fs = require('fs');
+
 const api = new HelloSignSDK.ApiAppApi();
 
 // Configure HTTP basic authorization: api_key
@@ -24,7 +26,7 @@ const whiteLabelingOptions = {
 const data = {
   name: "My Production App",
   domains: ["example.com"],
-  customLogoFile: "./CustomLogoFile.png",
+  customLogoFile: fs.createReadStream("CustomLogoFile.png"),
   oauth,
   whiteLabelingOptions,
 };
