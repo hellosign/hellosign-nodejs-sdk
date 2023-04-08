@@ -1,3 +1,15 @@
+# ⚠ This SDK has been deprecated ⚠
+
+This SDK is now deprecated and will no longer receive feature updates or bug fixes. Security fixes will still be applied as needed.
+
+The new `@dropbox/sign` SDK can be found at [hellosign/dropbox-sign-node](https://github.com/hellosign/dropbox-sign-node)!
+
+The new SDK and this legacy SDK are _not_ backwards-compatible!
+
+Please [see here for a comprehensive migration guide](https://developers.hellosign.com/docs/sdks/node/migration-guide/).
+
+----
+
 Hellosign NodeJS SDK [![Build Status](https://travis-ci.org/HelloFax/hellosign-nodejs-sdk.svg?branch=v3)](https://travis-ci.org/HelloFax/hellosign-nodejs-sdk)
 -------------------
 

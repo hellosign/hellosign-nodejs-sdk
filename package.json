@@ -1,6 +1,6 @@
 {
   "name": "hellosign-sdk",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "HelloSign NodeJS SDK",
   "homepage": "https://github.com/HelloFax/hellosign-nodejs-sdk",
   "repository": {
@@ -13,7 +13,6 @@
   },
   "main": "lib/hellosign.js",
   "dependencies": {
-    "express": "^4.17.1",
     "form-data": "^2.3.2"
   },
   "scripts": {
@@ -22,6 +21,7 @@
   },
   "devDependencies": {
     "expect": "^24.9.0",
+    "express": "^4.17.1",
     "expect.js": "^0.3.1",
     "mocha": "^7.0.1",
     "sinon": "^1.14.1"
